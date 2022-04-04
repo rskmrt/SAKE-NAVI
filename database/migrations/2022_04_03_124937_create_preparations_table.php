@@ -15,7 +15,8 @@ class CreatePreparationsTable extends Migration
     {
         Schema::create('preparations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('preparation_name', 20);
+            $table->integer('preparation_id');
+            $table->string('preparation_name');
             $table->timestamps();
         });
     }

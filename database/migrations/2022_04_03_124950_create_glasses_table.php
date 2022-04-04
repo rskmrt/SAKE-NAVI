@@ -15,7 +15,8 @@ class CreateGlassesTable extends Migration
     {
         Schema::create('glasses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('glass_name', 20);
+            $table->integer('glass_id');
+            $table->string('glass_name');
             $table->timestamps();
         });
     }

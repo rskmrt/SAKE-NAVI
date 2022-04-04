@@ -15,7 +15,8 @@ class CreateSplitsTable extends Migration
     {
         Schema::create('splits', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('split_name', 20);
+            $table->integer('split_id');
+            $table->string('split_name');
             $table->timestamps();
         });
     }

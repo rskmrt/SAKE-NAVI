@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -24,8 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $cocktails = \DB::table('cocktails')->paginate(9);
-        //dd($cocktails);
-        return view('home', compact('cocktails'));
+        return view('home');
     }
 }
