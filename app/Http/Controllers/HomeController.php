@@ -28,4 +28,11 @@ class HomeController extends Controller
         //dd($cocktails);
         return view('home', compact('cocktails'));
     }
+
+    public function show($id)
+    {
+        $cocktail = \DB::table('cocktails')->where('id', $id)
+          ->first();
+        return view('show', compact('cocktail'));
+    }
 }

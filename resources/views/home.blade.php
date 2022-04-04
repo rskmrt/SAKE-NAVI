@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="card">
-    <img src="{{ asset('img/top.jpg') }}" alt="">
-</div>
+
 <div class="container">
     
     <div class="row justify-content-center">
@@ -16,12 +14,14 @@
                   <section class="py-5 text-center container">
                     <div class="row py-lg-5">
                       <div class="col-lg-6 col-md-8 mx-auto">
-                        <h1 class="fw-light">Cocktail Search</h1>
-                        <p class="lead text-muted">\ but not too short so folks don’t simply skip over it entirely.</p>
-                        <p>
-                          <a href="#" class="btn btn-primary my-2">検索</a>
-                          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-                        </p>
+                        <h1 class="fw-light">Search</h1>
+                        <div class="input-group">
+                          <input type="text" id="txt-search" class="form-control input-group-prepend" placeholder="フリーワード"></input>
+                          <span class="input-group-btn input-group-append">
+                            <submit type="submit" id="btn-search" class="btn btn-primary"><i class="fas fa-search"></i> 検索</submit>
+                          </span>
+                        </div>
+                        
                       </div>
                     </div>
                   </section>
@@ -40,7 +40,7 @@
                               </p>
                               <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                  <button type="button" class="btn btn-sm btn-outline-secondary">view</button>
+                                  <button type="button" class="btn btn-sm btn-outline-secondary"><a href="show/{{ $cocktail->id }}">view</a></button>
                                   <button type="button" class="btn btn-sm btn-outline-secondary"><span class="material-icons">favorite_border</span></button>
                                 </div>
                                 <small class="text-muted">9 mins</small>
