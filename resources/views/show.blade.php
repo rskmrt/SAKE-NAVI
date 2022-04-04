@@ -13,19 +13,18 @@
                   <section class="py-5 text-center container">
                     <div class="row py-lg-5">
                       <div class="col-lg-6 col-md-8 mx-auto">
-                        <h1 class="fw-light">Search</h1>
-                        <div class="input-group">
-                          <input type="text" id="txt-search" class="form-control input-group-prepend" placeholder="フリーワード"></input>
-                          <span class="input-group-btn input-group-append">
-                            <submit type="submit" id="btn-search" class="btn btn-primary"><i class="fas fa-search"></i> 検索</submit>
-                          </span>
-                        </div>
-                        
+                        <p>{{ $cocktail->name }}</p>
+                        <p>{{ $cocktail->base_name }}</p>
+                        <p>{{ $cocktail->taste_id }}</p>
+                        <p>{{ $cocktail->strength_id }}</p>
+                        <p>{{ $cocktail->preparation_id }}</p>
+                        <p>{{ $cocktail->glass_id }}</p>
+                        <p>{{ $cocktail->how_to }}</p>
                       </div>
                     </div>
                   </section>
                 
-                  {{ $cocktail->name }}
+                  
                 </main>        
                 </body>
         </div>
