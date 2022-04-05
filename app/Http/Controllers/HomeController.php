@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 use App\cocktail;
-use App\base;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -25,19 +23,35 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $cocktails = DB::table('cocktails')->paginate(9);
-        //dd($cocktails);
-        return view('home', compact('cocktails'));
+        $cocktails = cocktail::paginate(9);
+
+        //フォーム検索
+        $search = $request->input('search');
+        $query = cocktail::query();
+        if ($search !== null) {
+            $spaceConversion = mb_convert_kana($search, 's');
+            $wordArraySearched = preg_split('/[\s,]+/', $spaceConversion, -1, PREG_SPLIT_NO_EMPTY);
+            foreach($wordArraySearched as $value) {
+                $query->where('name', 'like', '%'.$value.'%');
+            }
+            $cocktails = $query->paginate(9);
+        }
+
+        return view('home', compact('cocktails', 'search'));
+      
     }
 
     public function show($id)
     {
-        $cocktail = DB::table('cocktails')
+        $cocktail = cocktail::where('cocktails.id', $id)
         ->join('bases', 'cocktails.base_id', '=', 'bases.base_id')
-        ->select('cocktails.*', 'bases.base_name')
-        ->where('cocktails.id', $id)
+        ->join('glasses', 'cocktails.glass_id', '=', 'glasses.glass_id')
+        ->join('preparations', 'cocktails.preparation_id', '=', 'preparations.preparation_id')
+        ->join('strengths', 'cocktails.strength_id', '=', 'strengths.strength_id')
+        ->join('tastes', 'cocktails.taste_id', '=', 'tastes.taste_id')
+        
         ->first();
         return view('show', compact('cocktail'));
     }
