@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class TasteTableSeeder extends Seeder
+class TechniquesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,15 +11,15 @@ class TasteTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tastes')->insert([
+        DB::table('techniques')->insert([
             [
-                'name' => '甘口'
+                'name' => 'ビルド'
             ],[
-                'name' => '中辛'
+                'name' => 'ステア'
             ],[
-                'name' => '辛口'
+                'name' => 'シェイク'
             ],[
-                'name' => '中甘辛口'
+                'name' => 'ブレンド'
             ]
         ]);
     }

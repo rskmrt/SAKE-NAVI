@@ -15,8 +15,7 @@ class CreateStrengthsTable extends Migration
     {
         Schema::create('strengths', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('strength_id');
-            $table->string('strength_name');
+            $table->string('name');
             $table->timestamps();
         });
     }

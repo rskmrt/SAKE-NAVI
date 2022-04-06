@@ -13,17 +13,17 @@ class SplitsTableSeeder extends Seeder
     {
         DB::table('splits')->insert([
             [
-                'split_id' => '1',
-                'split_name' => 'ソーダ'
+                'name' => 'ソーダ'
             ],[
-                'split_id' => '2',
-                'split_name' => 'トニックウォーター'
+                'name' => 'トニックウォーター'
             ],[
-                'split_id' => '3',
-                'split_name' => 'ジンジャーエール'
+                'name' => 'ジンジャーエール'
             ],[
-                'split_id' => '4',
-                'split_name' => 'ライムジュース'
+                'name' => 'コーラ'
+            ],[
+                'name' => 'レモン'
+            ],[
+                'name' => 'ライム'
             ]
         ]);
     }

@@ -27,12 +27,12 @@
                             <p>グラスタイプ</p>
                           </div>
                           <div class="col-4">
-                            <p>{{ $cocktail->base_name }}</p>
-                            <p>{{ $cocktail->taste_name }}</p>
-                            <p>{{ $cocktail->strength_name }}</p>
-                            <p>{{ $cocktail->preparation_name }}</p>
-                            <p>{{ $cocktail->glass_name }}</p>
-                            <p>{{ $cocktail->how_to }}</p>
+                            <p>{{ $cocktail->name }}</p>
+                            {{-- <p>{{ $cocktail->taste_name }}</p> --}}
+                            {{-- <p>{{ $cocktail->strength_name }}</p> --}}
+                            {{-- <p>{{ $cocktail->technique_name }}</p> --}}
+                            {{-- <p>{{ $cocktail->name }}</p> --}}
+                            {{-- <p>{{ $cocktail->how_to }}</p> --}}
                           </div>
                         </div>
                       </div>

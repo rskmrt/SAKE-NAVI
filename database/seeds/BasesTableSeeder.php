@@ -13,17 +13,17 @@ class BasesTableSeeder extends Seeder
     {
         DB::table('bases')->insert([
             [
-                'base_id' => '1',
-                'base_name' => 'ウォッカ'
+                'name' => 'ウォッカ'
             ],[
-                'base_id' => '2',
-                'base_name' => 'ジン'
+                'name' => 'ジン'
             ],[
-                'base_id' => '3',
-                'base_name' => 'ラム'
+                'name' => 'ラム'
             ],[
-                'base_id' => '4',
-                'base_name' => 'テキーラ'
+                'name' => 'テキーラ'
+            ],[
+                'name' => '焼酎'
+            ],[
+                'name' => 'ウィスキー'
             ]
         ]);
     }

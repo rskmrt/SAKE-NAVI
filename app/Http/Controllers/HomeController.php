@@ -46,13 +46,14 @@ class HomeController extends Controller
     public function show($id)
     {
         $cocktail = cocktail::where('cocktails.id', $id)
-        ->join('bases', 'cocktails.base_id', '=', 'bases.base_id')
-        ->join('glasses', 'cocktails.glass_id', '=', 'glasses.glass_id')
-        ->join('preparations', 'cocktails.preparation_id', '=', 'preparations.preparation_id')
-        ->join('strengths', 'cocktails.strength_id', '=', 'strengths.strength_id')
-        ->join('tastes', 'cocktails.taste_id', '=', 'tastes.taste_id')
-        
+        ->join('cocktails_bases', 'cocktails.id', '=', 'cocktails_bases.id')
+        ->join('bases', 'cocktails_bases.base_id', '=', 'bases.id')
+        // ->join('glasses', 'cocktails.glass_id', '=', 'glasses.glass_id')
+        // ->join('techniques', 'cocktails.technique_id', '=', 'techniques.technique_id')
+        // ->join('strengths', 'cocktails.strength_id', '=', 'strengths.strength_id')
+        // ->join('tastes', 'cocktails.taste_id', '=', 'tastes.taste_id')
         ->first();
+        //dd($cocktail);
         return view('show', compact('cocktail'));
     }
 }

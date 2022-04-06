@@ -13,17 +13,13 @@ class GlassesTableSeeder extends Seeder
     {
         DB::table('glasses')->insert([
             [
-                'glass_id' => '1',
-                'glass_name' => 'タンブラー'
+                'name' => 'タンブラー'
             ],[
-                'glass_id' => '2',
-                'glass_name' => 'カクテルグラス'
+                'name' => 'カクテルグラス'
             ],[
-                'glass_id' => '3',
-                'glass_name' => 'ロック'
+                'name' => 'ロック'
             ],[
-                'glass_id' => '4',
-                'glass_name' => 'その他'
+                'name' => 'その他'
             ]
         ]);
     }

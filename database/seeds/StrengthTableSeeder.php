@@ -13,14 +13,11 @@ class StrengthTableSeeder extends Seeder
     {
         DB::table('strengths')->insert([
             [
-                'strength_id' => '1',
-                'strength_name' => '弱い'
+                'name' => '弱い'
             ],[
-                'strength_id' => '2',
-                'strength_name' => '普通'
+                'name' => '普通'
             ],[
-                'strength_id' => '3',
-                'strength_name' => '強い'
+                'name' => '強い'
             ]
         ]);
     }

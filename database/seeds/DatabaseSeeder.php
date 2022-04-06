@@ -17,10 +17,15 @@ class DatabaseSeeder extends Seeder
             CocktailsSplitsTableSeeder::class,
             CocktailsTableSeeder::class,
             GlassesTableSeeder::class,
-            PreparationsTableSeeder::class,
             SplitsTableSeeder::class,
             StrengthTableSeeder::class,
-            TasteTableSeeder::class
+            TasteTableSeeder::class,
+            CocktailsBasesTableSeeder::class,
+            CocktailsSplitsTableSeeder::class,
+            CocktailsGlassesTableSeeder::class,
+            CocktailsTastesTableSeeder::class,
+            CocktailsStrengthsTableSeeder::class,
+            CocktailsTechniquesTableSeeder::class
         ]);
     }
 }
