@@ -27,12 +27,16 @@
                             <p>グラスタイプ</p>
                           </div>
                           <div class="col-4">
-                            <p>{{ $cocktail->name }}</p>
-                            {{-- <p>{{ $cocktail->taste_name }}</p> --}}
-                            {{-- <p>{{ $cocktail->strength_name }}</p> --}}
-                            {{-- <p>{{ $cocktail->technique_name }}</p> --}}
-                            {{-- <p>{{ $cocktail->name }}</p> --}}
-                            {{-- <p>{{ $cocktail->how_to }}</p> --}}
+                           
+                            @foreach($base as $value)
+                            <p>{{ ($value->name) }}</p>
+                            @endforeach
+                            @foreach($split as $value)
+                            <p>{{ ($value->name) }}</p>
+                            @endforeach
+                            @foreach($glass as $value)
+                            <p>{{ ($value->name) }}</p>
+                            @endforeach
                           </div>
                         </div>
                       </div>
