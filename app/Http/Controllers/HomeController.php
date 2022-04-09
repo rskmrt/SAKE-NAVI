@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\cocktail;
-use App\cocktails_splits;
+use App\base;
+use App\cocktails_bases;
+use App\taste;
+use App\cocktails_tastes;
+use App\strength;
+use App\technique;
+use App\glass;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -28,20 +33,43 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $cocktails = cocktail::paginate(9);
-
+        $bases = base::get();
+        $tastes = taste::get();
         //フォーム検索
-        $search = $request->input('search');
-        $query = cocktail::query();
-        if ($search !== null) {
-            $spaceConversion = mb_convert_kana($search, 's');
-            $wordArraySearched = preg_split('/[\s,]+/', $spaceConversion, -1, PREG_SPLIT_NO_EMPTY);
-            foreach($wordArraySearched as $value) {
-                $query->where('name', 'like', '%'.$value.'%');
-            }
-            $cocktails = $query->paginate(9);
+        //$search = $request->input('search');
+        // if (!empty($search)) {
+        //     
+        //     $spaceConversion = mb_convert_kana($search, 's');
+        //     $wordArraySearched = preg_split('/[\s,]+/', $spaceConversion, -1, PREG_SPLIT_NO_EMPTY);
+        //     foreach($wordArraySearched as $value) {
+        //         $query->where('name', 'like', '%'.$value.'%');
+        //     }
+        //     $cocktails = $query->paginate(9);
+        // }
+
+        //ベース検索
+        $search = $request->input('base');
+        if (!empty($search)) {
+            $query = cocktails_bases::from('cocktails_bases as cb')
+            ->where('base_id', $search)
+            ->join('cocktails as cock', 'cb.cocktail_id', '=', 'cock.id')
+            ->paginate(9);
+            //dd($query);
+            $cocktails = $query;
         }
 
-        return view('home', compact('cocktails', 'search'));
+        //テイスト検索
+        $search = $request->input('taste');
+        if (!empty($search)) {
+            $query = cocktails_tastes::from('cocktails_tastes as ct')
+            ->where('taste_id', $search)
+            ->join('cocktails as cock', 'ct.cocktail_id', '=', 'cock.id')
+            ->paginate(9);
+            //dd($query);
+            $cocktails = $query;
+        }
+
+        return view('home', compact('cocktails', 'bases', 'tastes'));
       
     }
 
@@ -89,6 +117,8 @@ class HomeController extends Controller
         ->select('te.name')
         ->get();
 
+        
+
         //dd($base);
         return view('show', compact('base','glass', 'split', 'strength', 'taste', 'technique'));
     }
@@ -96,8 +126,7 @@ class HomeController extends Controller
     
 
 // $sql = "select a.id , b.split_id, c.name from cocktails a left join cocktails_splits b on a.id = b.cocktail_id left join splits c on b.split_id = c.id WHERE a.id ='1';";
-        // $split = DB::select($sql);
-
+// $split = DB::select($sql);
 // $cocktail = $base
 // ->union($glass)
 // ->union($strength)

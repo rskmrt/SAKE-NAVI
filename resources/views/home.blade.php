@@ -14,10 +14,32 @@
         <h1 class="fw-light">Search</h1>
         <form method="GET" action="{{ route('home') }}">
           <div class="input-group">
-            <input type="text" class="form-control input-group-prepend" placeholder="フリーワード" name="search" value="@if (isset($search)) {{ $search }} @endif">
+            {{-- <input type="text" class="form-control input-group-prepend" placeholder="フリーワード" name="search" value="@if (isset($search)) {{ $search }} @endif"> --}}
+            <select class="form-select" aria-label="Default select example" name="base">
+              <option value="" hidden>
+                ベースを選択
+              </option>
+              @foreach($bases as $base)
+              <option value="{{ $base->id }}">
+                {{ $base->name }}
+              </option>
+              @endforeach
+            </select>
+            <select class="form-select" aria-label="Default select example" name="taste">
+              <option value="" hidden>
+                テイストを選択
+              </option>
+              @foreach($tastes as $taste)
+              <option value="{{ $taste->id }}">
+                {{ $taste->name }}
+              </option>
+              @endforeach
+            </select>
             <button class="btn btn-primary" type="submit">検索</button>
           </div>
+         
       </form>
+
       </div>
     </div>
   </section>

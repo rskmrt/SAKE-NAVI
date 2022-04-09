@@ -27,11 +27,16 @@
                             <p>グラスタイプ</p>
                           </div>
                           <div class="col-4">
-                           
                             @foreach($base as $value)
                             <p>{{ ($value->name) }}</p>
                             @endforeach
-                            @foreach($split as $value)
+                            @foreach($taste as $value)
+                            <p>{{ ($value->name) }}</p>
+                            @endforeach
+                            @foreach($strength as $value)
+                            <p>{{ ($value->name) }}</p>
+                            @endforeach
+                            @foreach($technique as $value)
                             <p>{{ ($value->name) }}</p>
                             @endforeach
                             @foreach($glass as $value)
@@ -40,8 +45,11 @@
                           </div>
                         </div>
                       </div>
-                      
                     </div>
+
+                    @foreach($split as $value)
+                            <p>{{ ($value->name) }}</p>
+                    @endforeach
                     
                   </div>
 
