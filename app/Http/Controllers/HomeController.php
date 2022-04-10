@@ -35,10 +35,12 @@ class HomeController extends Controller
         $cocktails = cocktail::paginate(9);
         $bases = base::get();
         $tastes = taste::get();
+        $query = "";
+
         //フォーム検索
         //$search = $request->input('search');
+        //$query = cocktails::query();
         // if (!empty($search)) {
-        //     
         //     $spaceConversion = mb_convert_kana($search, 's');
         //     $wordArraySearched = preg_split('/[\s,]+/', $spaceConversion, -1, PREG_SPLIT_NO_EMPTY);
         //     foreach($wordArraySearched as $value) {
