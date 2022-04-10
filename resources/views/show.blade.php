@@ -2,14 +2,9 @@
 
 @section('content')
 
-
-
-     
           <section class="py-5 ">
             <div class="row py-lg-5">
-              <div class="col-lg-6 col-md-8 mx-auto">
-
-                
+              <div class="col-lg-6 col-md-8 mx-auto">  
                   <div class="row">
 
                     <div class="col-4">
@@ -50,16 +45,10 @@
                     @foreach($split as $value)
                             <p>{{ ($value->name) }}</p>
                     @endforeach
-                    
-                  </div>
 
-                
-                
-                
+                  </div>
               </div>
             </div>
           </section>     
         
-
-
 @endsection

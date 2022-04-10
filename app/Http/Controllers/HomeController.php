@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\cocktail;
 use App\base;
-use App\cocktails_bases;
 use App\taste;
-use App\cocktails_tastes;
+use App\split;
 use App\strength;
 use App\technique;
 use App\glass;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -30,50 +30,145 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
     public function index(Request $request)
     {
+        //カクテル一覧表示
         $cocktails = cocktail::paginate(9);
-        $bases = base::get();
-        $tastes = taste::get();
-        $query = "";
+        
 
         //フォーム検索
-        //$search = $request->input('search');
-        //$query = cocktails::query();
-        // if (!empty($search)) {
-        //     $spaceConversion = mb_convert_kana($search, 's');
-        //     $wordArraySearched = preg_split('/[\s,]+/', $spaceConversion, -1, PREG_SPLIT_NO_EMPTY);
-        //     foreach($wordArraySearched as $value) {
-        //         $query->where('name', 'like', '%'.$value.'%');
-        //     }
-        //     $cocktails = $query->paginate(9);
-        // }
+        $bases = base::get();
+        $glasses = glass::get();
+        $splits = split::get();
+        $strengths = strength::get();
+        $tastes = taste::get();
+        $techniques = technique::get();
+        $query = cocktail::query();
+
+
+        //カクテル名検索
+        $text_search = $request->input('text');
+ 
+        if (!empty($text_search)) {
+            $spaceConversion = mb_convert_kana($text_search, 's');
+            $wordArraySearched = preg_split('/[\s,]+/', $spaceConversion, -1, PREG_SPLIT_NO_EMPTY);
+            foreach($wordArraySearched as $value) {
+                $query->where('name', 'like', '%'.$value.'%');
+            }
+            $cocktails = $query->paginate(9);
+        }
+
 
         //ベース検索
-        $search = $request->input('base');
-        if (!empty($search)) {
-            $query = cocktails_bases::from('cocktails_bases as cb')
-            ->where('base_id', $search)
-            ->join('cocktails as cock', 'cb.cocktail_id', '=', 'cock.id')
-            ->paginate(9);
-            //dd($query);
-            $cocktails = $query;
+        $base_search = $request->input('base');
+
+        if (!empty($base_search)) {
+            foreach($base_search as $value){
+                if($value === reset($base_search)){
+                    $query->whereRaw('(base_id = ?', [$value]);
+                }
+                $query->orwhereRaw('base_id = ?', [$value]);
+                if($value === end($base_search)){
+                    $query->orwhereRaw('base_id = ?)', [$value]);
+                }
+            }
+            $query->join('cocktails_bases', 'cocktails.id', '=', 'cocktails_bases.cocktail_id');
         }
 
+
+         //材料検索
+         $split_search = $request->input('split');
+
+         if (!empty($split_search)) {
+             foreach($split_search as $value){
+                 if($value === reset($split_search)){
+                     $query->whereRaw('(split_id = ?', [$value]);
+                 }
+                 $query->orwhereRaw('split_id = ?', [$value]);
+                 if($value === end($split_search)){
+                     $query->orwhereRaw('split_id = ?)', [$value]);
+                 }
+             }
+             $query->join('cocktails_splits', 'cocktails.id', '=', 'cocktails_splits.cocktail_id');
+         }
+
+        
         //テイスト検索
-        $search = $request->input('taste');
-        if (!empty($search)) {
-            $query = cocktails_tastes::from('cocktails_tastes as ct')
-            ->where('taste_id', $search)
-            ->join('cocktails as cock', 'ct.cocktail_id', '=', 'cock.id')
-            ->paginate(9);
-            //dd($query);
-            $cocktails = $query;
+        $taste_search = $request->input('taste');
+
+        if (!empty($taste_search)) {
+            foreach($taste_search as $value){
+                if($value === reset($taste_search)){
+                    $query->whereRaw('(taste_id = ?', [$value]);
+                }
+                $query->orwhereRaw('taste_id = ?', [$value]);
+                if($value === end($taste_search)){
+                    $query->orwhereRaw('taste_id = ?)', [$value]);
+                }
+            }
+            $query->join('cocktails_tastes', 'cocktails.id', '=', 'cocktails_tastes.cocktail_id');
         }
 
-        return view('home', compact('cocktails', 'bases', 'tastes'));
-      
+
+        //アルコール度数検索
+        $strength_search = $request->input('strength');
+
+        if (!empty($strength_search)) {
+            foreach($strength_search as $value){
+                if($value === reset($strength_search)){
+                    $query->whereRaw('(strength_id = ?', [$value]);
+                }
+                $query->orwhereRaw('strength_id = ?', [$value]);
+                if($value === end($strength_search)){
+                    $query->orwhereRaw('strength_id = ?)', [$value]);
+                }
+            }
+            $query->join('cocktails_strengths', 'cocktails.id', '=', 'cocktails_strengths.cocktail_id');
+        }
+
+
+        //製法検索
+        $technique_search = $request->input('technique');
+
+        if (!empty($technique_search)) {
+            foreach($technique_search as $value){
+                if($value === reset($technique_search)){
+                    $query->whereRaw('(technique_id = ?', [$value]);
+                }
+                $query->orwhereRaw('technique_id = ?', [$value]);
+                if($value === end($technique_search)){
+                    $query->orwhereRaw('technique_id = ?)', [$value]);
+                }
+            }
+            $query->join('cocktails_techniques', 'cocktails.id', '=', 'cocktails_techniques.cocktail_id');
+        }
+
+
+        //グラスタイプ検索
+        $glass_search = $request->input('glass');
+
+        if (!empty($glass_search)) {
+            foreach($glass_search as $value){
+                if($value === reset($glass_search)){
+                    $query->whereRaw('(glass_id = ?', [$value]);
+                }
+                $query->orwhereRaw('glass_id = ?', [$value]);
+                if($value === end($glass_search)){
+                    $query->orwhereRaw('glass_id = ?)', [$value]);
+                }
+            }
+            $query->join('cocktails_glasses', 'cocktails.id', '=', 'cocktails_glasses.cocktail_id');
+        }
+    
+        //検索結果を取得
+        $cocktails = $query
+                        ->orderBy('cocktails.name', 'asc')
+                        ->paginate(9);
+
+        return view('home', compact('text_search','base_search', 'cocktails', 'bases', 'glasses', 'splits', 'strengths', 'tastes', 'techniques'));
     }
+
 
     public function show($id)
     {
@@ -119,20 +214,6 @@ class HomeController extends Controller
         ->select('te.name')
         ->get();
 
-        
-
-        //dd($base);
         return view('show', compact('base','glass', 'split', 'strength', 'taste', 'technique'));
     }
 }
-    
-
-// $sql = "select a.id , b.split_id, c.name from cocktails a left join cocktails_splits b on a.id = b.cocktail_id left join splits c on b.split_id = c.id WHERE a.id ='1';";
-// $split = DB::select($sql);
-// $cocktail = $base
-// ->union($glass)
-// ->union($strength)
-// ->union($taste)
-// ->union($technique)
-// ->union($split)
-// ->get();

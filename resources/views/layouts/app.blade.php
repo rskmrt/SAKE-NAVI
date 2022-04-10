@@ -19,12 +19,14 @@
 
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/home.css') }}" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
 
 <div class="sticky-top">
   <header>
+    
     <div class="collapse bg-dark" id="navbarHeader">
       <div class="container">
         <div class="row">
@@ -51,6 +53,7 @@
         <ul class="navbar-nav ml-auto">
           <!-- Authentication Links -->
           @guest
+          <div class="login">
             <li class="nav-item">
               <a class="text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
             </li>
@@ -58,6 +61,7 @@
                 <li class="nav-item">
                     <a class="text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
                 </li>
+          </div>
             @endif
           @else
             <li class="nav-item dropdown">
