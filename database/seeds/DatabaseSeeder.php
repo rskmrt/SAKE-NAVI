@@ -14,12 +14,12 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
         $this->call([
             BasesTableSeeder::class,
-            CocktailsSplitsTableSeeder::class,
             CocktailsTableSeeder::class,
             GlassesTableSeeder::class,
             SplitsTableSeeder::class,
             StrengthTableSeeder::class,
             TasteTableSeeder::class,
+            TechniqueTableSeeder::class,
             CocktailsBasesTableSeeder::class,
             CocktailsSplitsTableSeeder::class,
             CocktailsGlassesTableSeeder::class,
