@@ -3,10 +3,10 @@
 @section('content')
 
 
-
-<div class="card">
-  <img src="{{ asset('img/top.jpg') }}" alt="">
+<div style="text-align: center">
+  <img src="img/top.jpg" width="70%" height="70%">
 </div>
+
 
 <div class="container">
 

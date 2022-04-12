@@ -20,76 +20,68 @@
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <link href="{{ asset('css/home.css') }}" rel="stylesheet">
+   <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
 
-<div class="sticky-top">
-  <header>
+<header class="py-3 mb-1 ">
+  <div class="container d-flex flex-wrap justify-content-center">
+    <a href="/home" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+      <svg class="bi me-1" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+      <span class="fs-2"> <strong>{{ config('app.name', 'Laravel') }}</strong></span>
+    </a>
     
-    <div class="collapse bg-dark" id="navbarHeader">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-8 col-md-7 py-4">
-            <h4 class="text-white">About</h4>
-            <p class="text-muted"></p>
-          </div>
-          <div class="col-sm-4 offset-md-1 py-4">
-            <h4 class="text-white">Contact</h4>
-          </div>
-        </div>
-      </div>
-    </div>
+  </div>
+</header>
 
-    <div class="navbar navbar-dark bg-dark shadow-sm">
-      <div class="container d-flex justify-content-between">
-        <a href="/home" class="navbar-brand d-flex align-items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-          <!-- <strong>Album</strong> -->
-          <strong>{{ config('app.name', 'Laravel') }}</strong>
-        </a>
-        
-        <!-- Right Side Of Navbar -->
-        <ul class="navbar-nav ml-auto">
-          <!-- Authentication Links -->
-          @guest
-          <div class="login">
-            <li class="nav-item">
-              <a class="text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
-            </li>
-            @if (Route::has('register'))
-                <li class="nav-item">
-                    <a class="text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
-                </li>
-          </div>
-            @endif
-          @else
-            <li class="nav-item dropdown">
-              <a id="navbarDropdown" class="text-white dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ Auth::user()->name }} <span class="caret"></span>
+<div class="sticky-top">
+  <nav class="py-2 bg-light border-bottom">
+    <div class="container d-flex flex-wrap">
+      <ul class="nav me-auto">
+        <li class="nav-item"><a href="home" class="nav-link link-dark px-2 active" aria-current="page">カクテル一覧</a></li>
+        <li class="nav-item"><a href="about" class="nav-link link-dark px-2">About</a></li>
+        @auth
+        <li class="nav-item"><a href="favolite" class="nav-link link-dark px-2">オリジナルカクテル</a></li>
+        <li class="nav-item"><a href="can" class="nav-link link-dark px-2">お気に入り</a></li>
+        @endauth
+        <li class="nav-item"><a href="faq" class="nav-link link-dark px-2">FAQs</a></li>
+      </ul>
+      <ul class="nav">
+        @guest
+          <li class="nav-item"><a href="{{ route('login') }}" class="nav-link link-dark px-2">{{ __('Login') }}</a></li>
+          @if (Route::has('register'))
+          <li class="nav-item"><a href="{{ route('register') }}" class="nav-link link-dark px-2">{{ __('Register') }}</a></li>
+          @endif
+        @else
+          <li class="nav-item dropdown">
+            <a id="navbarDropdown" class="nav-link link-dark px-2 dropdown-toggle " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+              {{ Auth::user()->name }} <span class="caret"></span>
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
               </a>
 
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('logout') }}"
-                  onclick="event.preventDefault();
-                      document.getElementById('logout-form').submit();">
-                  {{ __('Logout') }}
-                </a>
-
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                  @csrf
-                </form>
-              </div>
-            </li>
-          @endguest
-        </ul>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+              </form>
+            </div>
+          </li>
+        @endguest 
+      </ul>
     </div>
-  </header>
+  </nav>
 </div>
+
+
+
+
+  
+
 
 
 <body>
@@ -100,20 +92,21 @@
   </div>
 </body>
 
-
-<footer>
-  <div class="bg-dark text-secondary px-4 py-5 text-center">
-    <div class="py-5">
-      <h1 class="display-5 fw-bold text-white">Dark mode hero</h1>
-      <div class="col-lg-6 mx-auto">
-        <p class="fs-5 mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
-        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-          <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold">Custom button</button>
-          <button type="button" class="btn btn-outline-light btn-lg px-4">Secondary</button>
-        </div>
+<div class="FooterSection">
+  <div class="Footer">
+    <div class="Footer-Inner">
+      <a href="" class="Footer-Inner-Logo"><img src="ロゴ画像のURL" alt=""></a>
+      <div class="Footer-Inner-List">
+        <a href="" class="Footer-Inner-List-Item">HOME</a>
+        <a href="" class="Footer-Inner-List-Item">COMPANY</a>
+        <a href="" class="Footer-Inner-List-Item">SERVICE</a>
+        <a href="" class="Footer-Inner-List-Item">RECRUIT</a>
+      </div>
+      <div class="Footer-Inner-CopyRight">
+        ©2022 Example,Inc.
       </div>
     </div>
   </div>
-</footer>
+</div>
 
 </html>
