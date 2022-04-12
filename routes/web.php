@@ -19,5 +19,8 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index');
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/show/{id}', 'HomeController@show')->name('show');
+Route::get('home', 'HomeController@index')->name('home');
+Route::get('show/{id}', 'HomeController@show')->name('show');
+Route::get('home/original', 'AuthController@original')->name('original');
+Route::get('home/favolite', 'AuthController@favolite')->name('favolite');
+Route::get('home/can', 'AuthController@can')->name('can');

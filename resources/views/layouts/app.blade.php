@@ -25,27 +25,17 @@
 </head>
 
 
-<header class="py-3 mb-1 ">
-  <div class="container d-flex flex-wrap justify-content-center">
-    <a href="/home" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
-      <svg class="bi me-1" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-      <span class="fs-2"> <strong>{{ config('app.name', 'Laravel') }}</strong></span>
-    </a>
-    
-  </div>
-</header>
-
 <div class="sticky-top">
   <nav class="py-2 bg-light border-bottom">
     <div class="container d-flex flex-wrap">
       <ul class="nav me-auto">
-        <li class="nav-item"><a href="home" class="nav-link link-dark px-2 active" aria-current="page">カクテル一覧</a></li>
-        <li class="nav-item"><a href="about" class="nav-link link-dark px-2">About</a></li>
+        <li class="nav-item"><a href="/home" class="nav-link link-dark px-2 active" aria-current="page">カクテル一覧</a></li>
         @auth
-        <li class="nav-item"><a href="favolite" class="nav-link link-dark px-2">オリジナルカクテル</a></li>
-        <li class="nav-item"><a href="can" class="nav-link link-dark px-2">お気に入り</a></li>
+        <li class="nav-item"><a href="/home/can" class="nav-link link-dark px-2">作れる</a></li>
+        <li class="nav-item"><a href="/home/original" class="nav-link link-dark px-2">オリジナルカクテル</a></li>
+        <li class="nav-item"><a href="/home/favolite" class="nav-link link-dark px-2">お気に入り</a></li
         @endauth
-        <li class="nav-item"><a href="faq" class="nav-link link-dark px-2">FAQs</a></li>
+        <li class="nav-item"><a href="/home/faq" class="nav-link link-dark px-2">FAQs</a></li>
       </ul>
       <ul class="nav">
         @guest
@@ -78,7 +68,15 @@
 </div>
 
 
-
+<header class="py-3 mb-4 ">
+  <div class="container d-flex flex-wrap justify-content-center">
+    <a href="/home" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+      <svg class="bi me-1" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+      <span class="fs-2"> <strong>{{ config('app.name', 'Laravel') }}</strong></span>
+    </a>
+    
+  </div>
+</header>
 
   
 

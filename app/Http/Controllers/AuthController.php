@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\cocktail;
 
-class HomeController extends Controller
+class AuthController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -22,8 +21,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        return view('home');
+
+     public function original(){
+         return view('original');
+     }
+
+     public function favolite(){
+        return view('favolite');
+    }
+
+    public function can(){
+        return view('can');
     }
 }

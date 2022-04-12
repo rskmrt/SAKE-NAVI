@@ -33,19 +33,14 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        //カクテル一覧表示
-        $cocktails = cocktail::paginate(9);
+        $bases = Base::get();
+        $glasses = Glass::get();
+        $splits = Split::get();
+        $strengths = Strength::get();
+        $tastes = Taste::get();
+        $techniques = Technique::get();
         
-
-        //フォーム検索
-        $bases = base::get();
-        $glasses = glass::get();
-        $splits = split::get();
-        $strengths = strength::get();
-        $tastes = taste::get();
-        $techniques = technique::get();
-        $query = cocktail::query();
-
+        $query = Cocktail::query();
 
         //カクテル名検索
         $text_search = $request->input('text');
@@ -172,42 +167,42 @@ class HomeController extends Controller
 
     public function show($id)
     {
-        $base = cocktail::from('cocktails as cock')
+        $base = Cocktail::from('cocktails as cock')
         ->leftjoin('cocktail_base as cb', 'cock.id', '=', 'cb.cocktail_id')
         ->join('bases as ba', 'cb.base_id', '=', 'ba.id')
         ->where('cock.id', $id)
         ->select('ba.name')
         ->get();
 
-        $glass = cocktail::from('cocktails as cock')
+        $glass = Cocktail::from('cocktails as cock')
         ->leftjoin('cocktail_glass as cg', 'cock.id', '=', 'cg.cocktail_id')
         ->join('glasses as gl', 'cg.glass_id', '=', 'gl.id')
         ->where('cock.id', $id)
         ->select('gl.name')
         ->get();
 
-        $split = cocktail::from('cocktails as cock')
+        $split = Cocktail::from('cocktails as cock')
         ->leftjoin('cocktail_split as csp', 'cock.id', '=', 'csp.cocktail_id')
         ->join('splits as sp', 'csp.split_id', '=', 'sp.id')
         ->where('cock.id', $id)
         ->select('sp.name')
         ->get();
         
-        $strength = cocktail::from('cocktails as cock')
+        $strength = Cocktail::from('cocktails as cock')
         ->leftjoin('cocktail_strength as cst', 'cock.id', '=', 'cst.cocktail_id')
         ->join('strengths as st', 'cst.strength_id', '=', 'st.id')
         ->where('cock.id', $id)
         ->select('st.name')
         ->get();
 
-        $taste = cocktail::from('cocktails as cock')
+        $taste = Cocktail::from('cocktails as cock')
         ->leftjoin('cocktail_taste as cta', 'cock.id', '=', 'cta.cocktail_id')
         ->join('tastes as ta', 'cta.taste_id', '=', 'ta.id')
         ->where('cock.id', $id)
         ->select('ta.name')
         ->get();
 
-        $technique = cocktail::from('cocktails as cock')
+        $technique = Cocktail::from('cocktails as cock')
         ->leftjoin('cocktail_technique as cte', 'cock.id', '=', 'cte.cocktail_id')
         ->join('techniques as te', 'cte.technique_id', '=', 'te.id')
         ->where('cock.id', $id)
