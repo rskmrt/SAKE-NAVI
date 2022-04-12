@@ -13,19 +13,19 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         $this->call([
-            BasesTableSeeder::class,
             CocktailsTableSeeder::class,
+            BasesTableSeeder::class,
             GlassesTableSeeder::class,
             SplitsTableSeeder::class,
             StrengthTableSeeder::class,
             TasteTableSeeder::class,
             TechniqueTableSeeder::class,
-            CocktailsBasesTableSeeder::class,
-            CocktailsSplitsTableSeeder::class,
-            CocktailsGlassesTableSeeder::class,
-            CocktailsTastesTableSeeder::class,
-            CocktailsStrengthsTableSeeder::class,
-            CocktailsTechniquesTableSeeder::class
+            CocktailBaseTableSeeder::class,
+            CocktailSplitTableSeeder::class,
+            CocktailGlassTableSeeder::class,
+            CocktailTasteTableSeeder::class,
+            CocktailStrengthTableSeeder::class,
+            CocktailTechniqueTableSeeder::class
         ]);
     }
 }

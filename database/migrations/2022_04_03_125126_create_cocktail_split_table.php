@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCocktailsGlassesTable extends Migration
+class CreateCocktailSplitTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateCocktailsGlassesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cocktails_glasses', function (Blueprint $table) {
+        Schema::create('cocktail_split', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('cocktail_id');
-            $table->integer('glass_id');
+            $table->integer('split_id');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateCocktailsGlassesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cocktails_glasses');
+        Schema::dropIfExists('cocktail_split');
     }
 }

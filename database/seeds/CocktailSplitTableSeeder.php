@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CocktailsSplitsTableSeeder extends Seeder
+class CocktailSplitTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class CocktailsSplitsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('cocktails_splits')->insert([
+        DB::table('cocktail_split')->insert([
             [
                 'cocktail_id' => '1',
                 'split_id' => '1'

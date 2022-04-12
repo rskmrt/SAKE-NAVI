@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\cocktail;
-use App\base;
-use App\taste;
-use App\split;
-use App\strength;
-use App\technique;
-use App\glass;
+use App\Models\Cocktail;
+use App\Models\Base;
+use App\Models\Taste;
+use App\Models\Split;
+use App\Models\Strength;
+use App\Models\Technique;
+use App\Models\Glass;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -73,7 +73,7 @@ class HomeController extends Controller
                     $query->orwhereRaw('base_id = ?)', [$value]);
                 }
             }
-            $query->join('cocktails_bases', 'cocktails.id', '=', 'cocktails_bases.cocktail_id');
+            $query->join('cocktail_base', 'cocktails.id', '=', 'cocktail_base.cocktail_id');
         }
 
 
@@ -90,7 +90,7 @@ class HomeController extends Controller
                      $query->orwhereRaw('split_id = ?)', [$value]);
                  }
              }
-             $query->join('cocktails_splits', 'cocktails.id', '=', 'cocktails_splits.cocktail_id');
+             $query->join('cocktail_split', 'cocktails.id', '=', 'cocktail_split.cocktail_id');
          }
 
         
@@ -107,7 +107,7 @@ class HomeController extends Controller
                     $query->orwhereRaw('taste_id = ?)', [$value]);
                 }
             }
-            $query->join('cocktails_tastes', 'cocktails.id', '=', 'cocktails_tastes.cocktail_id');
+            $query->join('cocktail_taste', 'cocktails.id', '=', 'cocktail_taste.cocktail_id');
         }
 
 
@@ -124,7 +124,7 @@ class HomeController extends Controller
                     $query->orwhereRaw('strength_id = ?)', [$value]);
                 }
             }
-            $query->join('cocktails_strengths', 'cocktails.id', '=', 'cocktails_strengths.cocktail_id');
+            $query->join('cocktail_strength', 'cocktails.id', '=', 'cocktail_strength.cocktail_id');
         }
 
 
@@ -141,7 +141,7 @@ class HomeController extends Controller
                     $query->orwhereRaw('technique_id = ?)', [$value]);
                 }
             }
-            $query->join('cocktails_techniques', 'cocktails.id', '=', 'cocktails_techniques.cocktail_id');
+            $query->join('cocktail_technique', 'cocktails.id', '=', 'cocktail_technique.cocktail_id');
         }
 
 
@@ -158,7 +158,7 @@ class HomeController extends Controller
                     $query->orwhereRaw('glass_id = ?)', [$value]);
                 }
             }
-            $query->join('cocktails_glasses', 'cocktails.id', '=', 'cocktails_glasses.cocktail_id');
+            $query->join('cocktail_glass', 'cocktails.id', '=', 'cocktail_glass.cocktail_id');
         }
     
         //検索結果を取得
@@ -173,42 +173,42 @@ class HomeController extends Controller
     public function show($id)
     {
         $base = cocktail::from('cocktails as cock')
-        ->leftjoin('cocktails_bases as cb', 'cock.id', '=', 'cb.cocktail_id')
+        ->leftjoin('cocktail_base as cb', 'cock.id', '=', 'cb.cocktail_id')
         ->join('bases as ba', 'cb.base_id', '=', 'ba.id')
         ->where('cock.id', $id)
         ->select('ba.name')
         ->get();
 
         $glass = cocktail::from('cocktails as cock')
-        ->leftjoin('cocktails_glasses as cg', 'cock.id', '=', 'cg.cocktail_id')
+        ->leftjoin('cocktail_glass as cg', 'cock.id', '=', 'cg.cocktail_id')
         ->join('glasses as gl', 'cg.glass_id', '=', 'gl.id')
         ->where('cock.id', $id)
         ->select('gl.name')
         ->get();
 
         $split = cocktail::from('cocktails as cock')
-        ->leftjoin('cocktails_splits as csp', 'cock.id', '=', 'csp.cocktail_id')
+        ->leftjoin('cocktail_split as csp', 'cock.id', '=', 'csp.cocktail_id')
         ->join('splits as sp', 'csp.split_id', '=', 'sp.id')
         ->where('cock.id', $id)
         ->select('sp.name')
         ->get();
         
         $strength = cocktail::from('cocktails as cock')
-        ->leftjoin('cocktails_strengths as cst', 'cock.id', '=', 'cst.cocktail_id')
+        ->leftjoin('cocktail_strength as cst', 'cock.id', '=', 'cst.cocktail_id')
         ->join('strengths as st', 'cst.strength_id', '=', 'st.id')
         ->where('cock.id', $id)
         ->select('st.name')
         ->get();
 
         $taste = cocktail::from('cocktails as cock')
-        ->leftjoin('cocktails_tastes as cta', 'cock.id', '=', 'cta.cocktail_id')
+        ->leftjoin('cocktail_taste as cta', 'cock.id', '=', 'cta.cocktail_id')
         ->join('tastes as ta', 'cta.taste_id', '=', 'ta.id')
         ->where('cock.id', $id)
         ->select('ta.name')
         ->get();
 
         $technique = cocktail::from('cocktails as cock')
-        ->leftjoin('cocktails_techniques as cte', 'cock.id', '=', 'cte.cocktail_id')
+        ->leftjoin('cocktail_technique as cte', 'cock.id', '=', 'cte.cocktail_id')
         ->join('techniques as te', 'cte.technique_id', '=', 'te.id')
         ->where('cock.id', $id)
         ->select('te.name')

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CocktailsBasesTableSeeder extends Seeder
+class CocktailGlassTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,37 +11,37 @@ class CocktailsBasesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('cocktails_bases')->insert([
+        DB::table('cocktail_glass')->insert([
             [
                 'cocktail_id' => '1',
-                'base_id' => '2'
+                'glass_id' => '2'
             ],[
                 'cocktail_id' => '2',
-                'base_id' => '2'
+                'glass_id' => '2'
             ],[
                 'cocktail_id' => '3',
-                'base_id' => '1'
+                'glass_id' => '1'
             ],[
                 'cocktail_id' => '4',
-                'base_id' => '1'
+                'glass_id' => '1'
             ],[
                 'cocktail_id' => '5',
-                'base_id' => '3'
+                'glass_id' => '3'
             ],[
                 'cocktail_id' => '6',
-                'base_id' => '4'
+                'glass_id' => '4'
             ],[
                 'cocktail_id' => '7',
-                'base_id' => '4'
+                'glass_id' => '4'
             ],[
                 'cocktail_id' => '8',
-                'base_id' => '5'
+                'glass_id' => '5'
             ],[
                 'cocktail_id' => '9',
-                'base_id' => '5'
+                'glass_id' => '5'
             ],[
                 'cocktail_id' => '10',
-                'base_id' => '6'
+                'glass_id' => '6'
             ]
         ]);
     }

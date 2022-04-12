@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCocktailsTechniquesTable extends Migration
+class CreateCocktailStrengthTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateCocktailsTechniquesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cocktails_techniques', function (Blueprint $table) {
+        Schema::create('cocktail_strength', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('cocktail_id');
-            $table->integer('technique_id');
+            $table->integer('strength_id');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateCocktailsTechniquesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cocktails_techniques');
+        Schema::dropIfExists('cocktail_strength');
     }
 }

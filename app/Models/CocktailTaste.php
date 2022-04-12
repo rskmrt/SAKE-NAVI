@@ -1,10 +1,9 @@
 <?php
 
-namespace App;
-
+namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
-class cocktail extends Model
+class CocktailTaste extends Model
 {
     //
 }
