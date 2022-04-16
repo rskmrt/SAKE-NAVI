@@ -15,22 +15,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //$this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-
+    //一覧画面表示
     public function index(Request $request)
     {
         $bases = Base::get();
@@ -165,48 +150,31 @@ class HomeController extends Controller
     }
 
 
+    //詳細画面表示
     public function show($id)
     {
-        $base = Cocktail::from('cocktails as cock')
-        ->leftjoin('cocktail_base as cb', 'cock.id', '=', 'cb.cocktail_id')
-        ->join('bases as ba', 'cb.base_id', '=', 'ba.id')
-        ->where('cock.id', $id)
-        ->select('ba.name')
+        $base = Cocktail::find($id)
+        ->bases()
         ->get();
 
-        $glass = Cocktail::from('cocktails as cock')
-        ->leftjoin('cocktail_glass as cg', 'cock.id', '=', 'cg.cocktail_id')
-        ->join('glasses as gl', 'cg.glass_id', '=', 'gl.id')
-        ->where('cock.id', $id)
-        ->select('gl.name')
+        $glass = Cocktail::find($id)
+        ->glasses()
         ->get();
 
-        $split = Cocktail::from('cocktails as cock')
-        ->leftjoin('cocktail_split as csp', 'cock.id', '=', 'csp.cocktail_id')
-        ->join('splits as sp', 'csp.split_id', '=', 'sp.id')
-        ->where('cock.id', $id)
-        ->select('sp.name')
+        $split = Cocktail::find($id)
+        ->splits()
         ->get();
         
-        $strength = Cocktail::from('cocktails as cock')
-        ->leftjoin('cocktail_strength as cst', 'cock.id', '=', 'cst.cocktail_id')
-        ->join('strengths as st', 'cst.strength_id', '=', 'st.id')
-        ->where('cock.id', $id)
-        ->select('st.name')
+        $strength = Cocktail::find($id)
+        ->strengths()
         ->get();
 
-        $taste = Cocktail::from('cocktails as cock')
-        ->leftjoin('cocktail_taste as cta', 'cock.id', '=', 'cta.cocktail_id')
-        ->join('tastes as ta', 'cta.taste_id', '=', 'ta.id')
-        ->where('cock.id', $id)
-        ->select('ta.name')
+        $taste = Cocktail::find($id)
+        ->tastes()
         ->get();
 
-        $technique = Cocktail::from('cocktails as cock')
-        ->leftjoin('cocktail_technique as cte', 'cock.id', '=', 'cte.cocktail_id')
-        ->join('techniques as te', 'cte.technique_id', '=', 'te.id')
-        ->where('cock.id', $id)
-        ->select('te.name')
+        $technique = Cocktail::find($id)
+        ->techniques()
         ->get();
 
         return view('show', compact('base','glass', 'split', 'strength', 'taste', 'technique'));
