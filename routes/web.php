@@ -25,7 +25,9 @@ Route::get('home/show/{id}', 'HomeController@show')->name('show');
 Route::post('home/favorite/{cocktail}', 'FavoriteController@store')->name('favorites');
 Route::post('home/unfavorite/{cocktail}', 'FavoriteController@destroy')->name('unfavorites');
 
-Route::get('can-create', 'CanCreateController@index')->name('can-create');
+Route::get('can-make', 'CanMakeController@index')->name('can-make');
+Route::get('can-make/regist', 'CanMakeController@create')->name('regist');
+
 
 Route::get('original', 'OriginalController@index')->name('original');
 
