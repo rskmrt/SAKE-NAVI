@@ -22,7 +22,8 @@ class FavoriteController extends Controller
      */
     public function index()
     {
-        //
+        $cocktails = Cocktail::get();
+        return view('favorite', compact('cocktails'));
     }
 
     /**
@@ -45,7 +46,7 @@ class FavoriteController extends Controller
     {
         $cocktail->users()->attach(Auth::id());
 
-        return redirect()->route('home');
+        return redirect()->back();
     }
 
     /**
@@ -92,6 +93,6 @@ class FavoriteController extends Controller
     {
         $cocktail->users()->detach(Auth::id());
 
-        return redirect()->route('home');
+        return redirect()->back();
     }
 }

@@ -14,17 +14,14 @@
       <div class="col-lg-6 col-md-8 mx-auto">
         
         <form method="GET" action="{{ route('home') }}">
-          <div class="input-group">
-            <input type="text" class="form-control input-group-prepend" placeholder="カクテル名で検索" name="text" value="@if (isset($text_search)) {{ $text_search }} @endif">
-            <button class="btn btn-primary" type="submit">
-              <span class="material-icons">
-                search
-                </span>
-                
-            </button>
-          </div>
+            <div class="input-group">
+                <input type="text" class="form-control input-group-prepend" placeholder="カクテル名で検索" name="text" value="@if (isset($text_search)) {{ $text_search }} @endif">
+                <button class="btn btn-primary" type="submit">
+                  <span class="material-icons">search</span>  
+                </button>
+            </div>
         </form>
- 
+
         <form action="{{ route('home') }}">
           <div class="checkboxform">
 
@@ -102,7 +99,8 @@
   </section>
 
   @include('components.cocktails')
-             
+  {{ $cocktails->links() }}
+
 </div>
 
 @endsection
