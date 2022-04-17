@@ -7,7 +7,6 @@
 <div class="container">
 
     <section class="py-5 text-center container">
-      <button type="button" class="btn btn-outline-dark btn-lg" onclick=location.href="/can-make/regist">登録した材料</button>
       <button type="button" class="btn btn-outline-dark btn-lg" onclick=location.href="/can-make/regist">材料の登録</button> 
     </section>
     
