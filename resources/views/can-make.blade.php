@@ -5,11 +5,10 @@
 
 
 <div class="container">
+
     <section class="py-5 text-center container">
-      <div class="row py-lg-1">
-        <h1 class="fw-light"><button type="button" class="btn btn-outline-dark btn-lg" onclick=location.href="/can-make/regist">材料の登録</button></h1>
-        
-      </div>
+      <button type="button" class="btn btn-outline-dark btn-lg" onclick=location.href="/can-make/regist">登録した材料</button>
+      <button type="button" class="btn btn-outline-dark btn-lg" onclick=location.href="/can-make/regist">材料の登録</button> 
     </section>
     
     今すぐ作れる
@@ -27,7 +26,6 @@
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary" onclick=location.href='home/show/{{ $cocktail->id }}'>view</button> 
                 </div>
-                
               </div>
             </div>
           </div>

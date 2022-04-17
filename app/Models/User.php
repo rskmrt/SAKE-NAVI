@@ -41,4 +41,12 @@ class User extends Authenticatable
     public function favorites(){
         return $this->belongsToMany('App\Models\Cocktail', 'favorites', 'user_id', 'cocktail_id')->withTimestamps();
     }
+
+    public function bases(){
+        return $this->belongsToMany('App\Models\Base', 'base_user', 'user_id', 'base_id')->withTimestamps();
+    }
+
+    public function splits(){
+        return $this->belongsToMany('App\Models\Split', 'split_user', 'user_id', 'split_id')->withTimestamps();
+    }
 }

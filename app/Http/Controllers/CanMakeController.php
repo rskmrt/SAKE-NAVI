@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cocktail;
+use App\Models\Base;
+use App\Models\Split;
 use Auth;
 
 class CanMakeController extends Controller
@@ -32,7 +34,9 @@ class CanMakeController extends Controller
      */
     public function create()
     {
-        return view('regist');
+        $bases = Base::get();
+        $splits = Split::get();
+        return view('ingredients-regist', compact('bases', 'splits'));
     }
 
     /**
