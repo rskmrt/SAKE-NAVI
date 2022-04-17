@@ -45,9 +45,25 @@ class CanMakeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Base $base)
+    public function store(Request $request)
     {
-        $base->users()->attach(Auth::id());
+        $bases = Base::find($request->input('base'));
+        $splits = Split::find($request->input('split'));
+
+        if(!empty($bases)){
+            foreach($bases as $base){
+                $base->users()->attach(Auth::id())->unique();
+            }
+        }
+        
+
+        if(!empty($splits)){
+            foreach($splits as $split){
+                $split->users()->attach(Auth::id())->unique();
+            }
+        }
+        
+        
 
         return redirect()->back();
     }

@@ -27,8 +27,8 @@ Route::post('home/unfavorite/{cocktail}', 'FavoriteController@destroy')->name('u
 
 Route::get('can-make', 'CanMakeController@index')->name('can-make');
 Route::get('can-make/regist', 'CanMakeController@create')->name('ingredients-regist');
-Route::post('can-make/store/{id}', 'CanMakeController@store')->name('ingredients-store');
-Route::post('can-make/delete/{}', 'CanMakeController@destroy')->name('ingredients-delete');
+Route::get('can-make/store', 'CanMakeController@store')->name('ingredients-store');
+Route::post('can-make/delete', 'CanMakeController@destroy')->name('ingredients-delete');
 
 
 Route::get('original', 'OriginalController@index')->name('original');
