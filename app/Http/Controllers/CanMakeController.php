@@ -52,14 +52,14 @@ class CanMakeController extends Controller
 
         if(!empty($bases)){
             foreach($bases as $base){
-                $base->users()->attach(Auth::id())->unique();
+                $base->users()->attach(Auth::id());
             }
         }
         
 
         if(!empty($splits)){
             foreach($splits as $split){
-                $split->users()->attach(Auth::id())->unique();
+                $split->users()->attach(Auth::id());
             }
         }
         
