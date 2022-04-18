@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cocktail;
+use App\Models\BaseUser;
 use App\Models\Base;
 use App\Models\Split;
 use Auth;
@@ -22,8 +23,13 @@ class CanMakeController extends Controller
      */
     public function index()
     {
-        $cocktails=Cocktail::get();
-
+        $bases = BaseUser::pluck('base_id')->toArray();
+        $cocktails = [];
+        foreach($bases as $base){
+            $cocktail = Base::find($base)->cocktails()->get();
+            array_push($cocktails, $cocktail);
+        }
+ 
         return view('can-make', compact('cocktails'));
     }
 
