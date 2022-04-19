@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cocktail;
 use App\Models\BaseUser;
+use App\Models\SplitUser;
 use App\Models\Base;
 use App\Models\Split;
 use Auth;
@@ -23,13 +24,21 @@ class CanMakeController extends Controller
      */
     public function index()
     {
-        $bases = BaseUser::pluck('base_id')->toArray();
-        $cocktails = [];
-        foreach($bases as $base){
-            $cocktail = Base::find($base)->cocktails()->get();
-            array_push($cocktails, $cocktail);
-        }
- 
+        $bases_id = BaseUser::pluck('base_id')->toArray();
+        $splits_id = SplitUser::pluck('split_id')->toArray();
+        $query = Cocktail::query();
+        $cocktails[] = "";
+
+        //$query->wherein('base_id',  $bases_id)->selectRaw('name, COUNT(1)')->groupByRaw('name')->havingRaw('COUNT(1) > 1');
+        
+        $query->wherein('split_id',  $splits_id)->selectRaw('name, COUNT(1)')->groupByRaw('name')->havingRaw('COUNT(1) > 1');
+        
+        $query->join('cocktail_split', 'cocktails.id', '=', 'cocktail_split.cocktail_id');
+        
+        
+        $cocktails = $query->orderBy('split_id')
+        ->get();
+
         return view('can-make', compact('cocktails'));
     }
 

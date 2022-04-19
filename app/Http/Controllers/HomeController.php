@@ -146,7 +146,7 @@ class HomeController extends Controller
                         ->orderBy('cocktails.name', 'asc')
                         ->paginate(9);
 
-        return view('home', compact('text_search','base_search', 'cocktails', 'bases', 'glasses', 'splits', 'strengths', 'tastes', 'techniques'));
+        return view('home', compact('text_search', 'cocktails', 'bases', 'glasses', 'splits', 'strengths', 'tastes', 'techniques'));
     }
 
 

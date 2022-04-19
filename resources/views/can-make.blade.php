@@ -13,11 +13,11 @@
     今すぐ作れる
   <div class="album py-5 bg-light">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      @if(!empty($cocktails))
       @foreach($cocktails as $cocktail)
-        @foreach($cocktail as $value)
-        {{ $value->name }}
-        @endforeach
+        {{ $cocktail->name }}
       @endforeach
+      @endif
     </div>
   </div>
 </div>
