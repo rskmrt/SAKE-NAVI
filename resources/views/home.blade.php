@@ -15,7 +15,7 @@
         
         <form method="GET" action="{{ route('home') }}">
             <div class="input-group">
-                <input type="text" class="form-control input-group-prepend" placeholder="カクテル名で検索" name="text" value="@if (isset($text_search)) {{ $text_search }} @endif">
+                <input type="text" class="form-control input-group-prepend" placeholder="カクテル名で検索" name="text" value="@if (isset($text)) {{ $text }} @endif">
                 <button class="btn btn-primary" type="submit">
                   <span class="material-icons">search</span>  
                 </button>
@@ -31,17 +31,6 @@
                 <input class="form-check-input" name="base[]" type="checkbox" value="{{ $base->id }}" id="{{ $base->name }}" >
                 <label class="form-check-label" for="{{ $base->name }}">
                   {{$base->name}}
-                </label>
-              </div>
-              @endforeach
-            </p>
-
-            <p>材料
-              @foreach($splits as $split)
-              <div class="form-check-inline">
-                <input class="form-check-input" name="split[]" type="checkbox" value="{{ $split->id }}" id="{{ $split->name }}" >
-                <label class="form-check-label" for="{{ $split->name }}">
-                  {{$split->name}}
                 </label>
               </div>
               @endforeach

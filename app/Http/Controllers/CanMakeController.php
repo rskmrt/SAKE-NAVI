@@ -30,14 +30,14 @@ class CanMakeController extends Controller
         $cocktails[] = "";
 
         //$query->wherein('base_id',  $bases_id)->selectRaw('name, COUNT(1)')->groupByRaw('name')->havingRaw('COUNT(1) > 1');
+        //$query->wherein('split_id',  $splits_id)->selectRaw('name, COUNT(1)')->groupByRaw('name')->havingRaw('COUNT(1) > 1');
         
-        $query->wherein('split_id',  $splits_id)->selectRaw('name, COUNT(1)')->groupByRaw('name')->havingRaw('COUNT(1) > 1');
+        $query->wherein('cocktail_split.split_id', $splits_id)->join('cocktail_split', 'cocktails.id', '=', 'cocktail_split.cocktail_id');
+        $query->wherein('cocktail_base.base_id', $bases_id)->join('cocktail_base', 'cocktails.id', '=', 'cocktail_base.cocktail_id');
         
-        $query->join('cocktail_split', 'cocktails.id', '=', 'cocktail_split.cocktail_id');
         
-        
-        $cocktails = $query->orderBy('split_id')
-        ->get();
+        $cocktails = $query
+        ->paginate();
 
         return view('can-make', compact('cocktails'));
     }
@@ -80,7 +80,7 @@ class CanMakeController extends Controller
         
         
 
-        return redirect()->back();
+        return redirect('can-make');
     }
 
     /**

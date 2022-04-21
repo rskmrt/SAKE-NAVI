@@ -25,7 +25,8 @@ class DatabaseSeeder extends Seeder
             CocktailGlassTableSeeder::class,
             CocktailTasteTableSeeder::class,
             CocktailStrengthTableSeeder::class,
-            CocktailTechniqueTableSeeder::class
+            CocktailTechniqueTableSeeder::class,
+            UsersTableSeeder::class
         ]);
     }
 }

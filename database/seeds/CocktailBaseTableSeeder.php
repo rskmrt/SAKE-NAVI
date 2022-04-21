@@ -42,6 +42,9 @@ class CocktailBaseTableSeeder extends Seeder
             ],[
                 'cocktail_id' => '10',
                 'base_id' => '6'
+            ],[
+                'cocktail_id' => '11',
+                'base_id' => '2'
             ]
         ]);
     }
