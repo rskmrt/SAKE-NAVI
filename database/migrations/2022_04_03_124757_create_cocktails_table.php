@@ -16,7 +16,7 @@ class CreateCocktailsTable extends Migration
         Schema::create('cocktails', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->longText('how_to');
+            $table->longText('how_to')->nullable();
             $table->integer('user_id')->nullable();
             $table->timestamps();
         });

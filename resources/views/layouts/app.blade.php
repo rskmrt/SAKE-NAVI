@@ -35,7 +35,7 @@
         <li class="nav-item"><a href="/can-make" class="nav-link link-dark px-2">作れるカクテル</a></li>
         <li class="nav-item"><a href="/original" class="nav-link link-dark px-2">オリジナルカクテル</a></li>
         @endauth
-        <li class="nav-item"><a href="/faq" class="nav-link link-dark px-2">お問い合わせ</a></li>
+        <li class="nav-item"><a href="/contact" class="nav-link link-dark px-2">お問い合わせ</a></li>
       </ul>
       <ul class="nav">
         @guest

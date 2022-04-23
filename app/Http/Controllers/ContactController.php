@@ -2,23 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cocktail;
-use App\Models\Base;
-use App\Models\Taste;
-use App\Models\Split;
-use App\Models\Strength;
-use App\Models\Technique;
-use App\Models\Glass;
 use Illuminate\Http\Request;
-use Auth;
 
-class OriginalController extends Controller
+class ContactController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -26,10 +13,7 @@ class OriginalController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $cocktails = Cocktail::where('user_id', $user['id'])->paginate(9);
-
-        return view('index\originals\original', compact('cocktails'));
+        return view('index\contact');
     }
 
     /**
@@ -39,15 +23,7 @@ class OriginalController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-        $bases = Base::get();
-        $glasses = Glass::get();
-        $splits = Split::get();
-        $strengths = Strength::get();
-        $tastes = Taste::get();
-        $techniques = Technique::get();
-
-        return view('index\originals\create', compact('user', 'bases', 'glasses', 'splits', 'strengths', 'tastes', 'techniques'));
+        //
     }
 
     /**
@@ -58,14 +34,7 @@ class OriginalController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-
-        Cocktail::insertGetId([
-            'name' => $data['name'],
-            'user_id' => $data['user_id']
-        ]);
-
-        return redirect('original');
+        //
     }
 
     /**

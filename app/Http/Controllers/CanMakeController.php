@@ -78,7 +78,7 @@ class CanMakeController extends Controller
         
         
 
-        return redirect('index\can-make');
+        return redirect()->back();
     }
 
     /**
@@ -141,6 +141,6 @@ class CanMakeController extends Controller
         
         
 
-        return redirect('index\can-make');
+        return redirect()->back();
     }
 }

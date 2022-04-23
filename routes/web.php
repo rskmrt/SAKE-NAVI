@@ -22,8 +22,10 @@ Route::get('/', 'HomeController@index');
 
 Route::get('home', 'HomeController@index')->name('home');
 Route::get('home/show/{id}', 'HomeController@show')->name('show');
-Route::post('home/favorite/{cocktail}', 'FavoriteController@store')->name('favorites');
-Route::post('home/unfavorite/{cocktail}', 'FavoriteController@destroy')->name('unfavorites');
+
+Route::get('favorite', 'FavoriteController@index')->name('favorite');
+Route::post('favorite/{cocktail}', 'FavoriteController@store')->name('favorites');
+Route::post('unfavorite/{cocktail}', 'FavoriteController@destroy')->name('unfavorites');
 
 Route::get('can-make', 'CanMakeController@index')->name('can-make');
 Route::get('can-make/regist', 'CanMakeController@create')->name('ingredients-create');
@@ -32,6 +34,8 @@ Route::get('can-make/delete', 'CanMakeController@destroy')->name('ingredients-de
 
 Route::get('original', 'OriginalController@index')->name('original');
 Route::get('original/create', 'OriginalController@create')->name('original-create');
+Route::post('original/store', 'OriginalController@store')->name('original-store');
+Route::get('original/edit', 'OriginalController@edit')->name('original-edit');
+Route::get('original/delete', 'OriginalController@delete')->name('original-delete');
 
-Route::get('favorite', 'FavoriteController@index')->name('favorite');
-
+Route::get('contact', 'ContactController@index')->name('contact');
