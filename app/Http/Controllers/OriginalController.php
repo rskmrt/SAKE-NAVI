@@ -164,6 +164,8 @@ class OriginalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Cocktail::where('id', $id)->update(['status' => 2]);
+
+        return redirect()->back();
     }
 }

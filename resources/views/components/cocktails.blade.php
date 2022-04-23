@@ -26,9 +26,20 @@
                     <button type="submit" class="btn btn-sm btn-outline-secondary" onclick><span class="material-icons">favorite_border</span></button>
                   </form>
                   @endif
-
                 </div>
-                <small class="text-muted">おいしいよね：{{ $cocktail->users()->count() }}</small>
+
+                @if($cocktail['authority'] === 1)
+                <div>
+                  <small class="text-muted">おいしいよね：{{ $cocktail->users()->count() }}</small>
+                </div>
+                @else
+                <div>
+                  <form action="{{ route('original-delete', $cocktail) }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-sm btn-outline-secondary" onclick='return confirm("削除しますか？");'><span class="material-symbols-rounded">delete</span></button>
+                  </form>
+                </div>
+                @endif
               </div>
             </div>
           </div>
