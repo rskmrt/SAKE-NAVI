@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cocktail;
 use Illuminate\Http\Request;
+use Auth;
 
 class OriginalController extends Controller
 {
@@ -18,7 +20,9 @@ class OriginalController extends Controller
      */
     public function index()
     {
-        return view('original');
+        $cocktails = Cocktail::paginate(9);
+
+        return view('index\originals\original', compact('cocktails'));
     }
 
     /**
@@ -28,7 +32,7 @@ class OriginalController extends Controller
      */
     public function create()
     {
-        //
+        return view('index\originals\create');
     }
 
     /**

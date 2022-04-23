@@ -37,7 +37,7 @@ class CanMakeController extends Controller
         $cocktails = $query
         ->paginate();
 
-        return view('can-make', compact('cocktails'));
+        return view('index\can-makes\can-make', compact('cocktails'));
     }
 
     /**
@@ -49,7 +49,7 @@ class CanMakeController extends Controller
     {
         $bases = Base::get();
         $splits = Split::get();
-        return view('ingredients-regist', compact('bases', 'splits'));
+        return view('index\can-makes\create', compact('bases', 'splits'));
     }
 
     /**
@@ -78,7 +78,7 @@ class CanMakeController extends Controller
         
         
 
-        return redirect('can-make');
+        return redirect('index\can-make');
     }
 
     /**
@@ -141,6 +141,6 @@ class CanMakeController extends Controller
         
         
 
-        return redirect('can-make');
+        return redirect('index\can-make');
     }
 }

@@ -26,12 +26,12 @@ Route::post('home/favorite/{cocktail}', 'FavoriteController@store')->name('favor
 Route::post('home/unfavorite/{cocktail}', 'FavoriteController@destroy')->name('unfavorites');
 
 Route::get('can-make', 'CanMakeController@index')->name('can-make');
-Route::get('can-make/regist', 'CanMakeController@create')->name('ingredients-regist');
+Route::get('can-make/regist', 'CanMakeController@create')->name('ingredients-create');
 Route::get('can-make/store', 'CanMakeController@store')->name('ingredients-store');
 Route::get('can-make/delete', 'CanMakeController@destroy')->name('ingredients-delete');
 
-
 Route::get('original', 'OriginalController@index')->name('original');
+Route::get('original/create', 'OriginalController@create')->name('original-create');
 
 Route::get('favorite', 'FavoriteController@index')->name('favorite');
 

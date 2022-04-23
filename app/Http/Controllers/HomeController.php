@@ -94,7 +94,7 @@ class HomeController extends Controller
                         ->paginate(9);
                         
 
-        return view('home', compact('text', 'cocktails', 'bases', 'glasses', 'splits', 'strengths', 'tastes', 'techniques'));
+        return view('index\home', compact('text', 'cocktails', 'bases', 'glasses', 'splits', 'strengths', 'tastes', 'techniques'));
     }
 
 
@@ -127,6 +127,6 @@ class HomeController extends Controller
         ->techniques()
         ->get();
 
-        return view('show', compact('base','glass', 'split', 'strength', 'taste', 'technique'));
+        return view('index\show', compact('base','glass', 'split', 'strength', 'taste', 'technique'));
     }
 }
