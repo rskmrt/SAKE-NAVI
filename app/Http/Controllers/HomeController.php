@@ -101,27 +101,29 @@ class HomeController extends Controller
     //詳細画面表示
     public function show($id)
     {
-        $base = Cocktail::find($id)
+    $query = Cocktail::find($id);
+
+        $base = $query
         ->bases()
         ->get();
 
-        $glass = Cocktail::find($id)
+        $glass = $query
         ->glasses()
         ->get();
 
-        $split = Cocktail::find($id)
+        $split = $query
         ->splits()
         ->get();
         
-        $strength = Cocktail::find($id)
+        $strength = $query
         ->strengths()
         ->get();
 
-        $taste = Cocktail::find($id)
+        $taste = $query
         ->tastes()
         ->get();
 
-        $technique = Cocktail::find($id)
+        $technique = $query
         ->techniques()
         ->get();
 

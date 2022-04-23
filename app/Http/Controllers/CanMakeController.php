@@ -121,10 +121,26 @@ class CanMakeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Base $base)
+    public function destroy(Request $request)
     {
-        $base->users()->detach(Auth::id());
+        $bases = Base::find($request->input('base'));
+        $splits = Split::find($request->input('split'));
 
-        return redirect()->back();
+        if(!empty($bases)){
+            foreach($bases as $base){
+                $base->users()->detach(Auth::id());
+            }
+        }
+        
+
+        if(!empty($splits)){
+            foreach($splits as $split){
+                $split->users()->detach(Auth::id());
+            }
+        }
+        
+        
+
+        return redirect('can-make');
     }
 }
