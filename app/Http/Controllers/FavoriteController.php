@@ -22,7 +22,7 @@ class FavoriteController extends Controller
      */
     public function index()
     {
-        $cocktails = Cocktail::get();
+        $cocktails = Cocktail::where('status', 1)->get();
         return view('index\favorite', compact('cocktails'));
     }
 

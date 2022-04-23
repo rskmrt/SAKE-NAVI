@@ -17,7 +17,9 @@ class CreateCocktailsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->longText('how_to')->nullable();
+            $table->integer('authority');
             $table->integer('user_id')->nullable();
+            $table->integer('status');
             $table->timestamps();
         });
     }

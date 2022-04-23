@@ -34,7 +34,7 @@ class CanMakeController extends Controller
         $query->wherein('cocktail_split.split_id', $splits_id)->join('cocktail_split', 'cocktails.id', '=', 'cocktail_split.cocktail_id');
         $query->wherein('cocktail_base.base_id', $bases_id)->join('cocktail_base', 'cocktails.id', '=', 'cocktail_base.cocktail_id');
         
-        $cocktails = $query
+        $cocktails = $query->where('status', 1)
         ->paginate();
 
         return view('index\can-makes\can-make', compact('cocktails'));

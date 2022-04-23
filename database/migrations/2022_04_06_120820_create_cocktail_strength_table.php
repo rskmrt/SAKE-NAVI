@@ -15,8 +15,8 @@ class CreateCocktailStrengthTable extends Migration
     {
         Schema::create('cocktail_strength', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('cocktail_id');
-            $table->integer('strength_id');
+            $table->integer('cocktail_id')->nullable();
+            $table->integer('strength_id')->nullable();
             $table->timestamps();
         });
     }

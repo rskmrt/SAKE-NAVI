@@ -15,8 +15,8 @@ class CreateCocktailTasteTable extends Migration
     {
         Schema::create('cocktail_taste', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('cocktail_id');
-            $table->integer('taste_id');
+            $table->integer('cocktail_id')->nullable();
+            $table->integer('taste_id')->nullable();
             $table->timestamps();
         });
     }

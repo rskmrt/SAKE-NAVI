@@ -77,12 +77,8 @@
                 </form>
             </div>
             
-        
-
-
-      
     </div>
-    <button type="button" class="btn btn-outline-dark btn-sm" onclick=location.href='/can-make' >戻る</button>
+    <button type="button" class="btn btn-outline-dark " onclick=location.href='/can-make' >戻る</button>
   </section>
 
   

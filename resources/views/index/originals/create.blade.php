@@ -20,7 +20,7 @@
       <p>ベース
         @foreach($bases as $base)
         <div class="form-check-inline">
-          <input class="form-check-input" name="base[]" type="checkbox" value="{{ $base->id }}" id="{{ $base->name }}" >
+          <input class="form-check-input" name="base" type="checkbox" value="{{ $base->id }}" id="{{ $base->name }}" >
           <label class="form-check-label" for="{{ $base->name }}">
             {{$base->name}}
           </label>
@@ -42,7 +42,7 @@
       <p>テイスト
         @foreach($tastes as $taste)
         <div class="form-check-inline">
-          <input class="form-check-input" name="taste[]" type="radio" value="{{ $taste->id }}" id="{{ $taste->name }}">
+          <input class="form-check-input" name="taste" type="radio" value="{{ $taste->id }}" id="{{ $taste->name }}">
           <label class="form-check-label" for="{{ $taste->name }}">
             {{$taste->name}}
           </label>
@@ -53,7 +53,7 @@
       <p>アルコール度数
         @foreach($strengths as $strength)
         <div class="form-check-inline">
-          <input class="form-check-input" name="strength[]" type="radio" value="{{ $strength->id }}" id="{{ $strength->name }}" >
+          <input class="form-check-input" name="strength" type="radio" value="{{ $strength->id }}" id="{{ $strength->name }}" >
           <label class="form-check-label" for="{{ $strength->name }}">
             {{$strength->name}}
           </label>
@@ -64,7 +64,7 @@
       <p>技法
         @foreach($techniques as $technique)
         <div class="form-check-inline">
-          <input class="form-check-input" name="technique[]" type="radio" value="{{ $technique->id }}" id="{{ $technique->name }}">
+          <input class="form-check-input" name="technique" type="radio" value="{{ $technique->id }}" id="{{ $technique->name }}">
           <label class="form-check-label" for="{{ $technique->name }}">
             {{$technique->name}}
           </label>
@@ -75,7 +75,7 @@
       <p>グラスタイプ
         @foreach($glasses as $glass)
         <div class="form-check-inline">
-          <input class="form-check-input" name="glass[]" type="radio" value="{{ $glass->id }}" id="{{ $glass->name }}">
+          <input class="form-check-input" name="glass" type="radio" value="{{ $glass->id }}" id="{{ $glass->name }}">
           <label class="form-check-label" for="{{ $glass->name }}">
             {{$glass->name}}
           </label>

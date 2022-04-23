@@ -23,11 +23,48 @@
   <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
   <link href="{{ asset('css/ingredients.css') }}" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <div class="sticky-top">
+
+  <header class="bg-light">
+    <div class="collapse " id="navbarHeader">
+      <div class="container">
+        <div class="row">
+          <h4 class="text-muted">Search</h4>
+
+          <div class="col-sm-8 col-md-3 py-2">
+            <form method="GET" action="{{ route('home') }}">
+              <div class="input-group">
+                <input type="text" class="form-control input-group-prepend" placeholder="カクテル名、材料で検索" name="text" value="@if (isset($text)) {{ $text }} @endif">
+                <button class="btn btn-primary" type="submit">
+                  <span class="material-icons">search</span>  
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="col-sm-4 offset-md-1 py-4">
+            <ul class="list-unstyled">
+              <li><a href="#" class="">Twitter でフォローする</a></li>
+              <li><a href="#" class="">Facebook でいいねする</a></li>
+              <li><a href="#" class="">Email を送る</a></li>
+            </ul>
+          </div>
+      </div>
+      </div>
+    </div>
+  </header>
+
+
   <nav class="py-2 bg-light border-bottom">
     <div class="container d-flex flex-wrap">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="material-symbols-rounded">
+          search
+          </span>
+      </button>
       <ul class="nav me-auto">
         <li class="nav-item"><a href="/home" class="nav-link link-dark px-2 active" aria-current="page">カクテル一覧</a></li>
         @auth
@@ -78,9 +115,6 @@
   </div>
 </header>
 
-  
-
-
 
 <body>
   <div id="app">
@@ -93,18 +127,12 @@
 <div class="FooterSection">
   <div class="Footer">
     <div class="Footer-Inner">
-      <a href="" class="Footer-Inner-Logo"><img src="ロゴ画像のURL" alt=""></a>
-      <div class="Footer-Inner-List">
-        <a href="" class="Footer-Inner-List-Item">HOME</a>
-        <a href="" class="Footer-Inner-List-Item">COMPANY</a>
-        <a href="" class="Footer-Inner-List-Item">SERVICE</a>
-        <a href="" class="Footer-Inner-List-Item">RECRUIT</a>
-      </div>
       <div class="Footer-Inner-CopyRight">
         ©2022 Example,Inc.
       </div>
     </div>
   </div>
 </div>
+
 
 </html>

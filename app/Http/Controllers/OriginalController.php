@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Cocktail;
 use App\Models\Base;
+use App\Models\CocktailBase;
+use App\Models\CocktailSplit;
+use App\Models\CocktailGlass;
+use App\Models\CocktailTaste;
+use App\Models\CocktailStrength;
+use App\Models\CocktailTechnique;
 use App\Models\Taste;
 use App\Models\Split;
 use App\Models\Strength;
@@ -27,7 +33,7 @@ class OriginalController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $cocktails = Cocktail::where('user_id', $user['id'])->paginate(9);
+        $cocktails = Cocktail::where('user_id', $user['id'])->where('authority', 2)->where('status', 1)->paginate(9);
 
         return view('index\originals\original', compact('cocktails'));
     }
@@ -60,10 +66,58 @@ class OriginalController extends Controller
     {
         $data = $request->all();
 
-        Cocktail::insertGetId([
+        $cocktail_id = Cocktail::insertGetId([
             'name' => $data['name'],
-            'user_id' => $data['user_id']
+            'authority' => 2,
+            'user_id' => $data['user_id'],
+            'status' => 1
         ]);
+        
+        if(!empty($data['base'])){
+            CocktailBase::insert([
+                'cocktail_id' => $cocktail_id,
+                'base_id' => $data['base']
+            ]);
+    
+        }
+        
+        
+        if(!empty($data['split'])){
+            foreach($data['split'] as $value){
+                CocktailSplit::insert([
+                    'cocktail_id' => $cocktail_id,
+                    'split_id' => $value
+                ]);
+            }
+        }   
+
+        if(!empty($data['glass'])){
+            CocktailGlass::insert([
+                'cocktail_id' => $cocktail_id,
+                'glass_id' => $data['glass']
+            ]);
+        }
+
+        if(!empty($data['taste'])){
+            CocktailTaste::insert([
+                'cocktail_id' => $cocktail_id,
+                'taste_id' => $data['taste']
+            ]);
+        }
+
+        if(!empty($data['strength'])){
+            CocktailStrength::insert([
+                'cocktail_id' => $cocktail_id,
+                'strength_id' => $data['strength']
+            ]);
+        }
+
+        if(!empty($data['technique'])){
+            CocktailTechnique::insert([
+                'cocktail_id' => $cocktail_id,
+                'technique_id' => $data['technique']
+            ]);
+        }
 
         return redirect('original');
     }

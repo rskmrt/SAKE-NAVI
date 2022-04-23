@@ -15,8 +15,8 @@ class CreateCocktailSplitTable extends Migration
     {
         Schema::create('cocktail_split', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('cocktail_id');
-            $table->integer('split_id');
+            $table->integer('cocktail_id')->nullable();
+            $table->integer('split_id')->nullable();
             $table->timestamps();
         });
     }

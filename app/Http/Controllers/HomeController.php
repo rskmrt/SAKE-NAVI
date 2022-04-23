@@ -90,6 +90,8 @@ class HomeController extends Controller
     
         //検索結果を取得
         $cocktails = $query
+        ->where('authority', 1)
+        ->where('status', 1)
                         ->orderBy('cocktails.name', 'asc')
                         ->paginate(9);
                         

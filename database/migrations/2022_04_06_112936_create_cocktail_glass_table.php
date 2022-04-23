@@ -15,8 +15,8 @@ class CreateCocktailGlassTable extends Migration
     {
         Schema::create('cocktail_glass', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('cocktail_id');
-            $table->integer('glass_id');
+            $table->integer('cocktail_id')->nullable();
+            $table->integer('glass_id')->nullable();
             $table->timestamps();
         });
     }
