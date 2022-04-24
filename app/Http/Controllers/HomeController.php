@@ -3,12 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cocktail;
-use App\Models\Base;
-use App\Models\Taste;
-use App\Models\Split;
-use App\Models\Strength;
-use App\Models\Technique;
-use App\Models\Glass;
+
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -18,13 +13,6 @@ class HomeController extends Controller
     //一覧画面表示
     public function index(Request $request)
     {
-        $bases = Base::get();
-        $glasses = Glass::get();
-        $splits = Split::get();
-        $strengths = Strength::get();
-        $tastes = Taste::get();
-        $techniques = Technique::get();
-        
         $query = Cocktail::query()->select('cocktails.*');
 
         //カクテル名検索
@@ -51,8 +39,6 @@ class HomeController extends Controller
             $query->join('cocktail_base', 'cocktails.id', '=', 'cocktail_base.cocktail_id');
         }
 
-
-        
         //テイスト検索
         $taste_search = $request->input('taste');
 
@@ -60,7 +46,6 @@ class HomeController extends Controller
             $query->wherein('cocktail_taste.taste_id', $taste_search);
             $query->join('cocktail_taste', 'cocktails.id', '=', 'cocktail_taste.cocktail_id');
         }
-
 
         //アルコール度数検索
         $strength_search = $request->input('strength');
@@ -70,7 +55,6 @@ class HomeController extends Controller
             $query->join('cocktail_strength', 'cocktails.id', '=', 'cocktail_strength.cocktail_id');
         }
 
-
         //製法検索
         $technique_search = $request->input('technique');
 
@@ -78,7 +62,6 @@ class HomeController extends Controller
             $query->wherein('cocktail_technique.technique_id', $technique_search);
             $query->join('cocktail_technique', 'cocktails.id', '=', 'cocktail_technique.cocktail_id');
         }
-
 
         //グラスタイプ検索
         $glass_search = $request->input('glass');
@@ -92,11 +75,10 @@ class HomeController extends Controller
         $cocktails = $query
         ->where('authority', 1)
         ->where('status', 1)
-                        ->orderBy('cocktails.name', 'asc')
-                        ->paginate(9);
-                        
+        ->orderBy('cocktails.name', 'asc')
+        ->paginate(9);      
 
-        return view('index\home', compact('text', 'cocktails', 'bases', 'glasses', 'splits', 'strengths', 'tastes', 'techniques'));
+        return view('index\home', compact('text', 'cocktails'));
     }
 
 

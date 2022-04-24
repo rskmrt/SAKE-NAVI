@@ -47,7 +47,7 @@
             </form>
           </div>
 
-          {{-- <div class="col-sm-4 offset-md-1 py-4">
+          <div class="col-sm-4 offset-md-1 py-4">
             <form action="{{ route('home') }}">
               <div class="checkboxform">
 
@@ -109,7 +109,7 @@
               </div>
               <button class="btn btn-primary" type="submit">検索</button>
             </form>
-          </div> --}}
+          </div>
         </div>
       </div>
     </div>

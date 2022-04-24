@@ -6,10 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cocktail extends Model
 {
-
-    
-
-    //詳細表示
     public function bases(){
         return $this->belongsToMany('App\Models\Base', 'cocktail_base', 'cocktail_id', 'base_id')->distinct();
     }

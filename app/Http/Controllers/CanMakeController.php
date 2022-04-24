@@ -69,15 +69,12 @@ class CanMakeController extends Controller
             }
         }
         
-
         if(!empty($splits)){
             foreach($splits as $split){
                 $split->users()->attach(Auth::id());
             }
         }
         
-        
-
         return redirect()->back();
     }
 
@@ -131,7 +128,6 @@ class CanMakeController extends Controller
                 $base->users()->detach(Auth::id());
             }
         }
-        
 
         if(!empty($splits)){
             foreach($splits as $split){
@@ -139,8 +135,6 @@ class CanMakeController extends Controller
             }
         }
         
-        
-
         return redirect()->back();
     }
 }

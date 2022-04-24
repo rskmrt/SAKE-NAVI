@@ -2,7 +2,15 @@
 
 namespace App\Providers;
 
+use Facade\FlareClient\View;
 use Illuminate\Support\ServiceProvider;
+use Auth;
+use App\Models\Base;
+use App\Models\Taste;
+use App\Models\Split;
+use App\Models\Strength;
+use App\Models\Technique;
+use App\Models\Glass;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +31,23 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        View()->composer('*', function($view){
+            $user = Auth::user();
+            $bases = Base::get();
+            $glasses = Glass::get();
+            $splits = Split::get();
+            $strengths = Strength::get();
+            $tastes = Taste::get();
+            $techniques = Technique::get();
+
+            $view
+            ->with('user', $user)
+            ->with('bases', $bases)
+            ->with('glasses', $glasses)
+            ->with('splits', $splits)
+            ->with('strengths', $strengths)
+            ->with('tastes', $tastes)
+            ->with('techniques', $techniques);
+        });
     }
 }

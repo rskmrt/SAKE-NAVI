@@ -15,7 +15,6 @@ class FavoriteController extends Controller
         $this->middleware('auth');
     }
 
-
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +22,6 @@ class FavoriteController extends Controller
      */
     public function index()
     {
-        
         $favorites = Favorite::where('user_id', Auth::id())->pluck('cocktail_id')->toArray();
         $cocktails = Cocktail::wherein('id', $favorites)->where('status', 1)->paginate(9);
 

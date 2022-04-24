@@ -1,4 +1,4 @@
-<div class="row py-lg-5">
+{{-- <div class="row py-lg-5">
     <h1 class="fw-light">Search</h1>
     <div class="col-lg-6 col-md-8 mx-auto">
       
@@ -73,4 +73,4 @@
       </form>
 
     </div>
-  </div>
+  </div> --}}

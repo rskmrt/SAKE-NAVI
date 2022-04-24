@@ -3,18 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cocktail;
-use App\Models\Base;
 use App\Models\CocktailBase;
 use App\Models\CocktailSplit;
 use App\Models\CocktailGlass;
 use App\Models\CocktailTaste;
 use App\Models\CocktailStrength;
 use App\Models\CocktailTechnique;
-use App\Models\Taste;
-use App\Models\Split;
-use App\Models\Strength;
-use App\Models\Technique;
-use App\Models\Glass;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -32,8 +26,7 @@ class OriginalController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $cocktails = Cocktail::where('user_id', $user['id'])->where('authority', 2)->where('status', 1)->paginate(9);
+        $cocktails = Cocktail::where('user_id', Auth::user()['id'])->where('authority', 2)->where('status', 1)->paginate(9);
 
         return view('index\originals\original', compact('cocktails'));
     }
@@ -45,15 +38,7 @@ class OriginalController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-        $bases = Base::get();
-        $glasses = Glass::get();
-        $splits = Split::get();
-        $strengths = Strength::get();
-        $tastes = Taste::get();
-        $techniques = Technique::get();
-
-        return view('index\originals\create', compact('user', 'bases', 'glasses', 'splits', 'strengths', 'tastes', 'techniques'));
+        return view('index\originals\create');
     }
 
     /**
