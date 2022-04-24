@@ -35,7 +35,8 @@ Route::get('can-make/delete', 'CanMakeController@destroy')->name('ingredients-de
 Route::get('original', 'OriginalController@index')->name('original');
 Route::get('original/create', 'OriginalController@create')->name('original-create');
 Route::post('original/store', 'OriginalController@store')->name('original-store');
-Route::post('original/edit', 'OriginalController@edit')->name('original-edit');
+Route::post('original/edit/{id}', 'OriginalController@edit')->name('original-edit');
+Route::post('original/update/{cocktail}', 'OriginalController@update')->name('original-update');
 Route::post('original/delete/{id}', 'OriginalController@destroy')->name('original-delete');
 
 Route::get('contact', 'ContactController@index')->name('contact');

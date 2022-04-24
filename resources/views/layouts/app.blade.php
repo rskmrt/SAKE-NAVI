@@ -33,10 +33,9 @@
   <header class="bg-light">
     <div class="collapse " id="navbarHeader">
       <div class="container">
-        <div class="row">
-          <h4 class="text-muted">Search</h4>
+        <div class="row py-5">
 
-          <div class="col-sm-8 col-md-3 py-2">
+          <div class="col-4">
             <form method="GET" action="{{ route('home') }}">
               <div class="input-group">
                 <input type="text" class="form-control input-group-prepend" placeholder="カクテル名、材料で検索" name="text" value="@if (isset($text)) {{ $text }} @endif">
@@ -47,11 +46,11 @@
             </form>
           </div>
 
-          <div class="col-sm-4 offset-md-1 py-4">
+          <div class="col-8">
             <form action="{{ route('home') }}">
-              <div class="checkboxform">
+              
 
-                <p>ベース
+                ベース　　　：
                   @foreach($bases as $base)
                   <div class="form-check-inline">
                     <input class="form-check-input" name="base[]" type="checkbox" value="{{ $base->id }}" id="{{ $base->name }}" >
@@ -60,9 +59,9 @@
                     </label>
                   </div>
                   @endforeach
-                </p>
 
-                <p>テイスト
+                  <br>
+                  テイスト　　：
                   @foreach($tastes as $taste)
                   <div class="form-check-inline">
                     <input class="form-check-input" name="taste[]" type="checkbox" value="{{ $taste->id }}" id="{{ $taste->name }}">
@@ -71,9 +70,10 @@
                     </label>
                   </div>
                   @endforeach
-                </p>
 
-                <p>アルコール度数
+                  <br>
+
+                  アルコール度数：
                   @foreach($strengths as $strength)
                   <div class="form-check-inline">
                     <input class="form-check-input" name="strength[]" type="checkbox" value="{{ $strength->id }}" id="{{ $strength->name }}">
@@ -82,9 +82,10 @@
                     </label>
                   </div>
                   @endforeach
-                </p>
-                
-                <p>技法
+
+                  <br>
+
+                製法　　　：
                   @foreach($techniques as $technique)
                   <div class="form-check-inline">
                     <input class="form-check-input" name="technique[]" type="checkbox" value="{{ $technique->id }}" id="{{ $technique->name }}">
@@ -93,9 +94,10 @@
                     </label>
                   </div>
                   @endforeach
-                </p>
+                
+                  <br>
 
-                <p>グラスタイプ
+                グラスタイプ　 ：
                   @foreach($glasses as $glass)
                   <div class="form-check-inline">
                     <input class="form-check-input" name="glass[]" type="checkbox" value="{{ $glass->id }}" id="{{ $glass->name }}">
@@ -104,12 +106,12 @@
                     </label>
                   </div>
                   @endforeach
-                </p>
 
+                  <button class="btn btn-primary" type="submit">検索</button>
               </div>
-              <button class="btn btn-primary" type="submit">検索</button>
+             
             </form>
-          </div>
+          
         </div>
       </div>
     </div>
@@ -183,18 +185,15 @@
       @yield('section')
     </div>
   </section>
+  
+  @yield('content')
 
-<div class="py-5 bg-light">
-  <div class="container">
-    @yield('content')
-  </div>
-</div>
   
 </main>
 
 
 <footer class="my-5 pt-5 text-muted text-center text-small">
-  <p class="mb-1">&copy; 2017-2018 Company Name</p>
+  <p class="mb-1">&copy; 2022 SAKE-NAVI</p>
   <ul class="list-inline">
     <!-- <li class="list-inline-item"><a href="#">Privacy</a></li> -->
     <li class="list-inline-item"><a href="#">プライバシー</a></li>

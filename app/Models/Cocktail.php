@@ -27,7 +27,7 @@ class Cocktail extends Model
     }
 
     public function techniques(){
-        return $this->belongsToMany('App\Models\Taste', 'cocktail_technique', 'cocktail_id', 'technique_id')->distinct();
+        return $this->belongsToMany('App\Models\Technique', 'cocktail_technique', 'cocktail_id', 'technique_id')->distinct();
     }
 
     public function users(){

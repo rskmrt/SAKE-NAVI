@@ -11,6 +11,7 @@ use App\Models\CocktailStrength;
 use App\Models\CocktailTechnique;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class OriginalController extends Controller
 {
@@ -59,11 +60,12 @@ class OriginalController extends Controller
         ]);
         
         if(!empty($data['base'])){
-            CocktailBase::insert([
-                'cocktail_id' => $cocktail_id,
-                'base_id' => $data['base']
-            ]);
-    
+            foreach($data['base'] as $value){
+                CocktailBase::insert([
+                    'cocktail_id' => $cocktail_id,
+                    'base_id' => $value
+                ]);
+            }
         }
         
         
@@ -126,7 +128,15 @@ class OriginalController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cocktail = Cocktail::find($id)->where('status', 1)->where('authority', 2)->where('user_id', Auth::id())->first();
+        $edit_bases = Cocktail::find($id)->bases()->get();
+        $edit_splits = Cocktail::find($id)->splits()->get();
+        $edit_taste = Cocktail::find($id)->tastes()->first();      
+        $edit_strength = Cocktail::find($id)->strengths()->first();
+        $edit_technique = Cocktail::find($id)->techniques()->first();
+        $edit_glass = Cocktail::find($id)->glasses()->first();
+
+        return view('index\originals\edit', compact('cocktail', 'edit_bases', 'edit_splits', 'edit_taste', 'edit_strength', 'edit_technique', 'edit_glass'));
     }
 
     /**
@@ -138,7 +148,10 @@ class OriginalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Cocktail::where('id', $id)->where('status', 1)->where('authority', 2)->where('user_id', Auth::id())->update(['status' => 2]);
+        $this->store($request);
+
+        return redirect('original');
     }
 
     /**
@@ -149,7 +162,7 @@ class OriginalController extends Controller
      */
     public function destroy($id)
     {
-        Cocktail::where('id', $id)->update(['status' => 2]);
+        Cocktail::where('id', $id)->where('status', 1)->where('authority', 2)->where('user_id', Auth::id())->update(['status' => 2]);
 
         return redirect()->back();
     }

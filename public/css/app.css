@@ -3228,6 +3228,7 @@ input[type=button].btn-block {
 }
 
 .btn-group,
+.btn-group2,
 .btn-group-vertical {
   position: relative;
   display: inline-flex;
@@ -4654,6 +4655,7 @@ input[type=button].btn-block {
   padding-left: 0;
   list-style: none;
   border-radius: 0.25rem;
+  
 }
 
 .page-link {
@@ -4729,6 +4731,7 @@ input[type=button].btn-block {
   border-top-right-radius: 0.2rem;
   border-bottom-right-radius: 0.2rem;
 }
+
 
 .badge {
   display: inline-block;
@@ -10068,3 +10071,4 @@ h3 {
     border-color: #dee2e6;
   }
 }
+
