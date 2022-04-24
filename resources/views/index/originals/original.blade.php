@@ -1,18 +1,15 @@
 @extends('layouts.app')
 
-@section('content')
+@section('image')
+  @include('components.top_image')
+@endsection
 
-@include('components.top_image')
 
-
-<div class="container">
-
-    <section class="py-5 text-center container">
-      <button type="button" class="btn btn-outline-dark btn-lg" onclick=location.href="/original/create">オリジナルカクテルの登録</button> 
-    </section>
+@section('section')    
+  <button type="button" class="btn btn-outline-dark btn-lg" onclick=location.href="/original/create">オリジナルカクテルの登録</button> 
+@endsection
     
-    オリジナルカクテル
-    @include('components.cocktails')
-    {{ $cocktails->links() }}
-</div>
+     
+@section('content')
+  @include('components.cocktails')
 @endsection

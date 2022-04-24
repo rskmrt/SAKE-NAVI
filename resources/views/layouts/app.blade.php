@@ -16,6 +16,7 @@
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -23,9 +24,10 @@
   <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
   <link href="{{ asset('css/ingredients.css') }}" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
+
+<body>
 <div class="sticky-top">
 
   <header class="bg-light">
@@ -45,14 +47,70 @@
             </form>
           </div>
 
-          <div class="col-sm-4 offset-md-1 py-4">
-            <ul class="list-unstyled">
-              <li><a href="#" class="">Twitter でフォローする</a></li>
-              <li><a href="#" class="">Facebook でいいねする</a></li>
-              <li><a href="#" class="">Email を送る</a></li>
-            </ul>
-          </div>
-      </div>
+          {{-- <div class="col-sm-4 offset-md-1 py-4">
+            <form action="{{ route('home') }}">
+              <div class="checkboxform">
+
+                <p>ベース
+                  @foreach($bases as $base)
+                  <div class="form-check-inline">
+                    <input class="form-check-input" name="base[]" type="checkbox" value="{{ $base->id }}" id="{{ $base->name }}" >
+                    <label class="form-check-label" for="{{ $base->name }}">
+                      {{$base->name}}
+                    </label>
+                  </div>
+                  @endforeach
+                </p>
+
+                <p>テイスト
+                  @foreach($tastes as $taste)
+                  <div class="form-check-inline">
+                    <input class="form-check-input" name="taste[]" type="checkbox" value="{{ $taste->id }}" id="{{ $taste->name }}">
+                    <label class="form-check-label" for="{{ $taste->name }}">
+                      {{$taste->name}}
+                    </label>
+                  </div>
+                  @endforeach
+                </p>
+
+                <p>アルコール度数
+                  @foreach($strengths as $strength)
+                  <div class="form-check-inline">
+                    <input class="form-check-input" name="strength[]" type="checkbox" value="{{ $strength->id }}" id="{{ $strength->name }}">
+                    <label class="form-check-label" for="{{ $strength->name }}">
+                      {{$strength->name}}
+                    </label>
+                  </div>
+                  @endforeach
+                </p>
+                
+                <p>技法
+                  @foreach($techniques as $technique)
+                  <div class="form-check-inline">
+                    <input class="form-check-input" name="technique[]" type="checkbox" value="{{ $technique->id }}" id="{{ $technique->name }}">
+                    <label class="form-check-label" for="{{ $technique->name }}">
+                      {{$technique->name}}
+                    </label>
+                  </div>
+                  @endforeach
+                </p>
+
+                <p>グラスタイプ
+                  @foreach($glasses as $glass)
+                  <div class="form-check-inline">
+                    <input class="form-check-input" name="glass[]" type="checkbox" value="{{ $glass->id }}" id="{{ $glass->name }}">
+                    <label class="form-check-label" for="{{ $glass->name }}">
+                      {{$glass->name}}
+                    </label>
+                  </div>
+                  @endforeach
+                </p>
+
+              </div>
+              <button class="btn btn-primary" type="submit">検索</button>
+            </form>
+          </div> --}}
+        </div>
       </div>
     </div>
   </header>
@@ -102,6 +160,7 @@
       </ul>
     </div>
   </nav>
+
 </div>
 
 
@@ -111,28 +170,40 @@
       <svg class="bi me-1" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
       <span class="fs-2"> <strong>{{ config('app.name', 'Laravel') }}</strong></span>
     </a>
-    
   </div>
 </header>
 
 
-<body>
-  <div id="app">
-    <main class="py-0">
-        @yield('content')
-    </main>
-  </div>
-</body>
+<main role="main">
 
-<div class="FooterSection">
-  <div class="Footer">
-    <div class="Footer-Inner">
-      <div class="Footer-Inner-CopyRight">
-        ©2022 Example,Inc.
-      </div>
+  @yield('image')
+
+  <section class="py-5 text-center containe">
+    <div class="container">
+      @yield('section')
     </div>
+  </section>
+
+<div class="py-5 bg-light">
+  <div class="container">
+    @yield('content')
   </div>
 </div>
+  
+</main>
 
 
+<footer class="my-5 pt-5 text-muted text-center text-small">
+  <p class="mb-1">&copy; 2017-2018 Company Name</p>
+  <ul class="list-inline">
+    <!-- <li class="list-inline-item"><a href="#">Privacy</a></li> -->
+    <li class="list-inline-item"><a href="#">プライバシー</a></li>
+    <!-- <li class="list-inline-item"><a href="#">Terms</a></li> -->
+    <li class="list-inline-item"><a href="#">利用規約</a></li>
+    <!-- <li class="list-inline-item"><a href="#">Support</a></li> -->
+    <li class="list-inline-item"><a href="#">サポート</a></li>
+  </ul>
+</footer>
+
+</body>
 </html>

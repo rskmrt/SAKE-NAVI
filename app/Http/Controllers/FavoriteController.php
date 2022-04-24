@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cocktail;
+use App\Models\Favorite;
 use Auth;
 
 
@@ -22,7 +23,10 @@ class FavoriteController extends Controller
      */
     public function index()
     {
-        $cocktails = Cocktail::where('status', 1)->get();
+        
+        $favorites = Favorite::where('user_id', Auth::id())->pluck('cocktail_id')->toArray();
+        $cocktails = Cocktail::wherein('id', $favorites)->where('status', 1)->paginate(9);
+
         return view('index\favorite', compact('cocktails'));
     }
 
