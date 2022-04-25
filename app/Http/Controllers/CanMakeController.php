@@ -34,7 +34,7 @@ class CanMakeController extends Controller
         $query->wherein('cocktail_split.split_id', $splits_id)->join('cocktail_split', 'cocktails.id', '=', 'cocktail_split.cocktail_id');
         $query->wherein('cocktail_base.base_id', $bases_id)->join('cocktail_base', 'cocktails.id', '=', 'cocktail_base.cocktail_id');
         
-        $cocktails = $query->where('status', 1)->where('authority', 1)
+        $cocktails = $query->where('status', 1)->where('user_id', Auth::id())
         ->paginate(9);
 
         return view('index\can-makes\can-make', compact('cocktails'));
@@ -75,7 +75,7 @@ class CanMakeController extends Controller
             }
         }
         
-        return redirect()->back();
+        return redirect('can-make');
     }
 
     /**
