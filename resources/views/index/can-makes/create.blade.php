@@ -11,9 +11,6 @@
   <section class="text-center container">
     <div class="row py-lg-5">
 
-
-      
-          
             <div class="col-6">
               <form action="{{ route('ingredients-store') }}" >
                 <div class="ingredients-form">

@@ -27,7 +27,7 @@ class OriginalController extends Controller
      */
     public function index()
     {
-        $cocktails = Cocktail::where('user_id', Auth::user()['id'])->where('authority', 2)->where('status', 1)->paginate(9);
+        $cocktails = Cocktail::where('user_id', Auth::user()['id'])->where('status', 1)->paginate(9);
 
         return view('index\originals\original', compact('cocktails'));
     }
@@ -50,6 +50,10 @@ class OriginalController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+        ]);
+
         $data = $request->all();
 
         $cocktail_id = Cocktail::insertGetId([
@@ -128,7 +132,7 @@ class OriginalController extends Controller
      */
     public function edit($id)
     {
-        $cocktail = Cocktail::find($id)->where('status', 1)->where('authority', 2)->where('user_id', Auth::id())->first();
+        $cocktail = Cocktail::find($id)->where('status', 1)->where('user_id', Auth::id())->first();
         $edit_bases = Cocktail::find($id)->bases()->get();
         $edit_splits = Cocktail::find($id)->splits()->get();
         $edit_taste = Cocktail::find($id)->tastes()->first();      
@@ -148,8 +152,11 @@ class OriginalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Cocktail::where('id', $id)->where('status', 1)->where('authority', 2)->where('user_id', Auth::id())->update(['status' => 2]);
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+        ]);
         $this->store($request);
+        Cocktail::where('id', $id)->where('status', 1)->where('user_id', Auth::id())->update(['status' => 2]);
 
         return redirect('original');
     }

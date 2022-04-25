@@ -12,10 +12,14 @@
       @csrf
       <input type="hidden" name="user_id" value="{{ $user['id'] }}">
 
+      @error('name')
+        <div class="alert alert-danger">{{ $message }}</div>
+      @enderror
       <div class="mb-3">
         <label for="name" class="form-label">カクテル名</label>
         <input name="name" type="text" class="form-control" id="cocktailname">
       </div>
+      
       
       <p>ベース
         @foreach($bases as $base)
