@@ -152,9 +152,7 @@ class OriginalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|max:255',
-        ]);
+        
         $this->store($request);
         Cocktail::where('id', $id)->where('status', 1)->where('user_id', Auth::id())->update(['status' => 2]);
 

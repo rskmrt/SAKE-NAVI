@@ -4,7 +4,7 @@
 
 @else
 
-
+<section class="py-5 text-center containe">
 <div class="bg-light">
   <div class="container py-1">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 py-3">
@@ -59,6 +59,7 @@
     </div>
   </div>
 </div>
+</section>
 
 <div class="d-flex justify-content-center">
   {{ $cocktails->links() }}

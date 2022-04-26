@@ -26,15 +26,14 @@ class CanMakeController extends Controller
     {
         $bases_id = BaseUser::where('user_id', Auth::id())->pluck('base_id')->toArray();
         $splits_id = SplitUser::where('user_id', Auth::id())->pluck('split_id')->toArray();
-        $query = Cocktail::query();
-
-        //$query->wherein('base_id',  $bases_id)->selectRaw('name, COUNT(1)')->groupByRaw('name')->havingRaw('COUNT(1) > 1');
-        //$query->wherein('split_id',  $splits_id)->selectRaw('name, COUNT(1)')->groupByRaw('name')->havingRaw('COUNT(1) > 1');
+        $query = Cocktail::query()->select('cocktails.*');
         
         $query->wherein('cocktail_split.split_id', $splits_id)->join('cocktail_split', 'cocktails.id', '=', 'cocktail_split.cocktail_id');
         $query->wherein('cocktail_base.base_id', $bases_id)->join('cocktail_base', 'cocktails.id', '=', 'cocktail_base.cocktail_id');
         
-        $cocktails = $query->where('status', 1)->where('user_id', Auth::id())
+        $cocktails = $query
+        ->where('status', 1)
+        ->orderBy('name', 'asc')
         ->paginate(9);
 
         return view('index\can-makes\can-make', compact('cocktails'));

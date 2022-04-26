@@ -11,6 +11,7 @@ use App\Models\Split;
 use App\Models\Strength;
 use App\Models\Technique;
 use App\Models\Glass;
+use App\Models\User;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
     {
         View()->composer('*', function($view){
             $user = Auth::user();
+            $users = User::get();
             $bases = Base::get();
             $glasses = Glass::get();
             $splits = Split::get();
@@ -42,6 +44,7 @@ class AppServiceProvider extends ServiceProvider
 
             $view
             ->with('user', $user)
+            ->with('users', $users)
             ->with('bases', $bases)
             ->with('glasses', $glasses)
             ->with('splits', $splits)

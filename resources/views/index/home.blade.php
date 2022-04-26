@@ -6,7 +6,7 @@
 
 
 @section('section')
-  @include('components.search')
+  
 @endsection
 
 
