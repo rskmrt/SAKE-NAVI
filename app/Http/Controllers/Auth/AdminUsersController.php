@@ -63,7 +63,9 @@ class AdminUsersController extends Controller
      */
     public function edit($id)
     {
-        return view('admins.index.users.edit');
+        $adminUser = User::where('id', $id)->first();
+
+        return view('admins.index.users.edit', compact('adminUser'));
     }
 
     /**
