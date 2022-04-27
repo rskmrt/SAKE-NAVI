@@ -28,10 +28,101 @@
 
 
 <body>
-<div class="sticky-top">
 
-  <nav class="py-2 bg-light border-bottom">
+<div class="sticky-top">
+  <header class="bg-light">
+    <div class="collapse " id="navbarHeader">
+      <div class="container">
+        <div class="row py-5">
+
+          <div class="col-4">
+            <form method="GET" action="{{ route('admin.index') }}">
+              <div class="input-group">
+                <input type="text" class="form-control input-group-prepend" placeholder="カクテル名、材料で検索" name="text" value="@if (isset($text)) {{ $text }} @endif">
+                <button class="btn btn-primary" type="submit">
+                  <span class="material-icons">search</span>  
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="col-8">
+            <form action="{{ route('admin.index') }}">
+              
+
+                ベース　　　：
+                  @foreach($bases as $base)
+                  <div class="form-check-inline">
+                    <input class="form-check-input" name="base[]" type="checkbox" value="{{ $base->id }}" id="{{ $base->name }}" >
+                    <label class="form-check-label" for="{{ $base->name }}">
+                      {{$base->name}}
+                    </label>
+                  </div>
+                  @endforeach
+
+                  <br>
+                  テイスト　　：
+                  @foreach($tastes as $taste)
+                  <div class="form-check-inline">
+                    <input class="form-check-input" name="taste[]" type="checkbox" value="{{ $taste->id }}" id="{{ $taste->name }}">
+                    <label class="form-check-label" for="{{ $taste->name }}">
+                      {{$taste->name}}
+                    </label>
+                  </div>
+                  @endforeach
+
+                  <br>
+
+                  アルコール度数：
+                  @foreach($strengths as $strength)
+                  <div class="form-check-inline">
+                    <input class="form-check-input" name="strength[]" type="checkbox" value="{{ $strength->id }}" id="{{ $strength->name }}">
+                    <label class="form-check-label" for="{{ $strength->name }}">
+                      {{$strength->name}}
+                    </label>
+                  </div>
+                  @endforeach
+
+                  <br>
+
+                製法　　　：
+                  @foreach($techniques as $technique)
+                  <div class="form-check-inline">
+                    <input class="form-check-input" name="technique[]" type="checkbox" value="{{ $technique->id }}" id="{{ $technique->name }}">
+                    <label class="form-check-label" for="{{ $technique->name }}">
+                      {{$technique->name}}
+                    </label>
+                  </div>
+                  @endforeach
+                
+                  <br>
+
+                グラスタイプ　 ：
+                  @foreach($glasses as $glass)
+                  <div class="form-check-inline">
+                    <input class="form-check-input" name="glass[]" type="checkbox" value="{{ $glass->id }}" id="{{ $glass->name }}">
+                    <label class="form-check-label" for="{{ $glass->name }}">
+                      {{$glass->name}}
+                    </label>
+                  </div>
+                  @endforeach
+
+                  <button class="btn btn-primary" type="submit">検索</button>
+              </div>
+             
+            </form>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <nav class="py-2 bg-info border-bottom">
     <div class="container d-flex flex-wrap">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="material-symbols-rounded">search</span>
+      </button>
       <ul class="nav me-auto">
         <li class="nav-item"><a href="/admin" class="nav-link link-dark px-2 active" aria-current="page">カクテル一覧</a></li>
         <li class="nav-item"><a href="/admin/users" class="nav-link link-dark px-2">ユーザ一覧</a></li>

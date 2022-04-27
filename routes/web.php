@@ -23,6 +23,10 @@ Route::prefix('admin')->group(function () {
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login');
     Route::post('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
     Route::get('/', 'Auth\AdminController@index')->name('admin.index');
+    Route::get('/cocktail/create', 'Auth\AdminCocktailController@index')->name('admin.cocktail.create');
+    Route::post('/cocktail/store', 'Auth\AdminCocktailController@store')->name('admin.cocktail.store');
+    Route::get('/base/create', 'Auth\AdminBaseController@index')->name('admin.base');
+    Route::get('/split/create', 'Auth\AdminSplitController@index')->name('admin.split');
     Route::get('/users', 'Auth\AdminUsersController@index')->name('admin.users');
     Route::get('/users/edit/{id}', 'Auth\AdminUsersController@edit')->name('admin.users.edit');
     Route::post('/users/update/{id}', 'Auth\AdminUsersController@update')->name('admin.users.update');
@@ -32,8 +36,10 @@ Route::prefix('admin')->group(function () {
 
 Route::get('/', 'HomeController@index');
 
-Route::get('home', 'HomeController@index')->name('home');
-Route::get('home/show/{id}', 'HomeController@show')->name('show');
+Route::prefix('home')->group(function () {
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('show/{id}', 'HomeController@show')->name('show');
+});
 
 Route::get('favorite', 'FavoriteController@index')->name('favorite');
 Route::post('favorite/{cocktail}', 'FavoriteController@store')->name('favorites');
