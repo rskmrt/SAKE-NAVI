@@ -4,9 +4,15 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Split;
 
 class AdminSplitController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +20,7 @@ class AdminSplitController extends Controller
      */
     public function index()
     {
-        return view('admins.index.cocktails.split-regist');
-        
+        //
     }
 
     /**
@@ -25,7 +30,7 @@ class AdminSplitController extends Controller
      */
     public function create()
     {
-        //
+        return view('admins.index.cocktails.split-regist');
     }
 
     /**
@@ -36,7 +41,15 @@ class AdminSplitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:255|unique:bases',
+        ]);
+        $data = $request->input();
+        Split::insert([
+            'name' => $data['name']
+        ]);
+
+        return redirect('admin/');
     }
 
     /**

@@ -15,6 +15,11 @@ use App\Models\CocktailTechnique;
 
 class AdminCocktailController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +27,6 @@ class AdminCocktailController extends Controller
      */
     public function index()
     {
-        return view('admins.index.cocktails.cocktail-regist');
     }
 
     /**
@@ -32,7 +36,8 @@ class AdminCocktailController extends Controller
      */
     public function create()
     {
-        //
+        return view('admins.index.cocktails.cocktail-regist');
+
     }
 
     /**

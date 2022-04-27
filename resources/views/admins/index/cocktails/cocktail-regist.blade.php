@@ -2,7 +2,11 @@
 
 @section('section')
 
-<div class="container">
+@endsection
+
+
+@section('content')
+  <div class="container">
 
     <section class="py-5 container">
       <div class="col-lg-6 col-md-8 mx-auto">
@@ -93,11 +97,4 @@
       
       
   </div> 
-
-
-@endsection
-
-
-@section('content')
-  
 @endsection

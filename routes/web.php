@@ -23,10 +23,12 @@ Route::prefix('admin')->group(function () {
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login');
     Route::post('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
     Route::get('/', 'Auth\AdminController@index')->name('admin.index');
-    Route::get('/cocktail/create', 'Auth\AdminCocktailController@index')->name('admin.cocktail.create');
+    Route::get('/cocktail/create', 'Auth\AdminCocktailController@create')->name('admin.cocktail.create');
     Route::post('/cocktail/store', 'Auth\AdminCocktailController@store')->name('admin.cocktail.store');
-    Route::get('/base/create', 'Auth\AdminBaseController@index')->name('admin.base');
-    Route::get('/split/create', 'Auth\AdminSplitController@index')->name('admin.split');
+    Route::get('/base/create', 'Auth\AdminBaseController@create')->name('admin.base');
+    Route::post('/base/store', 'Auth\AdminBaseController@store')->name('admin.base.store');
+    Route::get('/split/create', 'Auth\AdminSplitController@create')->name('admin.split');
+    Route::post('/split/store', 'Auth\AdminSplitController@store')->name('admin.split.store');
     Route::get('/users', 'Auth\AdminUsersController@index')->name('admin.users');
     Route::get('/users/edit/{id}', 'Auth\AdminUsersController@edit')->name('admin.users.edit');
     Route::post('/users/update/{id}', 'Auth\AdminUsersController@update')->name('admin.users.update');

@@ -4,9 +4,15 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Base;
 
 class AdminBaseController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,7 @@ class AdminBaseController extends Controller
      */
     public function index()
     {
-        return view('admins.index.cocktails.base-regist');
+        
     }
 
     /**
@@ -24,7 +30,7 @@ class AdminBaseController extends Controller
      */
     public function create()
     {
-        //
+        return view('admins.index.cocktails.base-regist');
     }
 
     /**
@@ -35,7 +41,15 @@ class AdminBaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:255|unique:bases',
+        ]);
+        $data = $request->input();
+        Base::insert([
+            'name' => $data['name']
+        ]);
+
+        return redirect('admin/');
     }
 
     /**
