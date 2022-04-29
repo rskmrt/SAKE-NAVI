@@ -1,6 +1,6 @@
 @if($cocktails->isEmpty())
 
-表示できるカクテルはありません
+<h4 class="text-muted" style="text-align: center">表示できるカクテルはありません</h4>
 
 @else
 

@@ -1,15 +1,17 @@
 @extends('users.layouts.app')
 
-@section('image')
-  @include('users.components.top_image')
-@endsection
-
-
-@section('section')
-  <button type="button" class="btn btn-outline-dark btn-lg" onclick=location.href="/can-make/create">材料の登録</button> 
-@endsection
-
-
 @section('content')
-  @include('users.components.cocktails')
+
+<div style="text-align: center">
+  <img src="{{ asset('img/top.jpg')}}" width="70%" height="70%">
+</div>
+
+<section class="py-5 text-center containe">
+  <div class="container">
+    <button type="button" class="btn btn-outline-dark btn-lg" onclick=location.href="/can-make/create">材料の登録</button> 
+  </div>
+</section>
+
+@include('users.components.cocktails')
+
 @endsection

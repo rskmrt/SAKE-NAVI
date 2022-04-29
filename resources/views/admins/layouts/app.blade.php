@@ -170,15 +170,9 @@
 
 
 <main role="main">
-
-  @yield('image')
-
-  
-    <div class="container">
-      @yield('section')
-    </div>
-  </section>
-  
+  <div class="container">
+    @yield('section')
+  </div>  
   @yield('content')
 
   

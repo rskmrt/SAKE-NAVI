@@ -85,6 +85,8 @@ class HomeController extends Controller
     {
     $query = Cocktail::find($id);
 
+        $cocktail = $query;
+
         $base = $query
         ->bases()
         ->get();
@@ -109,6 +111,6 @@ class HomeController extends Controller
         ->techniques()
         ->get();
 
-        return view('users\index\show', compact('base','glass', 'split', 'strength', 'taste', 'technique'));
+        return view('users\index\show', compact('cocktail','base','glass', 'split', 'strength', 'taste', 'technique'));
     }
 }

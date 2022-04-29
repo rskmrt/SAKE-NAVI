@@ -137,4 +137,5 @@ class CanMakeController extends Controller
         
         return redirect()->back();
     }
+    
 }

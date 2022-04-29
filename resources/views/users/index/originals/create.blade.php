@@ -1,7 +1,11 @@
 @extends('users.layouts.app')
 
+
 @section('content')
-@include('users.components.top_image')
+
+<div style="text-align: center">
+  <img src="{{ asset('img/top.jpg')}}" width="70%" height="70%">
+</div>
 
 
 <div class="container">
@@ -106,8 +110,9 @@
       </div>
       </p>
       
-    <button type="submit" class="btn btn-outline-dark">登録</button> 
-      
+      <div style="text-align: center">
+        <button type="submit" class="btn btn-outline-dark">登録</button> 
+      </div>
     </form>
     </div>
   </section>
