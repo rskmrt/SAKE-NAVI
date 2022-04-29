@@ -84,6 +84,10 @@ class AdminBaseController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'name' => 'required|max:255|unique:bases,name,'.Base::find($id)->name.',name',
+        ]);
+
         $data = $request->input();
         Base::Where('id', $id)->update(['name' => $data['name']]);
 

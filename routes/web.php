@@ -64,7 +64,7 @@ Route::prefix('can-make')->group(function () {
 });
 
 Route::prefix('original')->group(function () {
-    Route::get('/', 'Users\OriginalController@get_rakuten_items')->name('original');
+    Route::get('/', 'Users\OriginalController@index')->name('original');
     Route::get('create', 'Users\OriginalController@create')->name('original-create');
     Route::post('store', 'Users\OriginalController@store')->name('original-store');
     Route::get('edit/{id}', 'Users\OriginalController@edit')->name('original-edit');

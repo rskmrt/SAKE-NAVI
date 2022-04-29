@@ -77,6 +77,9 @@ class AdminUsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'email' => 'required|string|email|max:255|unique:users,email,'.User::find($id)->email.',email',
+        ]);
         $data = $request->input();
         User::where('id', $id)->update(['name' => $data['name']]);
         User::where('id', $id)->update(['email' => $data['email']]);

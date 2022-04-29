@@ -16,7 +16,7 @@
 
       @error('name')
       <div class="alert alert-danger">{{ $message }}</div>
-    @enderror
+      @enderror
       <div class="mb-3">
         <label for="name" class="form-label">カクテル名</label>
         <input name="name" type="text" class="form-control" id="cocktailname" value="{{ $cocktail->name }}">

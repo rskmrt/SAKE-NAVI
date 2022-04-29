@@ -16,8 +16,6 @@
       <div class="col-lg-6 col-md-8 mx-auto">
       <form action="/admin/cocktail/store" method="POST">
         @csrf
-        
-  
         @error('name')
           <div class="alert alert-danger">{{ $message }}</div>
         @enderror
@@ -26,6 +24,7 @@
           <input name="name" type="text" class="form-control" id="cocktailname">
         </div>
         
+        <br>
         
         <p>ベース
           @foreach($bases as $base)
@@ -37,6 +36,8 @@
           </div>
           @endforeach
         </p>
+
+        <br>
   
         <p>材料
           @foreach($splits as $split)
@@ -48,6 +49,8 @@
           </div>
           @endforeach
         </p>
+
+        <br>
   
         <p>テイスト
           @foreach($tastes as $taste)
@@ -59,6 +62,8 @@
           </div>
           @endforeach
         </p>
+
+        <br>
   
         <p>アルコール度数
           @foreach($strengths as $strength)
@@ -70,6 +75,8 @@
           </div>
           @endforeach
         </p>
+
+        <br>
         
         <p>技法
           @foreach($techniques as $technique)
@@ -81,6 +88,8 @@
           </div>
           @endforeach
         </p>
+
+        <br>
   
         <p>グラスタイプ
           @foreach($glasses as $glass)
@@ -93,14 +102,15 @@
           @endforeach
         </p>
 
+        <br>
+
         <p>作り方
           <div class="textarea">
           <textarea class="textarea" id="how_to" name="how_to"></textarea>
         </div>
         </p>
         
-      <button type="submit" class="btn btn-outline-dark">登録</button> 
-        
+        <button type="submit" class="btn btn-outline-dark">登録</button> 
       </form>
       </div>
     </section>

@@ -83,6 +83,10 @@ class AdminSplitController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'name' => 'required|max:255|unique:splits,name,'.Split::find($id)->name.',name',
+        ]);
+
         $data = $request->input();
         Split::Where('id', $id)->update(['name' => $data['name']]);
 
