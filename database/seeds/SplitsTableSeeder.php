@@ -13,17 +13,29 @@ class SplitsTableSeeder extends Seeder
     {
         DB::table('splits')->insert([
             [
-                'name' => 'ソーダ'
+                'name' => 'ソーダ',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ],[
-                'name' => 'トニックウォーター'
+                'name' => 'トニックウォーター',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ],[
-                'name' => 'ジンジャーエール'
+                'name' => 'ジンジャーエール',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ],[
-                'name' => 'コーラ'
+                'name' => 'コーラ',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ],[
-                'name' => 'レモン'
+                'name' => 'レモン',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ],[
-                'name' => 'ライム'
+                'name' => 'ライム',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ]
         ]);
     }

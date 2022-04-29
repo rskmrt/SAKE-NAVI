@@ -13,18 +13,31 @@ class BasesTableSeeder extends Seeder
     {
         DB::table('bases')->insert([
             [
-                'name' => 'ウォッカ'
+                'name' => 'ウォッカ',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),                
             ],[
-                'name' => 'ジン'
+                'name' => 'ジン',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),
             ],[
-                'name' => 'ラム'
+                'name' => 'ラム',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),                
             ],[
-                'name' => 'テキーラ'
+                'name' => 'テキーラ',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ],[
-                'name' => '焼酎'
+                'name' => '焼酎',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ],[
-                'name' => 'ウィスキー'
-            ]
+                'name' => 'ウィスキー',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
+            ],
+            
         ]);
     }
 }

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('users.layouts.app')
 
 @section('image')
   @include('components.top_image')
@@ -6,9 +6,8 @@
 
 
 @section('section')
-  
-@endsection
 
+@endsection
 
 
 @section('content')

@@ -17,7 +17,8 @@ class CreateCocktailGlassTable extends Migration
             $table->bigIncrements('id');
             $table->integer('cocktail_id')->nullable();
             $table->integer('glass_id')->nullable();
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
     }
 

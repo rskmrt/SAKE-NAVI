@@ -13,13 +13,21 @@ class TasteTableSeeder extends Seeder
     {
         DB::table('tastes')->insert([
             [
-                'name' => '甘口'
+                'name' => '甘口',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ],[
-                'name' => '中辛'
+                'name' => '中辛',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ],[
-                'name' => '辛口'
+                'name' => '辛口',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),  
             ],[
-                'name' => '中甘辛口'
+                'name' => '中甘辛口',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),  
             ]
         ]);
     }

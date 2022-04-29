@@ -14,34 +14,54 @@ class CocktailTasteTableSeeder extends Seeder
         DB::table('cocktail_taste')->insert([
             [
                 'cocktail_id' => '1',
-                'taste_id' => '2'
+                'taste_id' => '2',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ],[
                 'cocktail_id' => '2',
-                'taste_id' => '2'
+                'taste_id' => '2',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ],[
                 'cocktail_id' => '3',
-                'taste_id' => '1'
+                'taste_id' => '1',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ],[
                 'cocktail_id' => '4',
-                'taste_id' => '1'
+                'taste_id' => '1',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ],[
                 'cocktail_id' => '5',
-                'taste_id' => '3'
+                'taste_id' => '3',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ],[
                 'cocktail_id' => '6',
-                'taste_id' => '4'
+                'taste_id' => '4',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ],[
                 'cocktail_id' => '7',
-                'taste_id' => '4'
+                'taste_id' => '4',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ],[
                 'cocktail_id' => '8',
-                'taste_id' => '5'
+                'taste_id' => '5',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ],[
                 'cocktail_id' => '9',
-                'taste_id' => '5'
+                'taste_id' => '5',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ],[
                 'cocktail_id' => '10',
-                'taste_id' => '6'
+                'taste_id' => '6',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ]
         ]);
     }

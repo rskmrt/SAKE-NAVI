@@ -9,5 +9,5 @@
 @endsection
 
 @section('content')
-  @include('admins.components.cocktails')
+  @include('admins.index.components.cocktails')
 @endsection

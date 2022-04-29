@@ -1,22 +1,27 @@
-@extends('layouts.app')
+@extends('admins.layouts.app')
+
+@section('section')
+<ul class="nav me-auto">
+  <li class="nav-item"><a href="/admin/cocktail/create" class="nav-link link-dark px-2 active" aria-current="page">カクテル登録</a></li>
+  <li class="nav-item"><a href="/admin/base/create" class="nav-link link-dark px-2">ベース登録</a></li>
+  <li class="nav-item"><a href="/admin/split/create" class="nav-link link-dark px-2">材料登録</a></li>
+</ul>
+@endsection
 
 @section('content')
-@include('components.top_image')
-
 
 <div class="container">
 
   <section class="py-5 container">
     <div class="col-lg-6 col-md-8 mx-auto">
-    <form action="/original/update/{{ $cocktail->id }}" method="POST">
+    <form action="/admin/cocktail/update/{{ $cocktail->id }}" method="POST">
       @csrf
-      <input type="hidden" name="user_id" value="{{ $user['id'] }}">
 
       @error('name')
       <div class="alert alert-danger">{{ $message }}</div>
-    @enderror
+      @enderror
       <div class="mb-3">
-        <label for="name" class="form-label">カクテル名</label>
+        <label for="name" class="form-label" >カクテル名</label>
         <input name="name" type="text" class="form-control" id="cocktailname" value="{{ $cocktail->name }}">
       </div>
       

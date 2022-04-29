@@ -13,13 +13,21 @@ class GlassesTableSeeder extends Seeder
     {
         DB::table('glasses')->insert([
             [
-                'name' => 'タンブラー'
+                'name' => 'タンブラー',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ],[
-                'name' => 'カクテルグラス'
+                'name' => 'カクテルグラス',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ],[
-                'name' => 'ロック'
+                'name' => 'ロック',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ],[
-                'name' => 'その他'
+                'name' => 'その他',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ]
         ]);
     }

@@ -13,13 +13,21 @@ class TechniqueTableSeeder extends Seeder
     {
         DB::table('techniques')->insert([
             [
-                'name' => 'ビルド'
+                'name' => 'ビルド',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ],[
-                'name' => 'ステア'
+                'name' => 'ステア',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ],[
-                'name' => 'シェイク'
+                'name' => 'シェイク',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ],[
-                'name' => 'ブレンド'
+                'name' => 'ブレンド',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ]
         ]);
     }

@@ -3,8 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\Cocktail;
 use Illuminate\Http\Request;
+use App\Models\Cocktail;
+use App\Models\CocktailBase;
+use App\Models\CocktailSplit;
+use App\Models\CocktailGlass;
+use App\Models\CocktailTaste;
+use App\Models\CocktailStrength;
+use App\Models\CocktailTechnique;
 
 
 class AdminController extends Controller
@@ -14,7 +20,11 @@ class AdminController extends Controller
         $this->middleware('auth:admin');
     }
 
-    //一覧画面表示
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index(Request $request)
     {
         $query = Cocktail::query()->select('cocktails.*');
@@ -33,7 +43,11 @@ class AdminController extends Controller
             }
             $query->join('cocktail_split', 'cocktails.id', '=', 'cocktail_split.cocktail_id')
                   ->join('splits', 'cocktail_split.split_id', '=', 'splits.id');
-            $cocktails = $query->distinct()->get();
+            $cocktails = $query
+            ->where('status', 1)
+            ->where('authority', 1)
+            ->distinct()
+            ->get();
         }
 
         //ベース検索
@@ -79,9 +93,148 @@ class AdminController extends Controller
         $cocktails = $query
         ->where('authority', 1)
         ->where('status', 1)
-        ->orderBy('cocktails.name', 'asc')
+        ->orderBy('cocktails.created_at', 'desc')
         ->paginate(9);      
 
-        return view('admins/index/home', compact('text', 'cocktails'));
+        return view('admins/index/cocktails/home', compact('text', 'cocktails'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('admins.index.cocktails.cocktail-regist');
+
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+        ]);
+
+        $data = $request->all();
+
+        $cocktail_id = Cocktail::insertGetId([
+            'name' => $data['name'],
+            'authority' => 1,
+            'status' => 1
+        ]);
+        
+        if(!empty($data['base'])){
+            foreach($data['base'] as $value){
+                CocktailBase::insert([
+                    'cocktail_id' => $cocktail_id,
+                    'base_id' => $value
+                ]);
+            }
+        }
+        
+        
+        if(!empty($data['split'])){
+            foreach($data['split'] as $value){
+                CocktailSplit::insert([
+                    'cocktail_id' => $cocktail_id,
+                    'split_id' => $value
+                ]);
+            }
+        }   
+
+        if(!empty($data['glass'])){
+            CocktailGlass::insert([
+                'cocktail_id' => $cocktail_id,
+                'glass_id' => $data['glass']
+            ]);
+        }
+
+        if(!empty($data['taste'])){
+            CocktailTaste::insert([
+                'cocktail_id' => $cocktail_id,
+                'taste_id' => $data['taste']
+            ]);
+        }
+
+        if(!empty($data['strength'])){
+            CocktailStrength::insert([
+                'cocktail_id' => $cocktail_id,
+                'strength_id' => $data['strength']
+            ]);
+        }
+
+        if(!empty($data['technique'])){
+            CocktailTechnique::insert([
+                'cocktail_id' => $cocktail_id,
+                'technique_id' => $data['technique']
+            ]);
+        }
+
+        return redirect('admin/');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $cocktail = Cocktail::where('id', $id)->where('status', 1)->first();
+        $edit_bases = Cocktail::find($id)->bases()->get();
+        $edit_splits = Cocktail::find($id)->splits()->get();
+        $edit_taste = Cocktail::find($id)->tastes()->first();      
+        $edit_strength = Cocktail::find($id)->strengths()->first();
+        $edit_technique = Cocktail::find($id)->techniques()->first();
+        $edit_glass = Cocktail::find($id)->glasses()->first();
+
+        return view('admins\index\cocktails\edit', compact('cocktail', 'edit_bases', 'edit_splits', 'edit_taste', 'edit_strength', 'edit_technique', 'edit_glass'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $this->store($request);
+        Cocktail::where('id', $id)->where('status', 1)->update(['status' => 2]);
+
+        return redirect('/admin');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        Cocktail::where('id', $id)->where('status', 1)->where('authority', 1)->update(['status' => 2]);
+
+        return redirect()->back();
     }
 }

@@ -36,7 +36,7 @@ class CanMakeController extends Controller
         ->orderBy('name', 'asc')
         ->paginate(9);
 
-        return view('index\can-makes\can-make', compact('cocktails'));
+        return view('users\index\can-makes\can-make', compact('cocktails'));
     }
 
     /**
@@ -48,7 +48,7 @@ class CanMakeController extends Controller
     {
         $bases = Base::get();
         $splits = Split::get();
-        return view('index\can-makes\create', compact('bases', 'splits'));
+        return view('users\index\can-makes\create', compact('bases', 'splits'));
     }
 
     /**

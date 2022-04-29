@@ -25,7 +25,7 @@ class FavoriteController extends Controller
         $favorites = Favorite::where('user_id', Auth::id())->pluck('cocktail_id')->toArray();
         $cocktails = Cocktail::wherein('id', $favorites)->where('status', 1)->paginate(9);
 
-        return view('index\favorite', compact('cocktails'));
+        return view('users\index\favorite', compact('cocktails'));
     }
 
     /**

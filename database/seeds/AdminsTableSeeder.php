@@ -15,6 +15,8 @@ class AdminsTableSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@test',
             'password' => Hash::make('12345678'),
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
         ]);
     }
 }
