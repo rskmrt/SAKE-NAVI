@@ -1,7 +1,7 @@
 @extends('users.layouts.app')
 
 @section('content')
-@include('components.top_image')
+@include('users.components.top_image')
 
 
 <div class="container">

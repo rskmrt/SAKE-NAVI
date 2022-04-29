@@ -1,11 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Users;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Cocktail;
+use App\Models\Favorite;
+use Auth;
 
-class ContactController extends Controller
+
+class FavoriteController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +22,10 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('users\index\contact');
+        $favorites = Favorite::where('user_id', Auth::id())->pluck('cocktail_id')->toArray();
+        $cocktails = Cocktail::wherein('id', $favorites)->where('status', 1)->paginate(9);
+
+        return view('users\index\favorite', compact('cocktails'));
     }
 
     /**
@@ -32,9 +44,11 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Cocktail $cocktail)
     {
-        //
+        $cocktail->users()->attach(Auth::id());
+
+        return redirect()->back();
     }
 
     /**
@@ -77,8 +91,10 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Cocktail $cocktail)
     {
-        //
+        $cocktail->users()->detach(Auth::id());
+
+        return redirect()->back();
     }
 }

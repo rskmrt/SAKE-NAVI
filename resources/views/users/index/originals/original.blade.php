@@ -1,7 +1,7 @@
 @extends('users.layouts.app')
 
 @section('image')
-  @include('components.top_image')
+  @include('users.components.top_image')
 @endsection
 
 
@@ -11,5 +11,5 @@
     
      
 @section('content')
-  @include('components.cocktails')
+  @include('users.components.cocktails')
 @endsection

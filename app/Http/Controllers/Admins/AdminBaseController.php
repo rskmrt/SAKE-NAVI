@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admins;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Base;
+use App\Models\Cocktail;
 
-class AdminUsersController extends Controller
+class AdminBaseController extends Controller
 {
     public function __construct()
     {
@@ -20,7 +21,7 @@ class AdminUsersController extends Controller
      */
     public function index()
     {
-        return view('admins.index.users.users');
+        
     }
 
     /**
@@ -30,7 +31,7 @@ class AdminUsersController extends Controller
      */
     public function create()
     {
-        //
+        return view('admins.index.cocktails.base');
     }
 
     /**
@@ -41,7 +42,15 @@ class AdminUsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:255|unique:bases',
+        ]);
+        $data = $request->input();
+        Base::insert([
+            'name' => $data['name']
+        ]);
+
+        return redirect()->back();
     }
 
     /**
@@ -63,7 +72,7 @@ class AdminUsersController extends Controller
      */
     public function edit($id)
     {
-       //
+        //
     }
 
     /**
@@ -76,10 +85,9 @@ class AdminUsersController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->input();
-        User::where('id', $id)->update(['name' => $data['name']]);
-        User::where('id', $id)->update(['email' => $data['email']]);
+        Base::Where('id', $id)->update(['name' => $data['name']]);
 
-        return redirect('admin/users');
+        return redirect()->back();
     }
 
     /**
@@ -90,7 +98,7 @@ class AdminUsersController extends Controller
      */
     public function destroy($id)
     {
-        User::where('id', $id)->delete();
+        Base::where('id', $id)->delete();
 
         return redirect()->back();
     }

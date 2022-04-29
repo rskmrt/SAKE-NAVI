@@ -1,19 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
-
+namespace App\Http\Controllers\Users;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Base;
-use App\Models\Cocktail;
 
-class AdminBaseController extends Controller
+class ContactController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:admin');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +13,7 @@ class AdminBaseController extends Controller
      */
     public function index()
     {
-        
+        return view('users\index\contact');
     }
 
     /**
@@ -31,7 +23,7 @@ class AdminBaseController extends Controller
      */
     public function create()
     {
-        return view('admins.index.cocktails.base');
+        //
     }
 
     /**
@@ -42,15 +34,7 @@ class AdminBaseController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|max:255|unique:bases',
-        ]);
-        $data = $request->input();
-        Base::insert([
-            'name' => $data['name']
-        ]);
-
-        return redirect()->back();
+        //
     }
 
     /**
@@ -84,10 +68,7 @@ class AdminBaseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->input();
-        Base::Where('id', $id)->update(['name' => $data['name']]);
-
-        return redirect()->back();
+        //
     }
 
     /**
@@ -98,8 +79,6 @@ class AdminBaseController extends Controller
      */
     public function destroy($id)
     {
-        Base::where('id', $id)->delete();
-
-        return redirect()->back();
+        //
     }
 }

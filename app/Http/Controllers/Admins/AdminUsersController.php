@@ -1,18 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admins;
 
+use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\Cocktail;
-use App\Models\Favorite;
-use Auth;
 
-
-class FavoriteController extends Controller
+class AdminUsersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:admin');
     }
 
     /**
@@ -22,10 +20,7 @@ class FavoriteController extends Controller
      */
     public function index()
     {
-        $favorites = Favorite::where('user_id', Auth::id())->pluck('cocktail_id')->toArray();
-        $cocktails = Cocktail::wherein('id', $favorites)->where('status', 1)->paginate(9);
-
-        return view('users\index\favorite', compact('cocktails'));
+        return view('admins.index.users.users');
     }
 
     /**
@@ -44,11 +39,9 @@ class FavoriteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Cocktail $cocktail)
+    public function store(Request $request)
     {
-        $cocktail->users()->attach(Auth::id());
-
-        return redirect()->back();
+        //
     }
 
     /**
@@ -70,7 +63,7 @@ class FavoriteController extends Controller
      */
     public function edit($id)
     {
-        //
+       //
     }
 
     /**
@@ -82,7 +75,11 @@ class FavoriteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->input();
+        User::where('id', $id)->update(['name' => $data['name']]);
+        User::where('id', $id)->update(['email' => $data['email']]);
+
+        return redirect('admin/users');
     }
 
     /**
@@ -91,9 +88,9 @@ class FavoriteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cocktail $cocktail)
+    public function destroy($id)
     {
-        $cocktail->users()->detach(Auth::id());
+        User::where('id', $id)->delete();
 
         return redirect()->back();
     }

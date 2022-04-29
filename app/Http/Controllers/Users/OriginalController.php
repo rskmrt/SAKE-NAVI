@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Users;
+use App\Http\Controllers\Controller;
 use App\Models\Cocktail;
 use App\Models\CocktailBase;
 use App\Models\CocktailSplit;
