@@ -41,25 +41,25 @@
       </tr>
     </thead>
     <tbody>
-    @foreach($bases as $base)
+      @foreach($bases as $base)
       <tr>
-        <th scope="row">{{ $base->id }}</th>
-        <td>{{ $base->name }}</td>
-        <td>{{ $base->created_at->format('Y/m/d h:i') }}</td>
-				<td>{{ $base->updated_at->format('Y/m/d h:i') }}</td>
-        <td>
-					<div style="display:inline-flex">
-						<form action="{{ route('admin.users.edit', $user) }}" method="GET">
-							<button class="button" type="submit" onclick><span class="material-symbols-rounded">edit</span></button>
-						</form>
-						<form action="{{ route('admin.users.destroy' ,$user) }}" method="POST">
-							@csrf
-							<button class="button" type="submit" onclick='return confirm("この操作は取り消せません。本当に削除しますか？");'><span class="material-symbols-rounded">delete</span></button>
-						</form>
-				</div>
-        </td>
+        <form action="{{ route('admin.base.update', $base) }}" method="POST">
+          @csrf
+          <th scope="row">{{ $base->id }}</th>
+          <td><input type="text" name="name" value="{{ $base->name }}"></td>
+          <td>{{ $base->created_at->format('Y/m/d h:i') }}</td>
+          <td>{{ $base->updated_at->format('Y/m/d h:i') }}</td>
+          <td>
+            <div style="display:inline-flex">
+            <button type="submit" class="btn btn-outline-dark btn-sm" onclick='return confirm("{{ $base->name }}を変更しますか？");'>更新</button> 
+        </form>
+        <form action="{{ route('admin.base.destroy' ,$base) }}" method="POST">
+          @csrf
+            <button type="submit" class="btn btn-outline-dark btn-sm" onclick='return confirm("{{ $base->name }}を削除しますか？");'>削除</button> 
+          </td>
+        </form>
       </tr>
-    @endforeach
+      @endforeach
     </tbody>
   </table>
 

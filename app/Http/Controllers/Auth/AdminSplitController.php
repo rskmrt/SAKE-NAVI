@@ -30,7 +30,7 @@ class AdminSplitController extends Controller
      */
     public function create()
     {
-        return view('admins.index.cocktails.split-regist');
+        return view('admins.index.cocktails.split');
     }
 
     /**
@@ -42,14 +42,14 @@ class AdminSplitController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|max:255|unique:bases',
+            'name' => 'required|max:255|unique:splits',
         ]);
         $data = $request->input();
         Split::insert([
             'name' => $data['name']
         ]);
 
-        return redirect('admin/');
+        return redirect()->back();
     }
 
     /**
@@ -83,7 +83,10 @@ class AdminSplitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->input();
+        Split::Where('id', $id)->update(['name' => $data['name']]);
+
+        return redirect()->back();
     }
 
     /**
@@ -94,6 +97,8 @@ class AdminSplitController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Split::where('id', $id)->delete();
+
+        return redirect()->back();
     }
 }

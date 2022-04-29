@@ -14,26 +14,26 @@
       </tr>
     </thead>
     <tbody>
-    @foreach($users as $user)
+      @foreach($users as $user)
       <tr>
-        <th scope="row">{{ $user->id }}</th>
-        <td>{{ $user->name }}</td>
-        <td>{{ $user->email }}</td>
-        <td>{{ $user->created_at->format('Y/m/d') }}</td>
-				<td>{{ $user->updated_at->format('Y/m/d') }}</td>
-        <td>
-					<div style="display:inline-flex">
-						<form action="{{ route('admin.users.edit', $user) }}" method="GET">
-							<button class="button" type="submit" onclick><span class="material-symbols-rounded">edit</span></button>
-						</form>
-						<form action="{{ route('admin.users.destroy' ,$user) }}" method="POST">
-							@csrf
-							<button class="button" type="submit" onclick='return confirm("この操作は取り消せません。本当に削除しますか？");'><span class="material-symbols-rounded">delete</span></button>
-						</form>
-				</div>
-        </td>
+        <form action="{{ route('admin.users.update', $user) }}" method="POST">
+          @csrf
+          <th scope="row">{{ $user->id }}</th>
+          <td><input type="text" name="name" value="{{ $user->name }}"></td>
+          <td><input type="text" name="email" value="{{ $user->email }}"></td>
+          <td>{{ $user->created_at->format('Y/m/d h:i') }}</td>
+          <td>{{ $user->updated_at->format('Y/m/d h:i') }}</td>
+          <td>
+            <div style="display:inline-flex">
+            <button type="submit" class="btn btn-outline-dark btn-sm" onclick='return confirm("{{ $user->name }}さんを変更しますか？");'>更新</button> 
+        </form>
+        <form action="{{ route('admin.users.destroy' ,$user) }}" method="POST">
+          @csrf
+            <button type="submit" class="btn btn-outline-dark btn-sm" onclick='return confirm("{{ $user->name }}さんを削除しますか？");'>削除</button> 
+          </td>
+        </form>
       </tr>
-    @endforeach
+      @endforeach
     </tbody>
   </table>
 

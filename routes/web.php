@@ -30,8 +30,12 @@ Route::prefix('admin')->group(function () {
     Route::post('/cocktail/delete/{id}', 'Auth\AdminController@destroy')->name('admin.cocktail.delete');
     Route::get('/base/create', 'Auth\AdminBaseController@create')->name('admin.base');
     Route::post('/base/store', 'Auth\AdminBaseController@store')->name('admin.base.store');
+    Route::post('/base/update/{id}', 'Auth\AdminBaseController@update')->name('admin.base.update');
+    Route::post('/base/delete/{id}', 'Auth\AdminBaseController@destroy')->name('admin.base.destroy');
     Route::get('/split/create', 'Auth\AdminSplitController@create')->name('admin.split');
     Route::post('/split/store', 'Auth\AdminSplitController@store')->name('admin.split.store');
+    Route::post('/split/update/{id}', 'Auth\AdminSplitController@update')->name('admin.split.update');
+    Route::post('/split/delete/{id}', 'Auth\AdminSplitController@destroy')->name('admin.split.destroy');
     Route::get('/users', 'Auth\AdminUsersController@index')->name('admin.users');
     Route::get('/users/edit/{id}', 'Auth\AdminUsersController@edit')->name('admin.users.edit');
     Route::post('/users/update/{id}', 'Auth\AdminUsersController@update')->name('admin.users.update');

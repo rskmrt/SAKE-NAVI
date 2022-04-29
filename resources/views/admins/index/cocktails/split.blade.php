@@ -22,8 +22,8 @@
     		<div class="mb-3">
 					<label for="name" class="form-label">登録する材料</label>
 					<input name="name" type="text" class="form-control">
+          <button type="submit" class="btn btn-outline-dark">登録</button>       
     		</div>
-				<button type="submit" class="btn btn-outline-dark">登録</button>       
       </form>
     </div>
   </section>   
@@ -39,25 +39,25 @@
       </tr>
     </thead>
     <tbody>
-    @foreach($splits as $split)
+      @foreach($splits as $split)
       <tr>
-        <th scope="row">{{ $split->id }}</th>
-        <td>{{ $split->name }}</td>
-        <td>{{ $split->created_at->format('Y/m/d h:i') }}</td>
-				<td>{{ $split->updated_at->format('Y/m/d h:i') }}</td>
-        <td>
-					<div style="display:inline-flex">
-						<form action="{{ route('admin.users.edit', $user) }}" method="GET">
-							<button class="button" type="submit" onclick><span class="material-symbols-rounded">edit</span></button>
-						</form>
-						<form action="{{ route('admin.users.destroy' ,$user) }}" method="POST">
-							@csrf
-							<button class="button" type="submit" onclick='return confirm("この操作は取り消せません。本当に削除しますか？");'><span class="material-symbols-rounded">delete</span></button>
-						</form>
-				</div>
-        </td>
+        <form action="{{ route('admin.split.update', $split) }}" method="POST">
+          @csrf
+          <th scope="row">{{ $split->id }}</th>
+          <td><input type="text" name="name" value="{{ $split->name }}"></td>
+          <td>{{ $split->created_at->format('Y/m/d h:i') }}</td>
+          <td>{{ $split->updated_at->format('Y/m/d h:i') }}</td>
+          <td>
+            <div style="display:inline-flex">
+            <button type="submit" class="btn btn-outline-dark btn-sm" onclick='return confirm("{{ $split->name }}を変更しますか？");'>更新</button> 
+        </form>
+        <form action="{{ route('admin.split.destroy' ,$split) }}" method="POST">
+          @csrf
+            <button type="submit" class="btn btn-outline-dark btn-sm" onclick='return confirm("{{ $split->name }}を削除しますか？");'>削除</button> 
+          </td>
+        </form>
       </tr>
-    @endforeach
+      @endforeach
     </tbody>
   </table>
 

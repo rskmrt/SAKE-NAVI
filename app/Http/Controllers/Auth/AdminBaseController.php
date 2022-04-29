@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Base;
+use App\Models\Cocktail;
 
 class AdminBaseController extends Controller
 {
@@ -30,7 +31,7 @@ class AdminBaseController extends Controller
      */
     public function create()
     {
-        return view('admins.index.cocktails.base-regist');
+        return view('admins.index.cocktails.base');
     }
 
     /**
@@ -49,7 +50,7 @@ class AdminBaseController extends Controller
             'name' => $data['name']
         ]);
 
-        return redirect('admin/');
+        return redirect()->back();
     }
 
     /**
@@ -83,7 +84,10 @@ class AdminBaseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->input();
+        Base::Where('id', $id)->update(['name' => $data['name']]);
+
+        return redirect()->back();
     }
 
     /**
@@ -94,6 +98,8 @@ class AdminBaseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Base::where('id', $id)->delete();
+
+        return redirect()->back();
     }
 }
