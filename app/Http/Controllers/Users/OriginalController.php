@@ -51,13 +51,14 @@ class OriginalController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|max:255',
+            'name' => 'required|max:255|unique:cocktails',
         ]);
 
         $data = $request->all();
 
         $cocktail_id = Cocktail::insertGetId([
             'name' => $data['name'],
+            'how_to' => $data['how_to'],
             'authority' => 2,
             'user_id' => $data['user_id'],
             'status' => 1
@@ -109,7 +110,6 @@ class OriginalController extends Controller
                 'technique_id' => $data['technique']
             ]);
         }
-
         return redirect('original');
     }
 
@@ -153,8 +153,67 @@ class OriginalController extends Controller
     public function update(Request $request, $id)
     {
         
-        $this->store($request);
-        Cocktail::where('id', $id)->where('status', 1)->where('user_id', Auth::id())->update(['status' => 2]);
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+        ]);
+        
+        $data = $request->all();
+
+        $cocktail_id = Cocktail::insertGetId([
+            'name' => $data['name'],
+            'how_to' => $data['how_to'],
+            'authority' => 2,
+            'user_id' => $data['user_id'],
+            'status' => 1
+        ]);
+        
+        if(!empty($data['base'])){
+            foreach($data['base'] as $value){
+                CocktailBase::insert([
+                    'cocktail_id' => $cocktail_id,
+                    'base_id' => $value
+                ]);
+            }
+        }
+        
+        
+        if(!empty($data['split'])){
+            foreach($data['split'] as $value){
+                CocktailSplit::insert([
+                    'cocktail_id' => $cocktail_id,
+                    'split_id' => $value
+                ]);
+            }
+        }   
+
+        if(!empty($data['glass'])){
+            CocktailGlass::insert([
+                'cocktail_id' => $cocktail_id,
+                'glass_id' => $data['glass']
+            ]);
+        }
+
+        if(!empty($data['taste'])){
+            CocktailTaste::insert([
+                'cocktail_id' => $cocktail_id,
+                'taste_id' => $data['taste']
+            ]);
+        }
+
+        if(!empty($data['strength'])){
+            CocktailStrength::insert([
+                'cocktail_id' => $cocktail_id,
+                'strength_id' => $data['strength']
+            ]);
+        }
+
+        if(!empty($data['technique'])){
+            CocktailTechnique::insert([
+                'cocktail_id' => $cocktail_id,
+                'technique_id' => $data['technique']
+            ]);
+        }
+        Cocktail::where('id', $id)->where('status', 1)->where('user_id', Auth::id())->delete();
 
         return redirect('original');
     }

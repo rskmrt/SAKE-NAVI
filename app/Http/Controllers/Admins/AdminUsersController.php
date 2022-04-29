@@ -20,7 +20,9 @@ class AdminUsersController extends Controller
      */
     public function index()
     {
-        return view('admins.index.users.users');
+        $users = User::sortable()->get();
+
+        return view('admins.index.users.users', compact('users'));
     }
 
     /**

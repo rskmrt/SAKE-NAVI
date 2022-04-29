@@ -7,7 +7,7 @@
 <div class="container">
 
   <section class="py-5 container">
-    <div class="col-lg-6 col-md-8 mx-auto">
+    <div class="col-lg-9 col-md-8 mx-auto">
     <form action="/original/store" method="POST">
       @csrf
       <input type="hidden" name="user_id" value="{{ $user['id'] }}">
@@ -20,6 +20,7 @@
         <input name="name" type="text" class="form-control" id="cocktailname">
       </div>
       
+      <br>
       
       <p>ベース
         @foreach($bases as $base)
@@ -32,6 +33,8 @@
         @endforeach
       </p>
 
+      <br>
+
       <p>材料
         @foreach($splits as $split)
         <div class="form-check-inline">
@@ -42,6 +45,8 @@
         </div>
         @endforeach
       </p>
+
+      <br>
 
       <p>テイスト
         @foreach($tastes as $taste)
@@ -54,6 +59,8 @@
         @endforeach
       </p>
 
+      <br>
+
       <p>アルコール度数
         @foreach($strengths as $strength)
         <div class="form-check-inline">
@@ -64,6 +71,8 @@
         </div>
         @endforeach
       </p>
+
+      <br>
       
       <p>技法
         @foreach($techniques as $technique)
@@ -76,6 +85,8 @@
         @endforeach
       </p>
 
+      <br>
+
       <p>グラスタイプ
         @foreach($glasses as $glass)
         <div class="form-check-inline">
@@ -85,6 +96,14 @@
           </label>
         </div>
         @endforeach
+      </p>
+
+      <br>
+
+      <p>作り方
+        <div class="textarea">
+        <textarea class="textarea" id="how_to" name="how_to"></textarea>
+      </div>
       </p>
       
     <button type="submit" class="btn btn-outline-dark">登録</button> 

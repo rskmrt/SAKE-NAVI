@@ -13,7 +13,7 @@
 <div class="container">
 
   <section class="py-5 container">
-    <div class="col-lg-6 col-md-8 mx-auto">
+    <div class="col-lg-9 col-md-8 mx-auto">
     <form action="/admin/cocktail/update/{{ $cocktail->id }}" method="POST">
       @csrf
 
@@ -90,6 +90,12 @@
           </label>
         </div>
         @endforeach
+      </p>
+
+      <p>作り方
+        <div class="textarea">
+        <textarea class="textarea" id="how_to" name="how_to">{{ $cocktail->how_to }}</textarea>
+      </div>
       </p>
       
     <button type="submit" class="btn btn-outline-dark">更新</button> 

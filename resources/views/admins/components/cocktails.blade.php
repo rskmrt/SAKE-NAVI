@@ -29,7 +29,7 @@
                 
                 <div class="btn-group2">
                   <div>
-                    <small class="text-muted">更新日：{{ $cocktail->created_at->format('Y/m/d h:i') }}</small>
+                    <small class="text-muted">更新日：{{ $cocktail->created_at->format('Y/m/d H:i') }}</small>
                   </div>
                   
 

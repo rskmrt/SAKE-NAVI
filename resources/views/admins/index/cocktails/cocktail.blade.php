@@ -92,6 +92,12 @@
           </div>
           @endforeach
         </p>
+
+        <p>作り方
+          <div class="textarea">
+          <textarea class="textarea" id="how_to" name="how_to"></textarea>
+        </div>
+        </p>
         
       <button type="submit" class="btn btn-outline-dark">登録</button> 
         

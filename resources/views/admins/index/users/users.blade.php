@@ -5,11 +5,11 @@
 <table class="table table-hover">
     <thead>
       <tr>
-        <th scope="col">id</th>
-        <th scope="col">名前</th>
-        <th scope="col">E-mail</th>
-        <th scope="col">作成日時</th>
-				<th scope="col">更新日時</th>
+        <th scope="col">@sortablelink('id', 'ID')</th>
+        <th scope="col">@sortablelink('name', '名前')</th>
+        <th scope="col">@sortablelink('email', 'e-mail')</th>
+        <th scope="col">@sortablelink('created_at', '作成日時')</th>
+				<th scope="col">@sortablelink('updated_at', '更新日時')</th>
         <th></th>
       </tr>
     </thead>

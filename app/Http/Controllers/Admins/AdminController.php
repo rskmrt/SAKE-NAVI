@@ -93,7 +93,7 @@ class AdminController extends Controller
         $cocktails = $query
         ->where('authority', 1)
         ->where('status', 1)
-        ->orderBy('cocktails.created_at', 'desc')
+        ->orderBy('updated_at', 'desc')
         ->paginate(9);      
 
         return view('admins/index/cocktails/home', compact('text', 'cocktails'));
@@ -126,6 +126,7 @@ class AdminController extends Controller
 
         $cocktail_id = Cocktail::insertGetId([
             'name' => $data['name'],
+            'how_to' => $data['how_to'],
             'authority' => 1,
             'status' => 1
         ]);
@@ -226,6 +227,7 @@ class AdminController extends Controller
 
         $cocktail_id = Cocktail::insertGetId([
             'name' => $data['name'],
+            'how_to' => $data['how_to'],
             'authority' => 1,
             'status' => 1
         ]);
@@ -276,7 +278,7 @@ class AdminController extends Controller
                 'technique_id' => $data['technique']
             ]);
         }
-        Cocktail::where('id', $id)->where('status', 1)->update(['status' => 2]);
+        Cocktail::where('id', $id)->where('status', 1)->delete();
 
         return redirect('/admin');
     }
