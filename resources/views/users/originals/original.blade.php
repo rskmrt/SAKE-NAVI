@@ -5,6 +5,11 @@
 @endsection
 
 
+@section('search')
+  @include('components.users.search')
+@endsection
+
+
 @section('header')
   @include('components.users.header')
 @endsection

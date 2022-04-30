@@ -85,10 +85,22 @@ class Common {
         return compact('cocktail','base','glass', 'split', 'strength', 'taste', 'technique');
     }
 
-    //カクテル登録
-    public static function storeCocktail($request){
+    //ユーザーが行うカクテル登録
+    public static function usersStoreCocktail($request){
         $data = $request->all();
-        $cocktail_id = Cocktail::storeCocktailAndGetCocktailId($data);
+        $cocktail_id = Cocktail::usersStoreCocktailAndGetCocktailId($data);
+        CocktailBase::storeCocktailBase($data, $cocktail_id);
+        CocktailGlass::storeCocktailGlass($data, $cocktail_id);
+        CocktailSplit::storeCocktailSplit($data, $cocktail_id);
+        CocktailStrength::storeCocktailStrength($data, $cocktail_id);
+        CocktailTaste::storeCocktailTaste($data, $cocktail_id);
+        CocktailTechnique::storeCocktailTechnique($data, $cocktail_id);
+    }
+
+    //管理者が行うカクテル登録
+    public static function adminsStoreCocktail($request){
+        $data = $request->all();
+        $cocktail_id = Cocktail::adminsStoreCocktailAndGetCocktailId($data);
         CocktailBase::storeCocktailBase($data, $cocktail_id);
         CocktailGlass::storeCocktailGlass($data, $cocktail_id);
         CocktailSplit::storeCocktailSplit($data, $cocktail_id);

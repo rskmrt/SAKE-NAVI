@@ -11,7 +11,7 @@ use App\Models\CocktailGlass;
 use App\Models\CocktailTaste;
 use App\Models\CocktailStrength;
 use App\Models\CocktailTechnique;
-
+use App\Library\Common;
 
 class AdminController extends Controller
 {
@@ -29,67 +29,13 @@ class AdminController extends Controller
     {
         $query = Cocktail::query()->select('cocktails.*');
 
-        //カクテル名検索
+        //検索フォームのテキストを取得
         $text = $request->input('text');
- 
-        if (!empty($text)) {
-            $spaceConversion = mb_convert_kana($text, 's');
-            $wordArraySearched = preg_split('/[\s,]+/', $spaceConversion, -1, PREG_SPLIT_NO_EMPTY);
-            foreach($wordArraySearched as $value) {
-                $query->where('cocktails.name', 'like', '%'.$value.'%');
-            }
-            foreach($wordArraySearched as $value) {
-                $query->orwhere('splits.name', 'like', '%'.$value.'%');
-            }
-            $query->join('cocktail_split', 'cocktails.id', '=', 'cocktail_split.cocktail_id')
-                  ->join('splits', 'cocktail_split.split_id', '=', 'splits.id');
-            $cocktails = $query
-            ->where('status', 1)
-            ->where('authority', 1)
-            ->distinct()
-            ->get();
-        }
 
-        //ベース検索
-        $base_search = $request->input('base');
-        if (!empty($base_search)) {
-            $query->wherein('cocktail_base.base_id', $base_search);
-            $query->join('cocktail_base', 'cocktails.id', '=', 'cocktail_base.cocktail_id');
-        }
-
-        //テイスト検索
-        $taste_search = $request->input('taste');
-
-        if (!empty($taste_search)) {
-            $query->wherein('cocktail_taste.taste_id', $taste_search);
-            $query->join('cocktail_taste', 'cocktails.id', '=', 'cocktail_taste.cocktail_id');
-        }
-
-        //アルコール度数検索
-        $strength_search = $request->input('strength');
-
-        if (!empty($strength_search)) {
-            $query->wherein('cocktail_strength.strength_id', $strength_search);
-            $query->join('cocktail_strength', 'cocktails.id', '=', 'cocktail_strength.cocktail_id');
-        }
-
-        //製法検索
-        $technique_search = $request->input('technique');
-
-        if (!empty($technique_search)) {
-            $query->wherein('cocktail_technique.technique_id', $technique_search);
-            $query->join('cocktail_technique', 'cocktails.id', '=', 'cocktail_technique.cocktail_id');
-        }
-
-        //グラスタイプ検索
-        $glass_search = $request->input('glass');
-
-        if (!empty($glass_search)) {
-            $query->wherein('cocktail_glass.glass_id', $glass_search);
-            $query->join('cocktail_glass', 'cocktails.id', '=', 'cocktail_glass.cocktail_id');
-        }
-    
-        //検索結果を取得
+        //検索情報をqueryにチェーン
+        Common::SearchCocktails($request, $query);
+  
+        //カクテルの情報を取得
         $cocktails = $query
         ->where('authority', 1)
         ->where('status', 1)
@@ -118,62 +64,7 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-
-        $data = $request->all();
-
-        $cocktail_id = Cocktail::insertGetId([
-            'name' => $data['name'],
-            'how_to' => $data['how_to'],
-            'authority' => 1,
-            'status' => 1
-        ]);
-        
-        if(!empty($data['base'])){
-            foreach($data['base'] as $value){
-                CocktailBase::insert([
-                    'cocktail_id' => $cocktail_id,
-                    'base_id' => $value
-                ]);
-            }
-        }
-        
-        
-        if(!empty($data['split'])){
-            foreach($data['split'] as $value){
-                CocktailSplit::insert([
-                    'cocktail_id' => $cocktail_id,
-                    'split_id' => $value
-                ]);
-            }
-        }   
-
-        if(!empty($data['glass'])){
-            CocktailGlass::insert([
-                'cocktail_id' => $cocktail_id,
-                'glass_id' => $data['glass']
-            ]);
-        }
-
-        if(!empty($data['taste'])){
-            CocktailTaste::insert([
-                'cocktail_id' => $cocktail_id,
-                'taste_id' => $data['taste']
-            ]);
-        }
-
-        if(!empty($data['strength'])){
-            CocktailStrength::insert([
-                'cocktail_id' => $cocktail_id,
-                'strength_id' => $data['strength']
-            ]);
-        }
-
-        if(!empty($data['technique'])){
-            CocktailTechnique::insert([
-                'cocktail_id' => $cocktail_id,
-                'technique_id' => $data['technique']
-            ]);
-        }
+        Common::adminsStoreCocktail($request);
 
         return redirect('admin/')->with('store', 'カクテルを登録しました');
     }

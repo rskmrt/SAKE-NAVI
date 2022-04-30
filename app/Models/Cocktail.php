@@ -85,13 +85,25 @@ class Cocktail extends Model
         ->join('cocktail_glass', 'cocktails.id', '=', 'cocktail_glass.cocktail_id');
     }
 
-    //カクテル名登録とそのカクテルIDの取得
-    public static function storeCocktailAndGetCocktailId($data){    
+    //ユーザーが行うカクテル名登録とそのカクテルIDの取得
+    public static function usersStoreCocktailAndGetCocktailId($data){    
         $cocktail_id = Cocktail::insertGetId([
             'name' => $data['name'],
             'how_to' => $data['how_to'],
             'authority' => 2,
             'user_id' => $data['user_id'],
+            'status' => 1
+        ]);
+
+        return $cocktail_id;
+    }
+
+    //管理者が行うカクテル名登録とそのカクテルIDの取得
+    public static function adminsStoreCocktailAndGetCocktailId($data){    
+        $cocktail_id = Cocktail::insertGetId([
+            'name' => $data['name'],
+            'how_to' => $data['how_to'],
+            'authority' => 1,
             'status' => 1
         ]);
 

@@ -51,7 +51,7 @@ class OriginalController extends Controller
      */
     public function store(Request $request)
     {
-        Common::storeCocktail($request);
+        Common::usersStoreCocktail($request);
         
         return redirect('original')->with('store', 'カクテルを登録しました');
     }
