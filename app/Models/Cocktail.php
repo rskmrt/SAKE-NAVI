@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use PhpParser\Node\Stmt\Static_;
 
 class Cocktail extends Model
 {
@@ -56,6 +57,74 @@ class Cocktail extends Model
         ->join('cocktail_glass', 'cocktails.id', '=', 'cocktail_glass.cocktail_id');
     }
 
+    public static function storeCocktailAndGetCocktailId($data){
+        Cocktail::insertGetId([
+            'name' => $data['name'],
+            'how_to' => $data['how_to'],
+            'authority' => 2,
+            'user_id' => $data['user_id'],
+            'status' => 1
+        ]);
+    }
+
+    public static function storeCocktail($request){
+        $data = $request->all();
+        
+        $cocktail_id = Cocktail::insertGetId([
+            'name' => $data['name'],
+            'how_to' => $data['how_to'],
+            'authority' => 2,
+            'user_id' => $data['user_id'],
+            'status' => 1
+        ]);
+
+        if(!empty($data['base'])){
+            foreach($data['base'] as $value){
+                CocktailBase::insert([
+                    'cocktail_id' => $cocktail_id,
+                    'base_id' => $value
+                ]);
+            }
+        }
+
+        if(!empty($data['split'])){
+            foreach($data['split'] as $value){
+                CocktailSplit::insert([
+                    'cocktail_id' => $cocktail_id,
+                    'split_id' => $value
+                ]);
+            }
+        }   
+
+        if(!empty($data['glass'])){
+            CocktailGlass::insert([
+                'cocktail_id' => $cocktail_id,
+                'glass_id' => $data['glass']
+            ]);
+        }
+        if(!empty($data['taste'])){
+            CocktailTaste::insert([
+                'cocktail_id' => $cocktail_id,
+                'taste_id' => $data['taste']
+            ]);
+        }
+
+        if(!empty($data['strength'])){
+            CocktailStrength::insert([
+                'cocktail_id' => $cocktail_id,
+                'strength_id' => $data['strength']
+            ]);
+        }
+
+        if(!empty($data['technique'])){
+            CocktailTechnique::insert([
+                'cocktail_id' => $cocktail_id,
+                'technique_id' => $data['technique']
+            ]);
+        }
+    }
+
+    
 
     public function bases(){
         return $this->belongsToMany('App\Models\Base', 'cocktail_base', 'cocktail_id', 'base_id')->distinct();

@@ -12,6 +12,7 @@ use App\Models\CocktailTechnique;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
+use App\Library\Common;
 
 class OriginalController extends Controller
 {
@@ -50,62 +51,8 @@ class OriginalController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-
-        $cocktail_id = Cocktail::insertGetId([
-            'name' => $data['name'],
-            'how_to' => $data['how_to'],
-            'authority' => 2,
-            'user_id' => $data['user_id'],
-            'status' => 1
-        ]);
+        Cocktail::storeCocktail($request);
         
-        if(!empty($data['base'])){
-            foreach($data['base'] as $value){
-                CocktailBase::insert([
-                    'cocktail_id' => $cocktail_id,
-                    'base_id' => $value
-                ]);
-            }
-        }
-        
-        
-        if(!empty($data['split'])){
-            foreach($data['split'] as $value){
-                CocktailSplit::insert([
-                    'cocktail_id' => $cocktail_id,
-                    'split_id' => $value
-                ]);
-            }
-        }   
-
-        if(!empty($data['glass'])){
-            CocktailGlass::insert([
-                'cocktail_id' => $cocktail_id,
-                'glass_id' => $data['glass']
-            ]);
-        }
-
-        if(!empty($data['taste'])){
-            CocktailTaste::insert([
-                'cocktail_id' => $cocktail_id,
-                'taste_id' => $data['taste']
-            ]);
-        }
-
-        if(!empty($data['strength'])){
-            CocktailStrength::insert([
-                'cocktail_id' => $cocktail_id,
-                'strength_id' => $data['strength']
-            ]);
-        }
-
-        if(!empty($data['technique'])){
-            CocktailTechnique::insert([
-                'cocktail_id' => $cocktail_id,
-                'technique_id' => $data['technique']
-            ]);
-        }
         return redirect('original')->with('store', 'カクテルを登録しました');
     }
 
