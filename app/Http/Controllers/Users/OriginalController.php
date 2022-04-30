@@ -51,7 +51,7 @@ class OriginalController extends Controller
      */
     public function store(Request $request)
     {
-        Cocktail::storeCocktail($request);
+        Common::storeCocktail($request);
         
         return redirect('original')->with('store', 'カクテルを登録しました');
     }
@@ -95,64 +95,8 @@ class OriginalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->all();
-
-        $cocktail_id = Cocktail::insertGetId([
-            'name' => $data['name'],
-            'how_to' => $data['how_to'],
-            'authority' => 2,
-            'user_id' => $data['user_id'],
-            'status' => 1
-        ]);
+        Common::editCocktail($request, $id);
         
-        if(!empty($data['base'])){
-            foreach($data['base'] as $value){
-                CocktailBase::insert([
-                    'cocktail_id' => $cocktail_id,
-                    'base_id' => $value
-                ]);
-            }
-        }
-        
-        
-        if(!empty($data['split'])){
-            foreach($data['split'] as $value){
-                CocktailSplit::insert([
-                    'cocktail_id' => $cocktail_id,
-                    'split_id' => $value
-                ]);
-            }
-        }   
-
-        if(!empty($data['glass'])){
-            CocktailGlass::insert([
-                'cocktail_id' => $cocktail_id,
-                'glass_id' => $data['glass']
-            ]);
-        }
-
-        if(!empty($data['taste'])){
-            CocktailTaste::insert([
-                'cocktail_id' => $cocktail_id,
-                'taste_id' => $data['taste']
-            ]);
-        }
-
-        if(!empty($data['strength'])){
-            CocktailStrength::insert([
-                'cocktail_id' => $cocktail_id,
-                'strength_id' => $data['strength']
-            ]);
-        }
-
-        if(!empty($data['technique'])){
-            CocktailTechnique::insert([
-                'cocktail_id' => $cocktail_id,
-                'technique_id' => $data['technique']
-            ]);
-        }
-        Cocktail::where('id', $id)->where('status', 1)->where('user_id', Auth::id())->delete();
-
         return redirect('original')->with('update', 'カクテルを更新しました');
     }
 

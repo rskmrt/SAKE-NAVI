@@ -47,9 +47,7 @@ class CanMakeController extends Controller
      */
     public function create()
     {
-        $bases = Base::get();
-        $splits = Split::get();
-        return view('users\can-makes\create', compact('bases', 'splits'));
+        return view('users\can-makes\create');
     }
 
     /**

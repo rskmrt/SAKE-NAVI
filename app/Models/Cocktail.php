@@ -7,6 +7,34 @@ use PhpParser\Node\Stmt\Static_;
 
 class Cocktail extends Model
 {
+    public function bases(){
+        return $this->belongsToMany('App\Models\Base', 'cocktail_base', 'cocktail_id', 'base_id')->distinct();
+    }
+
+    public function glasses(){
+        return $this->belongsToMany('App\Models\Glass', 'cocktail_glass', 'cocktail_id', 'glass_id')->distinct();
+    }
+
+    public function splits(){
+        return $this->belongsToMany('App\Models\Split', 'cocktail_split', 'cocktail_id', 'split_id')->distinct();
+    }
+
+    public function strengths(){
+        return $this->belongsToMany('App\Models\Strength', 'cocktail_strength', 'cocktail_id', 'strength_id')->distinct();
+    }
+
+    public function tastes(){
+        return $this->belongsToMany('App\Models\Taste', 'cocktail_taste', 'cocktail_id', 'taste_id')->distinct();
+    }
+
+    public function techniques(){
+        return $this->belongsToMany('App\Models\Technique', 'cocktail_technique', 'cocktail_id', 'technique_id')->distinct();
+    }
+
+    public function users(){
+        return $this->belongsToMany('App\Models\User', 'favorites', 'cocktail_id', 'user_id')->withTimestamps();
+    }
+
     //カクテル名、材料名検索
     public static function searchCocktailAndSplit($text, $query){
             $spaceConversion = mb_convert_kana($text, 's');
@@ -57,19 +85,8 @@ class Cocktail extends Model
         ->join('cocktail_glass', 'cocktails.id', '=', 'cocktail_glass.cocktail_id');
     }
 
-    public static function storeCocktailAndGetCocktailId($data){
-        Cocktail::insertGetId([
-            'name' => $data['name'],
-            'how_to' => $data['how_to'],
-            'authority' => 2,
-            'user_id' => $data['user_id'],
-            'status' => 1
-        ]);
-    }
-
-    public static function storeCocktail($request){
-        $data = $request->all();
-        
+    //カクテル名登録とそのカクテルIDの取得
+    public static function storeCocktailAndGetCocktailId($data){    
         $cocktail_id = Cocktail::insertGetId([
             'name' => $data['name'],
             'how_to' => $data['how_to'],
@@ -78,79 +95,8 @@ class Cocktail extends Model
             'status' => 1
         ]);
 
-        if(!empty($data['base'])){
-            foreach($data['base'] as $value){
-                CocktailBase::insert([
-                    'cocktail_id' => $cocktail_id,
-                    'base_id' => $value
-                ]);
-            }
-        }
-
-        if(!empty($data['split'])){
-            foreach($data['split'] as $value){
-                CocktailSplit::insert([
-                    'cocktail_id' => $cocktail_id,
-                    'split_id' => $value
-                ]);
-            }
-        }   
-
-        if(!empty($data['glass'])){
-            CocktailGlass::insert([
-                'cocktail_id' => $cocktail_id,
-                'glass_id' => $data['glass']
-            ]);
-        }
-        if(!empty($data['taste'])){
-            CocktailTaste::insert([
-                'cocktail_id' => $cocktail_id,
-                'taste_id' => $data['taste']
-            ]);
-        }
-
-        if(!empty($data['strength'])){
-            CocktailStrength::insert([
-                'cocktail_id' => $cocktail_id,
-                'strength_id' => $data['strength']
-            ]);
-        }
-
-        if(!empty($data['technique'])){
-            CocktailTechnique::insert([
-                'cocktail_id' => $cocktail_id,
-                'technique_id' => $data['technique']
-            ]);
-        }
+        return $cocktail_id;
     }
 
     
-
-    public function bases(){
-        return $this->belongsToMany('App\Models\Base', 'cocktail_base', 'cocktail_id', 'base_id')->distinct();
-    }
-
-    public function glasses(){
-        return $this->belongsToMany('App\Models\Glass', 'cocktail_glass', 'cocktail_id', 'glass_id')->distinct();
-    }
-
-    public function splits(){
-        return $this->belongsToMany('App\Models\Split', 'cocktail_split', 'cocktail_id', 'split_id')->distinct();
-    }
-
-    public function strengths(){
-        return $this->belongsToMany('App\Models\Strength', 'cocktail_strength', 'cocktail_id', 'strength_id')->distinct();
-    }
-
-    public function tastes(){
-        return $this->belongsToMany('App\Models\Taste', 'cocktail_taste', 'cocktail_id', 'taste_id')->distinct();
-    }
-
-    public function techniques(){
-        return $this->belongsToMany('App\Models\Technique', 'cocktail_technique', 'cocktail_id', 'technique_id')->distinct();
-    }
-
-    public function users(){
-        return $this->belongsToMany('App\Models\User', 'favorites', 'cocktail_id', 'user_id')->withTimestamps();
-    }
 }
