@@ -1,19 +1,21 @@
 @extends('layouts.app')
 
 @section('navbar')
-  @include('components.users-navbar')
+  @include('components.users.navbar')
+@endsection
+
+
+@section('header')
+  @include('components.users.header')
 @endsection
 
 
 @section('content')
-
 <div style="text-align: center">
   <img src="{{ asset('img/top.jpg')}}" width="70%" height="70%">
 </div>
 
-
 <div class="container">
-
   <section class="text-center container">
     <div class="row py-lg-5">
 
@@ -83,7 +85,6 @@
     </div>
     <button type="button" class="btn btn-outline-dark " onclick=location.href='/can-make' >戻る</button>
   </section>
-
 </div>
 
 @endsection

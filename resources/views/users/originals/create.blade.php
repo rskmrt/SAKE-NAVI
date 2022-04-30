@@ -1,7 +1,12 @@
 @extends('layouts.app')
 
 @section('navbar')
-  @include('components.users-navbar')
+  @include('components.users.navbar')
+@endsection
+
+
+@section('header')
+  @include('components.users.header')
 @endsection
 
 
@@ -13,7 +18,6 @@
 
 
 <div class="container">
-
   <section class="py-5 container">
     <div class="col-lg-9 col-md-8 mx-auto">
     <form action="/original/store" method="POST">
@@ -120,8 +124,5 @@
     </form>
     </div>
   </section>
-    
-    
-</div> 
-            
+</div>  
 @endsection

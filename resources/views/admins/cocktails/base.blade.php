@@ -2,12 +2,12 @@
 
 
 @section('navbar')
-  @include('components.admins-navbar')
+  @include('components.admins.navbar')
 @endsection
 
 
 @section('header')
-  @include('components.admins-header')
+  @include('components.admins.header')
 @endsection
 
 
