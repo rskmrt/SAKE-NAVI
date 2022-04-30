@@ -52,22 +52,22 @@ Route::prefix('home')->group(function () {
 
 Route::prefix('favorite')->group(function () {
     Route::get('/', 'Users\FavoriteController@index')->name('favorite');
-    Route::post('favorite/{cocktail}', 'Users\FavoriteController@store')->name('favorites');
+    Route::post('favorite/{cocktail}', 'Users\FavoriteController@store')->name('isfavorites');
     Route::post('unfavorite/{cocktail}', 'Users\FavoriteController@destroy')->name('unfavorites');
 });
 
 Route::prefix('can-make')->group(function () {
     Route::get('/', 'Users\CanMakeController@index')->name('can-make');
-    Route::get('create', 'Users\CanMakeController@create')->name('ingredients-create');
-    Route::get('store', 'Users\CanMakeController@store')->name('ingredients-store');
-    Route::get('delete', 'Users\CanMakeController@destroy')->name('ingredients-delete');
+    Route::get('create', 'Users\CanMakeController@create')->name('ingredients.create');
+    Route::get('store', 'Users\CanMakeController@store')->name('ingredients.store');
+    Route::get('delete', 'Users\CanMakeController@destroy')->name('ingredients.delete');
 });
 
 Route::prefix('original')->group(function () {
     Route::get('/', 'Users\OriginalController@index')->name('original');
-    Route::get('create', 'Users\OriginalController@create')->name('original-create');
-    Route::post('store', 'Users\OriginalController@store')->name('original-store');
-    Route::get('edit/{id}', 'Users\OriginalController@edit')->name('original-edit');
-    Route::post('update/{id}', 'Users\OriginalController@update')->name('original-update');
-    Route::post('delete/{id}', 'Users\OriginalController@destroy')->name('original-delete');
+    Route::get('create', 'Users\OriginalController@create')->name('original.create');
+    Route::post('store', 'Users\OriginalController@store')->name('original.store');
+    Route::get('edit/{id}', 'Users\OriginalController@edit')->name('original.edit');
+    Route::post('update/{id}', 'Users\OriginalController@update')->name('original.update');
+    Route::post('delete/{id}', 'Users\OriginalController@destroy')->name('original.delete');
 });

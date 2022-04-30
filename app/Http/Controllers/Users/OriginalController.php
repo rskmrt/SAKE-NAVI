@@ -51,7 +51,7 @@ class OriginalController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|max:255|unique:cocktails',
+            'name' => 'required|max:255|unique:cocktails,name,'.$request->all()['name'].',name',
         ]);
 
         $data = $request->all();
