@@ -1,7 +1,9 @@
-@extends('users.layouts.app')
+@extends('layouts.app')
+
+
 
 @section('navbar')
-  @include('users.components.users-navbar')
+  @include('components.users-navbar')
 @endsection
 
 
@@ -18,5 +20,5 @@
     </div>
   </section>
 
-  @include('users.components.cocktails')
+  @include('components.cocktails')
 @endsection

@@ -1,18 +1,28 @@
-@extends('admins.layouts.app')
+@extends('layouts.app')
 
-@section('section')
-  
-<table class="table">
-  @error('email')
-    <div class="alert alert-danger">{{ $message }}</div>
-  @enderror
+
+@section('navbar')
+  @include('components.admins-navbar')
+@endsection
+
+
+@section('header')
+  @include('components.admins-header')
+@endsection
+
+@section('content')
+    
+  <table class="table">
+    @error('email')
+      <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     <thead>
       <tr>
         <th scope="col">@sortablelink('id', 'ID')</th>
         <th scope="col">@sortablelink('name', '名前')</th>
         <th scope="col">@sortablelink('email', 'e-mail')</th>
         <th scope="col">@sortablelink('created_at', '作成日時')</th>
-				<th scope="col">@sortablelink('updated_at', '更新日時')</th>
+        <th scope="col">@sortablelink('updated_at', '更新日時')</th>
         <th></th>
       </tr>
     </thead>
@@ -39,9 +49,4 @@
       @endforeach
     </tbody>
   </table>
-
-@endsection
-
-@section('content')
-  
 @endsection

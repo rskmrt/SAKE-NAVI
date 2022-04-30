@@ -1,4 +1,8 @@
-@extends('users.layouts.app')
+@extends('layouts.app')
+
+@section('navbar')
+  @include('components.users-navbar')
+@endsection
 
 @section('content')
 

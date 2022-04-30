@@ -28,54 +28,46 @@
 
 
 <body>
-  
 <div class="sticky-top">
   <header class="bg-light">
-          @include('users.components.search')
+    @include('components.search')
   </header>
 
-  <nav class="py-2 bg-light border-bottom">
-    @yield('navbar')
-  </nav>
+  @yield('navbar')
 </div>
 
 
 <header class="py-3 mb-4 ">
-  <div class="container d-flex flex-wrap justify-content-center">
-    <a href="/home" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
-      <svg class="bi me-1" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-      <span class="fs-2"> <strong>{{ config('app.name', 'Laravel') }}</strong></span>
-    </a>
-  </div>
+  @yield('header')
 </header>
 
 
-<main role="main">
+<main>
   @if(session('store'))
-  <div class="alert alert-success" role="alert">
-    {{ session('store') }}
-  </div>
+    <div class="alert alert-success" role="alert">
+      {{ session('store') }}
+    </div>
   @endif
 
   @if(session('update'))
-  <div class="alert alert-success" role="alert">
-    {{ session('update') }}
-  </div>
+    <div class="alert alert-success" role="alert">
+      {{ session('update') }}
+    </div>
   @endif
 
   @if(session('delete'))
-  <div class="alert alert-danger" role="alert">
-    {{ session('delete') }}
-  </div>
+    <div class="alert alert-danger" role="alert">
+      {{ session('delete') }}
+    </div>
   @endif
 
   @yield('content')
-
 </main>
 
 
 <footer class="my-5 pt-5 text-muted text-center text-small">
-  @include('users.components.footer') 
+  @include('components.footer') 
+
 </footer>
 
 </body>

@@ -32,7 +32,7 @@ class AdminSplitController extends Controller
     {
         $admin_splits = Split::sortable()->get();
 
-        return view('admins.index.cocktails.split', compact('admin_splits'));
+        return view('admins.cocktails.split', compact('admin_splits'));
     }
 
     /**

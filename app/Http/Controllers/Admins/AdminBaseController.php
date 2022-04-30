@@ -33,7 +33,7 @@ class AdminBaseController extends Controller
     {
         $admin_bases = Base::sortable()->get();
 
-        return view('admins.index.cocktails.base', compact('admin_bases'));
+        return view('admins.cocktails.base', compact('admin_bases'));
     }
 
     /**

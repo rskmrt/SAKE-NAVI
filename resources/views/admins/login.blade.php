@@ -1,4 +1,12 @@
-@extends('admins.layouts.app')
+@extends('layouts.app')
+
+@section('navbar')
+  @include('components.admins-navbar')
+@endsection
+
+@section('header')
+  @include('components.admins-header')
+@endsection
 
 @section('content')
 <div class="container">

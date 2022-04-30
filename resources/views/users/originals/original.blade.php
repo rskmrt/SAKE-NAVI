@@ -1,4 +1,8 @@
-@extends('users.layouts.app')
+@extends('layouts.app')
+
+@section('navbar')
+  @include('components.users-navbar')
+@endsection
 
 
 @section('content')
@@ -11,5 +15,5 @@
     <button type="button" class="btn btn-outline-dark btn-lg" onclick=location.href="/original/create">オリジナルカクテルの登録</button> 
   </div>
 </section>
-  @include('users.components.cocktails')
+  @include('components.cocktails')
 @endsection

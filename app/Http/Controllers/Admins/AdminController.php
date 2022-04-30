@@ -96,7 +96,7 @@ class AdminController extends Controller
         ->orderBy('updated_at', 'desc')
         ->paginate(9);      
 
-        return view('admins/index/cocktails/home', compact('text', 'cocktails'));
+        return view('admins/cocktails/home', compact('text', 'cocktails'));
     }
 
     /**
@@ -106,7 +106,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('admins.index.cocktails.cocktail');
+        return view('admins/cocktails/cocktail');
 
     }
 
@@ -205,7 +205,7 @@ class AdminController extends Controller
         $edit_technique = Cocktail::find($id)->techniques()->first();
         $edit_glass = Cocktail::find($id)->glasses()->first();
 
-        return view('admins\index\cocktails\edit', compact('cocktail', 'edit_bases', 'edit_splits', 'edit_taste', 'edit_strength', 'edit_technique', 'edit_glass'));
+        return view('admins/cocktails/edit', compact('cocktail', 'edit_bases', 'edit_splits', 'edit_taste', 'edit_strength', 'edit_technique', 'edit_glass'));
     }
 
     /**

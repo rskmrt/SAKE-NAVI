@@ -29,7 +29,7 @@ class OriginalController extends Controller
     {
         $cocktails = Cocktail::where('user_id', Auth::user()['id'])->where('status', 1)->paginate(9);
 
-        return view('users\index\originals\original', compact('cocktails'));
+        return view('users\originals\original', compact('cocktails'));
     }
 
     /**
@@ -39,7 +39,7 @@ class OriginalController extends Controller
      */
     public function create()
     {
-        return view('users\index\originals\create');
+        return view('users\originals\create');
     }
 
     /**
@@ -140,7 +140,7 @@ class OriginalController extends Controller
         $edit_technique = Cocktail::find($id)->techniques()->first();
         $edit_glass = Cocktail::find($id)->glasses()->first();
 
-        return view('users\index\originals\edit', compact('cocktail', 'edit_bases', 'edit_splits', 'edit_taste', 'edit_strength', 'edit_technique', 'edit_glass'));
+        return view('users\originals\edit', compact('cocktail', 'edit_bases', 'edit_splits', 'edit_taste', 'edit_strength', 'edit_technique', 'edit_glass'));
     }
 
     /**
