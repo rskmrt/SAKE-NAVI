@@ -1,8 +1,6 @@
 @if($cocktails->isEmpty())
   <h4 class="text-muted" style="text-align: center">表示できるカクテルはありません</h4>
 @else
-
-
   <div class="bg-light">
     <div class="container py-1">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 py-3">
