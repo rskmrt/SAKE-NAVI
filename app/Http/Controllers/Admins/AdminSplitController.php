@@ -46,6 +46,7 @@ class AdminSplitController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255|unique:splits',
         ]);
+        
         $data = $request->input();
         Split::insert([
             'name' => $data['name']

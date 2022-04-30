@@ -30,7 +30,7 @@
 <body>
 <div class="sticky-top">
   <header class="bg-light">
-    @include('components.search')
+    @yield('search')
   </header>
 
   @yield('navbar')

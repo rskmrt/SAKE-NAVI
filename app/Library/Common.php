@@ -112,12 +112,10 @@ class Common {
     //カクテル編集
     public static function editCocktail($request, $id){
         $data = $request->all();
-
-        Cocktail::where('id', $id)->where('status', 1)->where('authority', 2)->update([
+        Cocktail::where('id', $id)->update([
             'name' => $data['name'],
             'how_to' => $data['how_to']
         ]);
-
         CocktailBase::where('cocktail_id', $id)->delete();
         CocktailBase::storeCocktailBase($data, $id);
         CocktailGlass::where('cocktail_id', $id)->delete();

@@ -47,6 +47,7 @@ class AdminBaseController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255|unique:bases',
         ]);
+        
         $data = $request->input();
         Base::insert([
             'name' => $data['name']
