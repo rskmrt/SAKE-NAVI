@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
 @section('navbar')
-  @include('components.admins-navbar')
+  @include('components.admins.navbar')
 @endsection
 
 
 @section('header')
-  @include('components.admins-header')
+  @include('components.admins.header')
 @endsection
 
 
 @section('content')
-  @include('components.admins-homemenu')
+  @include('components.admins.homemenu')
   <div class="container">
     
     <section class="py-5 container">

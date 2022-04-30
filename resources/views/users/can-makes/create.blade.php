@@ -86,5 +86,4 @@
     <button type="button" class="btn btn-outline-dark " onclick=location.href='/can-make' >戻る</button>
   </section>
 </div>
-
 @endsection
