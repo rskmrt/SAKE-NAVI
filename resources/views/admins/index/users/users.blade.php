@@ -4,8 +4,8 @@
   
 <table class="table">
   @error('email')
-      <div class="alert alert-danger">{{ $message }}</div>
-      @enderror
+    <div class="alert alert-danger">{{ $message }}</div>
+  @enderror
     <thead>
       <tr>
         <th scope="col">@sortablelink('id', 'ID')</th>

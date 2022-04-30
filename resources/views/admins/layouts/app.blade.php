@@ -170,6 +170,23 @@
 
 
 <main role="main">
+  @if(session('store'))
+<div class="alert alert-success" role="alert">
+  {{ session('store') }}
+</div>
+@endif
+
+@if(session('update'))
+<div class="alert alert-success" role="alert">
+  {{ session('update') }}
+</div>
+@endif
+
+@if(session('delete'))
+<div class="alert alert-danger" role="alert">
+  {{ session('delete') }}
+</div>
+@endif
   <div class="container">
     @yield('section')
   </div>  

@@ -31,7 +31,9 @@ class AdminBaseController extends Controller
      */
     public function create()
     {
-        return view('admins.index.cocktails.base');
+        $admin_bases = Base::sortable()->get();
+
+        return view('admins.index.cocktails.base', compact('admin_bases'));
     }
 
     /**
@@ -50,7 +52,7 @@ class AdminBaseController extends Controller
             'name' => $data['name']
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with('store', 'ベースを登録しました');
     }
 
     /**
@@ -91,7 +93,7 @@ class AdminBaseController extends Controller
         $data = $request->input();
         Base::Where('id', $id)->update(['name' => $data['name']]);
 
-        return redirect()->back();
+        return redirect()->back()->with('update', 'ベースを更新しました');
     }
 
     /**
@@ -104,6 +106,6 @@ class AdminBaseController extends Controller
     {
         Base::where('id', $id)->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with('delete', 'ベースを削除しました');
     }
 }

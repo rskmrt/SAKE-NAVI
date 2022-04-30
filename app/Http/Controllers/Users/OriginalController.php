@@ -110,7 +110,7 @@ class OriginalController extends Controller
                 'technique_id' => $data['technique']
             ]);
         }
-        return redirect('original');
+        return redirect('original')->with('store', 'カクテルを登録しました');
     }
 
     /**
@@ -215,7 +215,7 @@ class OriginalController extends Controller
         }
         Cocktail::where('id', $id)->where('status', 1)->where('user_id', Auth::id())->delete();
 
-        return redirect('original');
+        return redirect('original')->with('update', 'カクテルを更新しました');
     }
 
     /**
@@ -226,8 +226,8 @@ class OriginalController extends Controller
      */
     public function destroy($id)
     {
-        Cocktail::where('id', $id)->where('status', 1)->where('authority', 2)->where('user_id', Auth::id())->update(['status' => 2]);
+        Cocktail::where('id', $id)->where('status', 1)->where('authority', 2)->where('user_id', Auth::id())->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with('delete', 'カクテルを削除しました');
     }
 }

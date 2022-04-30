@@ -30,7 +30,9 @@ class AdminSplitController extends Controller
      */
     public function create()
     {
-        return view('admins.index.cocktails.split');
+        $admin_splits = Split::sortable()->get();
+
+        return view('admins.index.cocktails.split', compact('admin_splits'));
     }
 
     /**
@@ -49,7 +51,7 @@ class AdminSplitController extends Controller
             'name' => $data['name']
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with('store', '材料を登録しました');
     }
 
     /**
@@ -90,7 +92,7 @@ class AdminSplitController extends Controller
         $data = $request->input();
         Split::Where('id', $id)->update(['name' => $data['name']]);
 
-        return redirect()->back();
+        return redirect()->back()->with('update', '材料を更新しました');
     }
 
     /**
@@ -103,6 +105,6 @@ class AdminSplitController extends Controller
     {
         Split::where('id', $id)->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with('delete', '材料を削除しました');
     }
 }

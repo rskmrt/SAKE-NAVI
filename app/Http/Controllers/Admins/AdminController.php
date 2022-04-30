@@ -118,9 +118,6 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|max:255|unique:cocktails',
-        ]);
 
         $data = $request->all();
 
@@ -178,7 +175,7 @@ class AdminController extends Controller
             ]);
         }
 
-        return redirect('admin/');
+        return redirect('admin/')->with('store', 'カクテルを登録しました');
     }
 
     /**
@@ -220,9 +217,6 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|max:255',
-        ]);
         $data = $request->all();
 
         $cocktail_id = Cocktail::insertGetId([
@@ -280,7 +274,7 @@ class AdminController extends Controller
         }
         Cocktail::where('id', $id)->where('status', 1)->delete();
 
-        return redirect('/admin');
+        return redirect('/admin')->with('update', 'カクテルを更新しました');
     }
 
     /**
@@ -291,8 +285,8 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        Cocktail::where('id', $id)->where('status', 1)->where('authority', 1)->update(['status' => 2]);
+        Cocktail::where('id', $id)->where('status', 1)->where('authority', 1)->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with('delete', 'カクテルを削除しました');
     }
 }

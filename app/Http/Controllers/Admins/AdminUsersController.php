@@ -84,7 +84,7 @@ class AdminUsersController extends Controller
         User::where('id', $id)->update(['name' => $data['name']]);
         User::where('id', $id)->update(['email' => $data['email']]);
 
-        return redirect('admin/users');
+        return redirect('admin/users')->with('update', 'ユーザーを更新しました');
     }
 
     /**
@@ -97,6 +97,6 @@ class AdminUsersController extends Controller
     {
         User::where('id', $id)->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with('delete', 'ユーザーを削除しました');
     }
 }

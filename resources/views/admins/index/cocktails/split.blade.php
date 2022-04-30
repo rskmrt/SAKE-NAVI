@@ -1,6 +1,7 @@
 @extends('admins.layouts.app')
 
 @section('section')
+
 <ul class="nav me-auto">
   <li class="nav-item"><a href="/admin/cocktail/create" class="nav-link link-dark px-2 active" aria-current="page">カクテル登録</a></li>
   <li class="nav-item"><a href="/admin/base/create" class="nav-link link-dark px-2">ベース登録</a></li>
@@ -31,15 +32,15 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th scope="col">id</th>
-        <th scope="col">材料名</th>
-        <th scope="col">作成日時</th>
-				<th scope="col">更新日時</th>
+        <th scope="col">@sortablelink('id', 'ID')</th>
+        <th scope="col">@sortablelink('name', '材料名')</th>
+        <th scope="col">@sortablelink('created_at', '作成日時')</th>
+				<th scope="col">@sortablelink('updated_at', '更新日時')</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-      @foreach($splits as $split)
+      @foreach($admin_splits as $split)
       <tr>
         <form action="{{ route('admin.split.update', $split) }}" method="POST">
           @csrf
