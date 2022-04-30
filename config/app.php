@@ -1,8 +1,6 @@
 <?php
 
 return [
-    'rakuten_id' => env('RAKUTEN_APPLICATION_ID', false),
-
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -227,7 +225,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        /* originals */
+        'Common' => app\Library\Common::class,
     ],
 
 ];

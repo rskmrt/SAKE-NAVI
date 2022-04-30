@@ -19,7 +19,7 @@
                         <button type="submit" class="btn btn-sm btn-outline-secondary" onclick><span class="material-icons">favorite</span></button>
                     </form>
                     @else
-                    <form action="{{ route('favorites', $cocktail) }}" method="POST">
+                    <form action="{{ route('isfavorites', $cocktail) }}" method="POST">
                       @csrf
                       <button type="submit" class="btn btn-sm btn-outline-secondary" onclick><span class="material-icons">favorite_border</span></button>
                     </form>
@@ -35,7 +35,7 @@
                         <button type="submit" class="btn btn-sm btn-outline-secondary" onclick=location.href='original/edit/{{ $cocktail->id }}'><span class="material-icons">edit</span></button>
                     </div>
                     <div>
-                      <form action="{{ route('original-delete', $cocktail) }}" method="POST">
+                      <form action="{{ route('original.delete', $cocktail) }}" method="POST">
                         @csrf
                         <button type="submit" class="btn btn-sm btn-outline-secondary" onclick='return confirm("削除しますか？");'><span class="material-icons">delete</span></button>
                       </form>

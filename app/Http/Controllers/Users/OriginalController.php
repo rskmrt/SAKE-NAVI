@@ -50,10 +50,6 @@ class OriginalController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|max:255|unique:cocktails',
-        ]);
-
         $data = $request->all();
 
         $cocktail_id = Cocktail::insertGetId([
@@ -152,11 +148,6 @@ class OriginalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        $validatedData = $request->validate([
-            'name' => 'required|max:255',
-        ]);
-        
         $data = $request->all();
 
         $cocktail_id = Cocktail::insertGetId([

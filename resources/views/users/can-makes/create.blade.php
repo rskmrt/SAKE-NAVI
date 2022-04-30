@@ -20,7 +20,7 @@
     <div class="row py-lg-5">
 
       <div class="col-6">
-        <form action="{{ route('ingredients-store') }}" >
+        <form action="{{ route('ingredients.store') }}" >
           <div class="ingredients-form">
           @csrf
           <p>ベース</p>
@@ -52,7 +52,7 @@
       
 
       <div class="col-6">
-        <form action="{{ route('ingredients-delete') }}" >
+        <form action="{{ route('ingredients.delete') }}" >
           <div class="ingredients-form">
           @csrf
         <p>ベース</p>
