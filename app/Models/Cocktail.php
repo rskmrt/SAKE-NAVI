@@ -92,7 +92,6 @@ class Cocktail extends Model
             'how_to' => $data['how_to'],
             'authority' => 2,
             'user_id' => $data['user_id'],
-            'status' => 1
         ]);
 
         return $cocktail_id;
@@ -104,7 +103,6 @@ class Cocktail extends Model
             'name' => $data['name'],
             'how_to' => $data['how_to'],
             'authority' => 1,
-            'status' => 1
         ]);
 
         return $cocktail_id;

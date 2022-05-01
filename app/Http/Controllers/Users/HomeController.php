@@ -23,7 +23,6 @@ class HomeController extends Controller
         //カクテルの情報を取得
         $cocktails = $query
         ->where('authority', 1)
-        ->where('status', 1)
         ->orderBy('cocktails.name', 'asc')
         ->paginate(9);      
 

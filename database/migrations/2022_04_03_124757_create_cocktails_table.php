@@ -19,7 +19,6 @@ class CreateCocktailsTable extends Migration
             $table->longText('how_to')->nullable();
             $table->integer('authority');
             $table->integer('user_id')->nullable();
-            $table->integer('status');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });

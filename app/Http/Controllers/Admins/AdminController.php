@@ -5,12 +5,6 @@ namespace App\Http\Controllers\Admins;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cocktail;
-use App\Models\CocktailBase;
-use App\Models\CocktailSplit;
-use App\Models\CocktailGlass;
-use App\Models\CocktailTaste;
-use App\Models\CocktailStrength;
-use App\Models\CocktailTechnique;
 use App\Library\Common;
 
 class AdminController extends Controller
@@ -38,7 +32,6 @@ class AdminController extends Controller
         //カクテルの情報を取得
         $cocktails = $query
         ->where('authority', 1)
-        ->where('status', 1)
         ->orderBy('updated_at', 'desc')
         ->paginate(9);      
 
@@ -64,6 +57,10 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'name' => 'required|max:255|',
+        ]);
+
         Common::adminsStoreCocktail($request);
 
         return redirect('admin/')->with('store', 'カクテルを登録しました');
@@ -88,7 +85,7 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        $cocktail = Cocktail::where('id', $id)->where('status', 1)->first();
+        $cocktail = Cocktail::where('id', $id)->first();
         $edit_bases = Cocktail::find($id)->bases()->get();
         $edit_splits = Cocktail::find($id)->splits()->get();
         $edit_taste = Cocktail::find($id)->tastes()->first();      
@@ -108,6 +105,10 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'name' => 'required|max:255|',
+        ]);
+
         Common::editCocktail($request, $id);
 
         return redirect('/admin')->with('update', 'カクテルを更新しました');
@@ -121,7 +122,7 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        Cocktail::where('id', $id)->where('status', 1)->where('authority', 1)->delete();
+        Cocktail::where('id', $id)->where('authority', 1)->delete();
 
         return redirect()->back()->with('delete', 'カクテルを削除しました');
     }

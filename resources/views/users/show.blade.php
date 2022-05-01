@@ -24,43 +24,73 @@
 </section>
 
 
-<div class="col-lg-6 col-md-8 mx-auto">  
-  <div class="row  py-5">
-    <div class="col-5">
+<div class="col-lg-7 col-md-8 mx-auto">  
+  <div class="row py-5">
+    <div class="col-5 text-center">
       <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
     </div>
-    <div class="col-7">
-      <div class="row justify-content-start">
-        <div class="col-1">
+    <div class="col-7" style="padding-left: 10%">
+      <div class="row align-items-start">
+        <p>
+          <div class="col-4">
+            ベース
+          </div>
+          <div class="col-8">
+            @foreach($base as $value)
+            {{ ($value->name) }}
+            @endforeach
+          </div>
+        </p>
+      </div>
+
+      <div class="row align-items-center">
+        <div class="col-4">
+          テイスト
         </div>
-        <div class="col-5">
-          <p>ベース</p>
-          <p>テイスト</p>
-          <p>アルコール度数</p>
-          <p>製法</p>
-          <p>グラスタイプ</p>
-        </div>
-        <div class="col-5">
-          @foreach($base as $value)
-          <p>{{ ($value->name) }}</p>
-          @endforeach
+        <div class="col-8">
           @foreach($taste as $value)
-          <p>{{ ($value->name) }}</p>
+          {{ ($value->name) }}
           @endforeach
+        </div>
+      </div>
+
+      <div class="row align-items-center">
+        <p>
+        <div class="col-4">
+          アルコール度数
+        </div>
+        <div class="col-8">
           @foreach($strength as $value)
-          <p>{{ ($value->name) }}</p>
+          {{ ($value->name) }}
           @endforeach
+        </div>
+      </div>
+
+      <div class="row align-items-end">
+        <p>
+        <div class="col-4">
+          製法
+        </div>
+        <div class="col-8">
           @foreach($technique as $value)
-          <p>{{ ($value->name) }}</p>
+          {{ ($value->name) }}
           @endforeach
+        </div>
+      </div>
+
+      <div class="row align-items-end">
+        <p>
+        <div class="col-4">
+          グラスタイプ
+        </div>
+        <div class="col-8">
           @foreach($glass as $value)
-          <p>{{ ($value->name) }}</p>
+          {{ ($value->name) }}
           @endforeach
         </div>
       </div>
     </div>
   </div>
-
 
   <div class="row">
     <div class="col-1">
@@ -91,5 +121,5 @@
     </div>
   </div>
 </div>
-        
+
 @endsection
