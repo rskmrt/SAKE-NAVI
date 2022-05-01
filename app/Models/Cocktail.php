@@ -36,17 +36,23 @@ class Cocktail extends Model
     }
 
     //カクテル名、材料名検索
-    public static function searchCocktailAndSplit($text, $query){
+    public static function searchCocktailAndBaseAndSplit($text, $query){
             $spaceConversion = mb_convert_kana($text, 's');
             $wordArraySearched = preg_split('/[\s,]+/', $spaceConversion, -1, PREG_SPLIT_NO_EMPTY);
             foreach($wordArraySearched as $value) {
                 $query->where('cocktails.name', 'like', '%'.$value.'%');
             }
             foreach($wordArraySearched as $value) {
+                $query->orwhere('bases.name', 'like', '%'.$value.'%');
+            }
+            foreach($wordArraySearched as $value) {
                 $query->orwhere('splits.name', 'like', '%'.$value.'%');
             }
-            $query->join('cocktail_split', 'cocktails.id', '=', 'cocktail_split.cocktail_id')
-                  ->join('splits', 'cocktail_split.split_id', '=', 'splits.id');
+            $query
+            ->join('cocktail_base', 'cocktails.id', '=', 'cocktail_base.cocktail_id')
+            ->join('bases', 'cocktail_base.base_id', '=', 'bases.id')
+            ->join('cocktail_split', 'cocktails.id', '=', 'cocktail_split.cocktail_id')
+            ->join('splits', 'cocktail_split.split_id', '=', 'splits.id');
             return $query->distinct()->paginate(9);
     }
 
@@ -55,6 +61,13 @@ class Cocktail extends Model
         return $query
         ->wherein('cocktail_base.base_id', $base)
         ->join('cocktail_base', 'cocktails.id', '=', 'cocktail_base.cocktail_id');
+    }
+
+    //材料検索
+    public static function searchSplit($split, $query){
+        return $query
+        ->wherein('cocktail_split.split_id', $split)
+        ->join('cocktail_split', 'cocktails.id', '=', 'cocktail_split.cocktail_id');
     }
 
     //テイスト検索

@@ -117,7 +117,10 @@
         </div>
         </p>
         
-        <button type="submit" class="btn btn-outline-dark">登録</button> 
+        <div style="text-align: center">
+          <button type="button" class="btn btn-outline-dark" onclick=location.href='/admin'>戻る</button>
+          <button type="submit" class="btn btn-outline-dark">更新</button>
+        </div>
       </form>
       </div>
     </section>

@@ -123,9 +123,10 @@
       </div>
       </p>
       
-      <div style="text-align: center">
-        <button type="submit" class="btn btn-outline-dark">登録</button> 
-      </div>
+      <div style="text-align: center; margin-top: 10px">
+        <button type="button" class="btn btn-outline-dark" onclick=location.href='/original'>戻る</button>
+        <button type="submit" class="btn btn-outline-dark">登録</button>
+      </div> 
     </form>
     </div>
   </section>

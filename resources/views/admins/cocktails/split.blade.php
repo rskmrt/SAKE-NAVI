@@ -28,7 +28,10 @@
           <div class="mb-3">
             <label for="name" class="form-label">登録する材料</label>
             <input name="name" type="text" class="form-control">
-            <button type="submit" class="btn btn-outline-dark">登録</button>       
+            <div style="text-align: center; margin-top: 10px">
+              <button type="button" class="btn btn-outline-dark" onclick=location.href='/admin'>戻る</button>
+              <button type="submit" class="btn btn-outline-dark">登録</button>
+            </div> 
           </div>
         </form>
       </div>

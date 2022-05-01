@@ -124,7 +124,10 @@
         </div>
       </p>
       
-    <button type="submit" class="btn btn-outline-dark">更新</button> 
+      <div style="text-align: center; margin-top: 10px">
+        <button type="button" class="btn btn-outline-dark" onclick=location.href='/original'>戻る</button>
+        <button type="submit" class="btn btn-outline-dark">更新</button>
+      </div> 
       
     </form>
     </div>

@@ -13,18 +13,24 @@ use App\Models\CocktailTaste;
 use App\Models\CocktailTechnique;
  
 class Common {
-    //検索結果の取得
+    //検索機能
     public static function SearchCocktails($request, $query){
         //カクテル名、材料名検索
         $text = $request->input('text');
         if (!empty($text)) {
-            Cocktail::searchCocktailAndSplit($text, $query);
+            Cocktail::searchCocktailAndBaseAndSplit($text, $query);
         }
 
         //ベース検索
         $base = $request->input('base');
         if (!empty($base)) {
             Cocktail::searchBase($base, $query);
+        }
+
+        //材料検索
+        $split = $request->input('split');
+        if (!empty($split)) {
+            Cocktail::searchSplit($split, $query);
         }
 
         //テイスト検索
