@@ -66,7 +66,17 @@
         </div>
       </div>
 
-      
+      <div class="row align-items-center">
+        <p>
+        <div class="col-4">
+          技法
+        </div>
+        <div class="col-8">
+          @foreach($technique as $value)
+          {{ ($value->name) }}
+          @endforeach
+        </div>
+      </div>
 
       <div class="row align-items-end">
         <p>

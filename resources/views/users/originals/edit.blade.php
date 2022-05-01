@@ -133,7 +133,6 @@
     </div>
   </section>
     
-    
 </div> 
             
 @endsection
