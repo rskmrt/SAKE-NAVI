@@ -34,12 +34,12 @@ class AppServiceProvider extends ServiceProvider
     {
         View()->composer('*', function($view){
             $user = Auth::user();
-            $bases = Base::get();
-            $glasses = Glass::get();
-            $splits = Split::get();
-            $strengths = Strength::get();
-            $tastes = Taste::get();
-            $techniques = Technique::get();
+            $bases = Base::all();
+            $glasses = Glass::all();
+            $splits = Split::all();
+            $strengths = Strength::all();
+            $tastes = Taste::all();
+            $techniques = Technique::all();
 
             $view
             ->with([

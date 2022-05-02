@@ -5,6 +5,12 @@ namespace App\Http\Controllers\Admins;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cocktail;
+use App\Models\CocktailBase;
+use App\Models\CocktailSplit;
+use App\Models\CocktailStrength;
+use App\Models\CocktailTaste;
+use App\Models\CocktailTechnique;
+use App\Models\CocktailGlass;
 use App\Library\Common;
 
 class AdminController extends Controller
@@ -27,7 +33,7 @@ class AdminController extends Controller
         $text = $request->input('text');
 
         //検索情報をqueryにチェーン
-        Common::SearchCocktails($request, $query);
+        Cocktail::SearchCocktails($request, $query);
   
         //カクテルの情報を取得
         $cocktails = $query
@@ -61,10 +67,16 @@ class AdminController extends Controller
             'name' => 'required|max:255|',
         ]);
 
-        $file_name = $request->file('file')->getClientOriginalName();
-        $request->file('file')->storeAs('public/image',$file_name);
+        
 
-        Common::adminsStoreCocktail($request);
+        $data = $request->all();
+        $cocktail_id = Cocktail::adminsStoreCocktailAndGetCocktailId($data);
+        CocktailBase::storeCocktailBase($data, $cocktail_id);
+        CocktailGlass::storeCocktailGlass($data, $cocktail_id);
+        CocktailSplit::storeCocktailSplit($data, $cocktail_id);
+        CocktailStrength::storeCocktailStrength($data, $cocktail_id);
+        CocktailTaste::storeCocktailTaste($data, $cocktail_id);
+        CocktailTechnique::storeCocktailTechnique($data, $cocktail_id);
 
         return redirect('admin/')->with('store', 'カクテルを登録しました');
     }
@@ -112,7 +124,23 @@ class AdminController extends Controller
             'name' => 'required|max:255|',
         ]);
 
-        Common::editCocktail($request, $id);
+        $data = $request->all();
+        Cocktail::where('id', $id)->update([
+            'name' => $data['name'],
+            'how_to' => $data['how_to']
+        ]);
+        CocktailBase::where('cocktail_id', $id)->delete();
+        CocktailBase::storeCocktailBase($data, $id);
+        CocktailGlass::where('cocktail_id', $id)->delete();
+        CocktailGlass::storeCocktailGlass($data, $id);
+        CocktailSplit::where('cocktail_id', $id)->delete();
+        CocktailSplit::storeCocktailSplit($data, $id);
+        CocktailStrength::where('cocktail_id', $id)->delete();
+        CocktailStrength::storeCocktailStrength($data, $id);
+        CocktailTaste::where('cocktail_id', $id)->delete();
+        CocktailTaste::storeCocktailTaste($data, $id);
+        CocktailTechnique::where('cocktail_id', $id)->delete();
+        CocktailTechnique::storeCocktailTechnique($data, $id);
 
         return redirect('/admin')->with('update', 'カクテルを更新しました');
     }

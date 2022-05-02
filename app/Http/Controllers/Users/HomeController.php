@@ -18,7 +18,7 @@ class HomeController extends Controller
         $text = $request->input('text');
 
         //検索情報をqueryにチェーン
-        Common::SearchCocktails($request, $query);
+        Cocktail::SearchCocktails($request, $query);
   
         //カクテルの情報を取得
         $cocktails = $query
@@ -35,9 +35,32 @@ class HomeController extends Controller
     {
     $query = Cocktail::find($id);
 
-    //カクテルの詳細情報を取得
-    $cocktail = Common::showCocktails($query);
+    $cocktail = $query;
+
+    $base = $query
+    ->bases()
+    ->get();
+
+    $glass = $query
+    ->glasses()
+    ->get();
+
+    $split = $query
+    ->splits()
+    ->get();
     
-    return view('users/show', $cocktail);
+    $strength = $query
+    ->strengths()
+    ->get();
+
+    $taste = $query
+    ->tastes()
+    ->get();
+
+    $technique = $query
+    ->techniques()
+    ->get();
+    
+    return compact('cocktail','base','glass', 'split', 'strength', 'taste', 'technique');
     }
 }

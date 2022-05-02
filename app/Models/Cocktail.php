@@ -35,8 +35,11 @@ class Cocktail extends Model
         return $this->belongsToMany('App\Models\User', 'favorites', 'cocktail_id', 'user_id')->withTimestamps();
     }
 
-    //カクテル名、材料名検索
-    public static function searchCocktailAndBaseAndSplit($text, $query){
+    //検索機能
+    public static function SearchCocktails($request, $query){
+        //カクテル名、材料名検索
+        $text = $request->input('text');
+        if (!empty($text)) {
             $spaceConversion = mb_convert_kana($text, 's');
             $wordArraySearched = preg_split('/[\s,]+/', $spaceConversion, -1, PREG_SPLIT_NO_EMPTY);
             foreach($wordArraySearched as $value) {
@@ -53,49 +56,59 @@ class Cocktail extends Model
             ->join('bases', 'cocktail_base.base_id', '=', 'bases.id')
             ->join('cocktail_split', 'cocktails.id', '=', 'cocktail_split.cocktail_id')
             ->join('splits', 'cocktail_split.split_id', '=', 'splits.id');
-            return $query->distinct()->paginate(9);
-    }
 
-    //ベース検索
-    public static function searchBase($base, $query){
-        return $query
+            return $query->distinct()->paginate(9);
+        }
+
+        //ベース検索
+        $base = $request->input('base');
+        if (!empty($base)) {
+            return $query
         ->wherein('cocktail_base.base_id', $base)
         ->join('cocktail_base', 'cocktails.id', '=', 'cocktail_base.cocktail_id');
-    }
+        }
 
-    //材料検索
-    public static function searchSplit($split, $query){
-        return $query
+        //材料検索
+        $split = $request->input('split');
+        if (!empty($split)) {
+            return $query
         ->wherein('cocktail_split.split_id', $split)
         ->join('cocktail_split', 'cocktails.id', '=', 'cocktail_split.cocktail_id');
-    }
+        }
 
-    //テイスト検索
-    public static function searchTaste($taste, $query){
-        return $query
+        //テイスト検索
+        $taste = $request->input('taste');
+        if (!empty($taste)) {
+            return $query
         ->wherein('cocktail_taste.taste_id', $taste)
         ->join('cocktail_taste', 'cocktails.id', '=', 'cocktail_taste.cocktail_id');
-    }
+        }
 
-    //アルコール度数検索
-    public static function searchStrength($strength, $query){
-        return $query
+        //アルコール度数検索
+        $strength = $request->input('strength');
+        if (!empty($strength)) {
+            return $query
         ->wherein('cocktail_strength.strength_id', $strength)
         ->join('cocktail_strength', 'cocktails.id', '=', 'cocktail_strength.cocktail_id');
-    }
+        }
 
-    //製法検索
-    public static function searchTechnique($technique, $query){
-        return $query
+        //製法検索
+        $technique = $request->input('technique');
+        if (!empty($technique)) {
+            return $query
         ->wherein('cocktail_technique.technique_id', $technique)
         ->join('cocktail_technique', 'cocktails.id', '=', 'cocktail_technique.cocktail_id');
-    }
+        }
 
-    //グラスタイプ検索
-    public static function searchGlass($glass, $query){
-        return $query
+        //グラスタイプ検索
+        $glass = $request->input('glass');
+        if (!empty($glass)) {
+            return $query
         ->wherein('cocktail_glass.glass_id', $glass)
         ->join('cocktail_glass', 'cocktails.id', '=', 'cocktail_glass.cocktail_id');
+        }
+    
+        return $query;
     }
 
     //ユーザーが行うカクテル名登録とそのカクテルIDの取得
