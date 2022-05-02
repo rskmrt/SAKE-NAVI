@@ -34,7 +34,6 @@ class AppServiceProvider extends ServiceProvider
     {
         View()->composer('*', function($view){
             $user = Auth::user();
- 
             $bases = Base::get();
             $glasses = Glass::get();
             $splits = Split::get();
@@ -43,14 +42,15 @@ class AppServiceProvider extends ServiceProvider
             $techniques = Technique::get();
 
             $view
-            ->with('user', $user)
-
-            ->with('bases', $bases)
-            ->with('glasses', $glasses)
-            ->with('splits', $splits)
-            ->with('strengths', $strengths)
-            ->with('tastes', $tastes)
-            ->with('techniques', $techniques);
+            ->with([
+                'user' => $user,
+                'bases' => $bases,
+                'glasses' => $glasses,
+                'splits' => $splits,
+                'strengths' => $strengths,
+                'tastes' => $tastes,
+                'techniques' => $techniques
+            ]);
         });
     }
 }

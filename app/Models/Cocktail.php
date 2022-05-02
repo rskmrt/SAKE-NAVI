@@ -101,6 +101,7 @@ class Cocktail extends Model
     //ユーザーが行うカクテル名登録とそのカクテルIDの取得
     public static function usersStoreCocktailAndGetCocktailId($data){    
         $cocktail_id = Cocktail::insertGetId([
+            
             'name' => $data['name'],
             'how_to' => $data['how_to'],
             'authority' => 2,

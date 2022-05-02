@@ -21,16 +21,21 @@
 
     <section class="py-5 container">
       <div class="col-lg-6 col-md-8 mx-auto">
-      <form action="/admin/cocktail/store" method="POST">
+      <form action="/admin/cocktail/store" method="POST" enctype="multipart/form-data">
         @csrf
+        {{ csrf_field() }}
+        
         @error('name')
           <div class="alert alert-danger">{{ $message }}</div>
         @enderror
+        
         <div class="mb-3">
           <label for="name" class="form-label">カクテル名</label>
           <input name="name" type="text" class="form-control" id="cocktailname">
         </div>
-        
+        <input type="file" id="file" name="file" class="form-control">
+
+
         <br>
         
         <p>ベース
@@ -119,7 +124,7 @@
         
         <div style="text-align: center">
           <button type="button" class="btn btn-outline-dark" onclick=location.href='/admin'>戻る</button>
-          <button type="submit" class="btn btn-outline-dark">更新</button>
+          <button type="submit" class="btn btn-outline-dark">登録</button>
         </div>
       </form>
       </div>

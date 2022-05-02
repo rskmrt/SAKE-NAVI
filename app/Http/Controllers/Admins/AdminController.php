@@ -61,6 +61,9 @@ class AdminController extends Controller
             'name' => 'required|max:255|',
         ]);
 
+        $file_name = $request->file('file')->getClientOriginalName();
+        $request->file('file')->storeAs('public/image',$file_name);
+
         Common::adminsStoreCocktail($request);
 
         return redirect('admin/')->with('store', 'カクテルを登録しました');
