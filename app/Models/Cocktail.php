@@ -11,24 +11,8 @@ class Cocktail extends Model
         return $this->belongsToMany('App\Models\Base', 'cocktail_base', 'cocktail_id', 'base_id')->distinct();
     }
 
-    public function glasses(){
-        return $this->belongsToMany('App\Models\Glass', 'cocktail_glass', 'cocktail_id', 'glass_id')->distinct();
-    }
-
     public function splits(){
         return $this->belongsToMany('App\Models\Split', 'cocktail_split', 'cocktail_id', 'split_id')->distinct();
-    }
-
-    public function strengths(){
-        return $this->belongsToMany('App\Models\Strength', 'cocktail_strength', 'cocktail_id', 'strength_id')->distinct();
-    }
-
-    public function tastes(){
-        return $this->belongsToMany('App\Models\Taste', 'cocktail_taste', 'cocktail_id', 'taste_id')->distinct();
-    }
-
-    public function techniques(){
-        return $this->belongsToMany('App\Models\Technique', 'cocktail_technique', 'cocktail_id', 'technique_id')->distinct();
     }
 
     public function users(){
@@ -79,33 +63,25 @@ class Cocktail extends Model
         //テイスト検索
         $taste = $request->input('taste');
         if (!empty($taste)) {
-            return $query
-        ->wherein('cocktail_taste.taste_id', $taste)
-        ->join('cocktail_taste', 'cocktails.id', '=', 'cocktail_taste.cocktail_id');
+            return $query->where('taste_id', $taste);
         }
 
         //アルコール度数検索
         $strength = $request->input('strength');
         if (!empty($strength)) {
-            return $query
-        ->wherein('cocktail_strength.strength_id', $strength)
-        ->join('cocktail_strength', 'cocktails.id', '=', 'cocktail_strength.cocktail_id');
+            return $query->where('strength_id', $strength);
         }
 
         //製法検索
         $technique = $request->input('technique');
         if (!empty($technique)) {
-            return $query
-        ->wherein('cocktail_technique.technique_id', $technique)
-        ->join('cocktail_technique', 'cocktails.id', '=', 'cocktail_technique.cocktail_id');
+            return $query->where('technique_id', $technique);
         }
 
         //グラスタイプ検索
         $glass = $request->input('glass');
         if (!empty($glass)) {
-            return $query
-        ->wherein('cocktail_glass.glass_id', $glass)
-        ->join('cocktail_glass', 'cocktails.id', '=', 'cocktail_glass.cocktail_id');
+            return $query->where('glass_id', $glass);
         }
     
         return $query;
@@ -114,8 +90,11 @@ class Cocktail extends Model
     //ユーザーが行うカクテル名登録とそのカクテルIDの取得
     public static function usersStoreCocktailAndGetCocktailId($data){    
         $cocktail_id = Cocktail::insertGetId([
-            
             'name' => $data['name'],
+            'glass_id' => $data['glass'],
+            'taste_id' => $data['taste'],
+            'technique_id' => $data['technique'],
+            'strength_id' => $data['strength'],
             'how_to' => $data['how_to'],
             'authority' => 2,
             'user_id' => $data['user_id'],

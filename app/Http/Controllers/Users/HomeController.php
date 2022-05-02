@@ -24,7 +24,7 @@ class HomeController extends Controller
         $cocktails = $query
         ->where('authority', 1)
         ->orderBy('cocktails.name', 'asc')
-        ->paginate(9);      
+        ->paginate(9);     
 
         return view('users\home', compact('text', 'cocktails'));
     }
@@ -34,33 +34,24 @@ class HomeController extends Controller
     public function show($id)
     {
     $query = Cocktail::find($id);
-
-    $cocktail = $query;
+    
+    $cocktail = $query
+    ->select('cocktails.name as cocktail_name', 'glasses.name as glass_name', 'tastes.name as taste_name', 'techniques.name as technique_name', 'strengths.name as strength_name')
+    ->where('cocktails.id', $id)
+    ->join('glasses', 'cocktails.glass_id', '=', 'glasses.id')
+    ->join('tastes', 'cocktails.taste_id', '=', 'tastes.id')
+    ->join('techniques', 'cocktails.technique_id', '=', 'techniques.id')
+    ->join('strengths', 'cocktails.strength_id', '=', 'strengths.id')
+    ->first();
 
     $base = $query
     ->bases()
-    ->get();
-
-    $glass = $query
-    ->glasses()
     ->get();
 
     $split = $query
     ->splits()
     ->get();
     
-    $strength = $query
-    ->strengths()
-    ->get();
-
-    $taste = $query
-    ->tastes()
-    ->get();
-
-    $technique = $query
-    ->techniques()
-    ->get();
-    
-    return compact('cocktail','base','glass', 'split', 'strength', 'taste', 'technique');
+    return view('users/show', compact('cocktail','base', 'split'));
     }
 }

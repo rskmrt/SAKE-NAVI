@@ -69,7 +69,7 @@
       <p>テイスト
         @foreach($tastes as $taste)
         <div class="form-check-inline">
-          <input class="form-check-input" name="taste" type="radio" value="{{ $taste->id }}" id="{{ $taste->name }}" @if(!empty($edit_taste)) @if($taste->id === $edit_taste->id) checked @endif @endif>
+          <input class="form-check-input" name="taste" type="radio" value="{{ $taste->id }}" id="{{ $taste->name }}" @if(!empty($cocktail->taste_id)) @if($taste->id === $cocktail->taste_id) checked @endif @endif>
           <label class="form-check-label" for="{{ $taste->name }}">
             {{$taste->name}}
           </label>
@@ -82,7 +82,7 @@
       <p>アルコール度数
         @foreach($strengths as $strength)
         <div class="form-check-inline">
-          <input class="form-check-input" name="strength" type="radio" value="{{ $strength->id }}" id="{{ $strength->name }}" @if(!empty($edit_strength)) @if($strength->id === $edit_strength->id) checked @endif @endif>
+          <input class="form-check-input" name="strength" type="radio" value="{{ $strength->id }}" id="{{ $strength->name }}" @if(!empty($cocktail->strength_id)) @if($strength->id === $cocktail->strength_id) checked @endif @endif>
           <label class="form-check-label" for="{{ $strength->name }}">
             {{$strength->name}}
           </label>
@@ -95,7 +95,7 @@
       <p>技法
         @foreach($techniques as $technique)
         <div class="form-check-inline">
-          <input class="form-check-input" name="technique" type="radio" value="{{ $technique->id }}" id="{{ $technique->name }}" @if(!empty($edit_technique)) @if($technique->id === $edit_technique->id) checked @endif @endif>
+          <input class="form-check-input" name="technique" type="radio" value="{{ $technique->id }}" id="{{ $technique->name }}"@if(!empty($cocktail->technique_id)) @if($technique->id === $cocktail->technique_id) checked @endif @endif>
           <label class="form-check-label" for="{{ $technique->name }}">
             {{$technique->name}}
           </label>
@@ -108,7 +108,7 @@
       <p>グラスタイプ
         @foreach($glasses as $glass)
         <div class="form-check-inline">
-          <input class="form-check-input" name="glass" type="radio" value="{{ $glass->id }}" id="{{ $glass->name }}" @if(!empty($edit_glass)) @if($glass->id === $edit_glass->id) checked @endif @endif>
+          <input class="form-check-input" name="glass" type="radio" value="{{ $glass->id }}" id="{{ $glass->name }}" @if(!empty($cocktail->glass_id)) @if($glass->id === $cocktail->glass_id) checked @endif @endif>
           <label class="form-check-label" for="{{ $glass->name }}">
             {{$glass->name}}
           </label>

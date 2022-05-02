@@ -48,9 +48,7 @@
           テイスト
         </div>
         <div class="col-8">
-          @foreach($taste as $value)
-          {{ ($value->name) }}
-          @endforeach
+          {{ $cocktail->taste_name }}
         </div>
       </div>
 
@@ -60,9 +58,7 @@
           アルコール度数
         </div>
         <div class="col-8">
-          @foreach($strength as $value)
-          {{ ($value->name) }}
-          @endforeach
+          {{ $cocktail->strength_name }}
         </div>
       </div>
 
@@ -72,9 +68,7 @@
           技法
         </div>
         <div class="col-8">
-          @foreach($technique as $value)
-          {{ ($value->name) }}
-          @endforeach
+          {{ $cocktail->technique_name }}
         </div>
       </div>
 
@@ -84,9 +78,7 @@
           グラスタイプ
         </div>
         <div class="col-8">
-          @foreach($glass as $value)
-          {{ ($value->name) }}
-          @endforeach
+          {{ $cocktail->glass_name }}
         </div>
       </div>
     </div>
