@@ -17,10 +17,10 @@ class CreateCocktailsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('image')->nullable();
-            $table->integer('glass_id')->nullable();
-            $table->integer('taste_id')->nullable();
-            $table->integer('technique_id')->nullable();
-            $table->integer('strength_id')->nullable();
+            $table->integer('glass_id');
+            $table->integer('taste_id');
+            $table->integer('technique_id');
+            $table->integer('strength_id');
             $table->longText('how_to')->nullable();
             $table->integer('authority');
             $table->integer('user_id')->nullable();

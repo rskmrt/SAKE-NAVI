@@ -38,10 +38,10 @@ class HomeController extends Controller
     $cocktail = $query
     ->select('cocktails.name as cocktail_name', 'glasses.name as glass_name', 'tastes.name as taste_name', 'techniques.name as technique_name', 'strengths.name as strength_name')
     ->where('cocktails.id', $id)
-    ->join('glasses', 'cocktails.glass_id', '=', 'glasses.id')
-    ->join('tastes', 'cocktails.taste_id', '=', 'tastes.id')
-    ->join('techniques', 'cocktails.technique_id', '=', 'techniques.id')
-    ->join('strengths', 'cocktails.strength_id', '=', 'strengths.id')
+    ->leftjoin('glasses', 'cocktails.glass_id', '=', 'glasses.id')
+    ->leftjoin('tastes', 'cocktails.taste_id', '=', 'tastes.id')
+    ->leftjoin('techniques', 'cocktails.technique_id', '=', 'techniques.id')
+    ->leftjoin('strengths', 'cocktails.strength_id', '=', 'strengths.id')
     ->first();
 
     $base = $query

@@ -24,6 +24,7 @@ class OriginalController extends Controller
      */
     public function index()
     {
+        //ログインしているユーザーのオリジナルカクテルをすべて取得
         $cocktails = Cocktail::where('user_id', Auth::user()['id'])->orderBy('updated_at', 'desc')->paginate(9);
 
         return view('users\originals\original', compact('cocktails'));
@@ -49,10 +50,19 @@ class OriginalController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|max:255|',
+            'base' => 'required',
+            'taste' => 'required',
+            'technique' => 'required',
+            'strength' => 'required',
+            'glass' => 'required',
         ]);
 
+        //オリジナルカクテル登録フォームの入力内容を取得
         $data = $request->all();
+
+        //オリジナルカクテルを登録してそのカクテルIDを取得
         $cocktail_id = Cocktail::usersStoreCocktailAndGetCocktailId($data);
+        //中間テーブルへ登録したカクテルのbaseとsplitを登録
         CocktailBase::storeCocktailBase($data, $cocktail_id);
         CocktailSplit::storeCocktailSplit($data, $cocktail_id);
         
@@ -96,9 +106,17 @@ class OriginalController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|max:255|',
+            'base' => 'required',
+            'taste' => 'required',
+            'technique' => 'required',
+            'strength' => 'required',
+            'glass' => 'required',
         ]);
 
+        //オリジナルカクテル編集フォームの入力内容を取得
         $data = $request->all();
+
+        //カクテルテーブルのname、glass_id、strength_id、taste_id、technique_id、how_toをフォームの取得内容にupdate
         Cocktail::where('id', $id)->update([
             'name' => $data['name'],
             'glass_id' => $data['glass'],
@@ -107,9 +125,13 @@ class OriginalController extends Controller
             'technique_id' => $data['technique'],
             'how_to' => $data['how_to']
         ]);
+
+        //更新するカクテルのベースと材料を削除
         CocktailBase::where('cocktail_id', $id)->delete();
-        CocktailBase::storeCocktailBase($data, $id);
         CocktailSplit::where('cocktail_id', $id)->delete();
+
+        //更新するカクテルのベースと材料を再登録
+        CocktailBase::storeCocktailBase($data, $id);
         CocktailSplit::storeCocktailSplit($data, $id);
         
         return redirect('original')->with('update', 'カクテルを更新しました');

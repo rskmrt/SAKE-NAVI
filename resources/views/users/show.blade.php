@@ -19,7 +19,7 @@
 
 <section class="py-3 text-center containe">
   <div class="container">
-    <h2>{{ $cocktail->name }}</h4>
+    <h2>{{ $cocktail->cocktail_name }}</h4>
   </div>
 </section>
 

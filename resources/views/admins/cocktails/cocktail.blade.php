@@ -26,8 +26,23 @@
         {{ csrf_field() }}
         
         @error('name')
-          <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
+        <div class="alert alert-danger">{{ $message }}</div>
+      @enderror
+      @error('base')
+        <div class="alert alert-danger">{{ $message }}</div>
+      @enderror
+      @error('taste')
+        <div class="alert alert-danger">{{ $message }}</div>
+      @enderror
+      @error('strength')
+        <div class="alert alert-danger">{{ $message }}</div>
+      @enderror
+      @error('technique')
+        <div class="alert alert-danger">{{ $message }}</div>
+      @enderror
+      @error('glass')
+        <div class="alert alert-danger">{{ $message }}</div>
+      @enderror
         
         <div class="mb-3">
           <label for="name" class="form-label">カクテル名</label>

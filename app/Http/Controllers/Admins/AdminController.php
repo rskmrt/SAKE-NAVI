@@ -11,7 +11,6 @@ use App\Models\CocktailStrength;
 use App\Models\CocktailTaste;
 use App\Models\CocktailTechnique;
 use App\Models\CocktailGlass;
-use App\Library\Common;
 
 class AdminController extends Controller
 {
@@ -65,18 +64,20 @@ class AdminController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|max:255|',
+            'base' => 'required',
+            'taste' => 'required',
+            'technique' => 'required',
+            'strength' => 'required',
+            'glass' => 'required',
         ]);
 
-        
-
         $data = $request->all();
+
+        //オリジナルカクテルを登録してそのカクテルIDを取得
         $cocktail_id = Cocktail::adminsStoreCocktailAndGetCocktailId($data);
+        //中間テーブルへ登録したカクテルのbaseとsplitを登録
         CocktailBase::storeCocktailBase($data, $cocktail_id);
-        CocktailGlass::storeCocktailGlass($data, $cocktail_id);
         CocktailSplit::storeCocktailSplit($data, $cocktail_id);
-        CocktailStrength::storeCocktailStrength($data, $cocktail_id);
-        CocktailTaste::storeCocktailTaste($data, $cocktail_id);
-        CocktailTechnique::storeCocktailTechnique($data, $cocktail_id);
 
         return redirect('admin/')->with('store', 'カクテルを登録しました');
     }
@@ -100,15 +101,11 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        $cocktail = Cocktail::where('id', $id)->first();
+        $cocktail = Cocktail::find($id)->where('id', $id)->first();
         $edit_bases = Cocktail::find($id)->bases()->get();
         $edit_splits = Cocktail::find($id)->splits()->get();
-        $edit_taste = Cocktail::find($id)->tastes()->first();      
-        $edit_strength = Cocktail::find($id)->strengths()->first();
-        $edit_technique = Cocktail::find($id)->techniques()->first();
-        $edit_glass = Cocktail::find($id)->glasses()->first();
 
-        return view('admins/cocktails/edit', compact('cocktail', 'edit_bases', 'edit_splits', 'edit_taste', 'edit_strength', 'edit_technique', 'edit_glass'));
+        return view('admins/cocktails/edit', compact('cocktail', 'edit_bases', 'edit_splits'));
     }
 
     /**
@@ -122,25 +119,33 @@ class AdminController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|max:255|',
+            'base' => 'required',
+            'taste' => 'required',
+            'technique' => 'required',
+            'strength' => 'required',
+            'glass' => 'required',
         ]);
 
-        $data = $request->all();
-        Cocktail::where('id', $id)->update([
-            'name' => $data['name'],
-            'how_to' => $data['how_to']
-        ]);
-        CocktailBase::where('cocktail_id', $id)->delete();
-        CocktailBase::storeCocktailBase($data, $id);
-        CocktailGlass::where('cocktail_id', $id)->delete();
-        CocktailGlass::storeCocktailGlass($data, $id);
-        CocktailSplit::where('cocktail_id', $id)->delete();
-        CocktailSplit::storeCocktailSplit($data, $id);
-        CocktailStrength::where('cocktail_id', $id)->delete();
-        CocktailStrength::storeCocktailStrength($data, $id);
-        CocktailTaste::where('cocktail_id', $id)->delete();
-        CocktailTaste::storeCocktailTaste($data, $id);
-        CocktailTechnique::where('cocktail_id', $id)->delete();
-        CocktailTechnique::storeCocktailTechnique($data, $id);
+       //オリジナルカクテル編集フォームの入力内容を取得
+       $data = $request->all();
+
+       //カクテルテーブルのname、glass_id、strength_id、taste_id、technique_id、how_toをフォームの取得内容にupdate
+       Cocktail::where('id', $id)->update([
+           'name' => $data['name'],
+           'glass_id' => $data['glass'],
+           'strength_id' => $data['strength'],
+           'taste_id' => $data['taste'],
+           'technique_id' => $data['technique'],
+           'how_to' => $data['how_to']
+       ]);
+
+       //更新するカクテルのベースと材料を削除
+       CocktailBase::where('cocktail_id', $id)->delete();
+       CocktailSplit::where('cocktail_id', $id)->delete();
+
+       //更新するカクテルのベースと材料を再登録
+       CocktailBase::storeCocktailBase($data, $id);
+       CocktailSplit::storeCocktailSplit($data, $id);
 
         return redirect('/admin')->with('update', 'カクテルを更新しました');
     }

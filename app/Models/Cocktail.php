@@ -40,14 +40,12 @@ class Cocktail extends Model
             ->join('bases', 'cocktail_base.base_id', '=', 'bases.id')
             ->join('cocktail_split', 'cocktails.id', '=', 'cocktail_split.cocktail_id')
             ->join('splits', 'cocktail_split.split_id', '=', 'splits.id');
-
-            return $query->distinct()->paginate(9);
         }
 
         //ベース検索
         $base = $request->input('base');
         if (!empty($base)) {
-            return $query
+        $query
         ->wherein('cocktail_base.base_id', $base)
         ->join('cocktail_base', 'cocktails.id', '=', 'cocktail_base.cocktail_id');
         }
@@ -55,7 +53,7 @@ class Cocktail extends Model
         //材料検索
         $split = $request->input('split');
         if (!empty($split)) {
-            return $query
+        $query
         ->wherein('cocktail_split.split_id', $split)
         ->join('cocktail_split', 'cocktails.id', '=', 'cocktail_split.cocktail_id');
         }
@@ -63,32 +61,33 @@ class Cocktail extends Model
         //テイスト検索
         $taste = $request->input('taste');
         if (!empty($taste)) {
-            return $query->where('taste_id', $taste);
+            $query->where('taste_id', $taste);
         }
 
         //アルコール度数検索
         $strength = $request->input('strength');
         if (!empty($strength)) {
-            return $query->where('strength_id', $strength);
+            $query->where('strength_id', $strength);
         }
 
         //製法検索
         $technique = $request->input('technique');
         if (!empty($technique)) {
-            return $query->where('technique_id', $technique);
+            $query->where('technique_id', $technique);
         }
 
         //グラスタイプ検索
         $glass = $request->input('glass');
         if (!empty($glass)) {
-            return $query->where('glass_id', $glass);
+            $query->where('glass_id', $glass);
         }
     
         return $query;
     }
 
     //ユーザーが行うカクテル名登録とそのカクテルIDの取得
-    public static function usersStoreCocktailAndGetCocktailId($data){    
+    public static function usersStoreCocktailAndGetCocktailId($data){
+       
         $cocktail_id = Cocktail::insertGetId([
             'name' => $data['name'],
             'glass_id' => $data['glass'],
@@ -107,6 +106,10 @@ class Cocktail extends Model
     public static function adminsStoreCocktailAndGetCocktailId($data){    
         $cocktail_id = Cocktail::insertGetId([
             'name' => $data['name'],
+            'glass_id' => $data['glass'],
+            'taste_id' => $data['taste'],
+            'technique_id' => $data['technique'],
+            'strength_id' => $data['strength'],
             'how_to' => $data['how_to'],
             'authority' => 1,
         ]);
