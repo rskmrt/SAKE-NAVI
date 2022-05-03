@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('search')
+  @include('components.users.search')
+@endsection
+
 @section('navbar')
   @include('components.users.navbar')
 @endsection

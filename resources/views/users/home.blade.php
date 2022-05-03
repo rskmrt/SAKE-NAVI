@@ -22,11 +22,5 @@
     </span>
   </div>
 
-  <section class="text-center containe">
-    <div class="container">
-      
-    </div>
-  </section>
-
   @include('components.users.cocktails')
 @endsection

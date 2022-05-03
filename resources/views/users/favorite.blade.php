@@ -23,7 +23,7 @@
   </span>
 </div>
 
-<section class="py-5 text-center containe">
+<section class="text-center containe">
   <div class="container">
   </div>
 </section>
