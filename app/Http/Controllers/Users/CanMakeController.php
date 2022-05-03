@@ -36,7 +36,7 @@ class CanMakeController extends Controller
         ->orderBy('name', 'asc')
         ->paginate(9);
 
-        return view('users\can-makes\can-make', compact('cocktails'));
+        return view('users.can-makes.can-make', compact('cocktails'));
     }
 
     /**

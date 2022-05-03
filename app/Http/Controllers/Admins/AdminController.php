@@ -40,7 +40,7 @@ class AdminController extends Controller
         ->orderBy('updated_at', 'desc')
         ->paginate(9);      
 
-        return view('admins/cocktails/home', compact('text', 'cocktails'));
+        return view('admins.cocktails.home', compact('text', 'cocktails'));
     }
 
     /**
@@ -50,7 +50,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('admins/cocktails/cocktail');
+        return view('admins.cocktails.cocktail');
 
     }
 
@@ -105,7 +105,7 @@ class AdminController extends Controller
         $edit_bases = Cocktail::find($id)->bases()->get();
         $edit_splits = Cocktail::find($id)->splits()->get();
 
-        return view('admins/cocktails/edit', compact('cocktail', 'edit_bases', 'edit_splits'));
+        return view('admins.cocktails.edit', compact('cocktail', 'edit_bases', 'edit_splits'));
     }
 
     /**
@@ -147,7 +147,7 @@ class AdminController extends Controller
        CocktailBase::storeCocktailBase($data, $id);
        CocktailSplit::storeCocktailSplit($data, $id);
 
-        return redirect('/admin')->with('update', 'カクテルを更新しました');
+        return redirect('admin')->with('update', 'カクテルを更新しました');
     }
 
     /**

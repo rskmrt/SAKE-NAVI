@@ -27,7 +27,7 @@ class OriginalController extends Controller
         //ログインしているユーザーのオリジナルカクテルをすべて取得
         $cocktails = Cocktail::where('user_id', Auth::user()['id'])->orderBy('updated_at', 'desc')->paginate(9);
 
-        return view('users\originals\original', compact('cocktails'));
+        return view('users.originals.original', compact('cocktails'));
     }
 
     /**
@@ -37,7 +37,7 @@ class OriginalController extends Controller
      */
     public function create()
     {
-        return view('users\originals\create');
+        return view('users.originals.create');
     }
 
     /**
@@ -92,7 +92,7 @@ class OriginalController extends Controller
         $edit_bases = Cocktail::find($id)->bases()->get();
         $edit_splits = Cocktail::find($id)->splits()->get();
        
-        return view('users\originals\edit', compact('cocktail', 'edit_bases', 'edit_splits'));
+        return view('users.originals.edit', compact('cocktail', 'edit_bases', 'edit_splits'));
     }
 
     /**

@@ -26,7 +26,7 @@ class HomeController extends Controller
         ->orderBy('cocktails.name', 'asc')
         ->paginate(9);     
 
-        return view('users\home', compact('text', 'cocktails'));
+        return view('users.home', compact('text', 'cocktails'));
     }
 
 
@@ -52,6 +52,6 @@ class HomeController extends Controller
     ->splits()
     ->get();
     
-    return view('users/show', compact('cocktail','base', 'split'));
+    return view('users.show', compact('cocktail','base', 'split'));
     }
 }
