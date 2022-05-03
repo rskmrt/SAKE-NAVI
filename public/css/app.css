@@ -10087,7 +10087,7 @@ h4 {
   font-family: "Meiryo UI" ;
   }
 
-  @media (max-width: 992px) {
+  @media (max-width: 767px) {
     .description{
         display: none;
     }

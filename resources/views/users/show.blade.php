@@ -24,12 +24,16 @@
 </section>
 
 
-<div class="col-lg-7 col-md-8 mx-auto">  
-  <div class="row py-5">
-    <div class="col-5 text-center">
-      <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+<div class="container col-lg-5 col-md-5 mx-auto">  
+
+  <div class="row">
+    <div class="col text-center">
+      <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">no image</text></svg>
     </div>
-    <div class="col-7" style="padding-left: 10%">
+  </div>
+
+  <div class="row py-5">
+    <div class="col" style="padding-left: 10%">
       <div class="row align-items-start">
         <p>
           <div class="col-4">
@@ -40,10 +44,22 @@
             {{ ($value->name) }}
             @endforeach
           </div>
-        </p>
       </div>
 
       <div class="row align-items-center">
+        <p>
+        <div class="col-4">
+            材料
+        </div>
+        <div class="col-8">
+          @foreach($split as $value)
+            {{ ($value->name) }}
+          @endforeach
+        </div>
+      </div>
+
+      <div class="row align-items-center">
+        <p>
         <div class="col-4">
           テイスト
         </div>
@@ -84,34 +100,16 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-1">
-    </div>
-    <div class="col-3">
-      材料
-      <table class="table">
-        <tbody>
-          @foreach($split as $value)
-          <tr>
-            <td>
-              {{ ($value->name) }}
-            </td>
-          </tr>
-          @endforeach
-        </tbody> 
-      </table>
-    </div>
-    <div class="col-1">
-    </div>
-    <div class="col-6">
+
+  <div class="row">  
+    <div class="col">
       作り方
-      <div>
+      <div style="border: 1px solid #ccc;">
         {{ $cocktail->how_to }}
       </div>
     </div>
-    <div class="col-1">
-    </div>
   </div>
+
 </div>
 
 @endsection
