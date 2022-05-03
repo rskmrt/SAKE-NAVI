@@ -46,7 +46,7 @@ class CanMakeController extends Controller
      */
     public function create()
     {
-        return view('users\can-makes\create');
+        return view('users.can-makes.create');
     }
 
     /**
