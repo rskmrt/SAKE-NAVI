@@ -1,24 +1,40 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+### アプリケーション名  
+SAKE-NAVI
+
+
+### 概要
+カクテルの情報サイトです。  
+「カクテルの一覧を表示・検索」、「カクテルをお気に入り」、「自分の持っている材料から作れるカクテルの表示」、「オリジナルカクテルの登録」ができるwebサイトです。
+
+
+### サイトURL
 
 
 
-#### コンセプト
+### 使用技術
 
 
 
-#### 目的
+
+### 機能一覧
 
 
 
-#### 使い方
+### テスト用アカウント
+-一般ユーザー
+メールアドレス | パスワード
+-|-
+test1@test | 12345678
+test2@test | 12345678
+test3@test | 12345678
+  
+-管理者
+メールアドレス | パスワード
+-|-
+admin@test | 12345678
 
 
-
-#### 機能
-
-
-
-#### 技術
+### 利用方法
 
 
 
