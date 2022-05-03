@@ -37,7 +37,7 @@
 </div>
 
 
-<header class="py-3 mb-4 ">
+<header class="py-2  ">
   @yield('header')
 </header>
 

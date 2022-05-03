@@ -36,7 +36,7 @@ class HomeController extends Controller
     $query = Cocktail::find($id);
     
     $cocktail = $query
-    ->select('cocktails.name as cocktail_name', 'glasses.name as glass_name', 'tastes.name as taste_name', 'techniques.name as technique_name', 'strengths.name as strength_name')
+    ->select('cocktails.name as cocktail_name', 'cocktails.how_to', 'glasses.name as glass_name', 'tastes.name as taste_name', 'techniques.name as technique_name', 'strengths.name as strength_name')
     ->where('cocktails.id', $id)
     ->leftjoin('glasses', 'cocktails.glass_id', '=', 'glasses.id')
     ->leftjoin('tastes', 'cocktails.taste_id', '=', 'tastes.id')
