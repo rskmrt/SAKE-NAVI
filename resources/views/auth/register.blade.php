@@ -6,7 +6,7 @@
 
 
 @section('header')
-  @include('components.admins.header')
+  @include('components.users.header')
 @endsection
 
 @section('content')
