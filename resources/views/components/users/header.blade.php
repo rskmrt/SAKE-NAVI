@@ -8,7 +8,7 @@
   </div>
 
 
-    <ul class="nav" style="margin-right: 10%; margin-left: auto;">
+    <ul class="nav" style="margin-right: 5%; margin-left: auto;">
       @guest
         <li class="nav-item"><a href="{{ route('login') }}" class="nav-link link-dark px-2">{{ __('Login') }}</a></li>
         @if (Route::has('register'))
