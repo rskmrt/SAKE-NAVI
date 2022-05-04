@@ -1,7 +1,7 @@
 <div class="container" style="display: flex">
 
   <div>
-    <a href="/admin" class="mb-3 me-lg-auto text-dark text-decoration-none" >
+    <a href="/admin" class="me-lg-auto text-dark text-decoration-none" >
       <svg class="bi me-1" width="10" height="32"><use xlink:href="#bootstrap"/></svg>
       <span class="fs-2">{{ config('app.name', 'Laravel') }}</span>
     </a>
