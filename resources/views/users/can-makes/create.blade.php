@@ -15,6 +15,8 @@
 @endsection
 
 
+@section('content')
+
 <div class="containar" style="text-align: center">
   <span class="description">
     <img src="{{ asset('img/top.jpg')}}" width="70%" height="70%">
