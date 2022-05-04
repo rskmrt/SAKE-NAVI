@@ -8,8 +8,8 @@
     <div style="overflow: auto;">
       <ul class="nav me-auto" style="width: 35em">
         <li class="nav-item"><a href="/home" class="nav-link link-dark px-2 active" aria-current="page">カクテル一覧</a></li>
-        <li class="nav-item"><a href="/favorite" class="nav-link link-dark px-2">お気に入り</a></li>
         <li class="nav-item"><a href="/original" class="nav-link link-dark px-2">オリジナルカクテル</a></li>
+        <li class="nav-item"><a href="/favorite" class="nav-link link-dark px-2">お気に入り</a></li>
         <li class="nav-item"><a href="/can-make" class="nav-link link-dark px-2">作れるカクテル</a></li>
       </ul>
     </div>
