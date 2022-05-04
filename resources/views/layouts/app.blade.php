@@ -28,7 +28,8 @@
 
 
 <body>
-<div class="sticky-top">
+  
+<div class="sticky-top" >
   <header class="bg-light">
     @yield('search')
   </header>
