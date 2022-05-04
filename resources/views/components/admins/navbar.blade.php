@@ -5,7 +5,7 @@
       <span class="material-symbols-rounded">search</span>
     </button>
 
-    <div style="overflow: scroll">
+    <div style="overflow: auto">
       <ul class="nav me-auto">
         <li class="nav-item"><a href="/admin" class="nav-link link-dark px-2 active" aria-current="page">カクテル一覧</a></li>
         <li class="nav-item"><a href="/admin/users" class="nav-link link-dark px-2">ユーザ一覧</a></li>

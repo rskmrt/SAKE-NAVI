@@ -25,7 +25,6 @@
 
 
 <div class="container col-lg-5 col-md-5 mx-auto">  
-
   <div class="row py-3">
     <div class="col text-center">
       <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">no image</text></svg>
@@ -33,13 +32,13 @@
   </div>
 
   
-  <table class="table table-borderless py-3">
+  <table class="table table-borderless py-5">
     <tbody>
       <tr>
         <td style="white-space: nowrap;">ベース</td>
         <td>
           @foreach($base as $value)
-            {{ ($value->name) }}
+            <font style="margin-right: 5px">{{ ($value->name) }}</font>
           @endforeach
         </td>
       </tr>
@@ -48,7 +47,7 @@
         <td style="white-space: nowrap;">材料</td>
         <td>
           @foreach($split as $value)
-          {{ ($value->name) }}
+          <font style="margin-right: 5px">{{ ($value->name) }}</font>
           @endforeach
         </td>
       </tr>
@@ -76,14 +75,10 @@
     </tbody>
   </table>
 
-
-
-  
-
   <div class="row">  
     <div class="col">
-      作り方
-      <div style="border: 1px solid #ccc;">
+      <font style="border-bottom: 1px solid rgb(0, 0, 0);">作り方</font>
+      <div >
         {{ $cocktail->how_to }}
       </div>
     </div>
