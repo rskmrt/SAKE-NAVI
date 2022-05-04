@@ -1,11 +1,9 @@
 <nav class="py-2 bg-info border-bottom">
   <div class="container" style="display: flex">
 
-    <div>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="material-symbols-rounded">search</span>
-      </button>
-    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="material-symbols-rounded">search</span>
+    </button>
 
     <div style="overflow: scroll">
       <ul class="nav me-auto">
