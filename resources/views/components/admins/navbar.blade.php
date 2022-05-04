@@ -12,12 +12,27 @@
       </ul>
     </div>
 
-    <ul class="nav description" style="margin: 0; margin-left: auto;">
+    <ul class="nav" style="margin: 0; margin-left: auto;">
       @guest
-        <li class="nav-item"><a href="{{ route('login') }}" class="nav-link link-dark px-2">{{ __('Login') }}</a></li>
-        @if (Route::has('register'))
-        <li class="nav-item"><a href="{{ route('register') }}" class="nav-link link-dark px-2">{{ __('Register') }}</a></li>
-        @endif
+      <li class="nav-item dropdown">
+        <a id="navbarDropdown" class="nav-link link-dark px-2 dropdown-toggle " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+          guest<span class="caret"></span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{{ route('login') }}">
+            {{ __('Login') }}
+          </a>
+          @if (Route::has('register'))
+          <a class="dropdown-item" href="{{ route('register') }}">
+            {{ __('register') }}
+          </a>
+          @endif
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+          </form>
+        </div>
+      </li>
+
       @else
         <li class="nav-item dropdown">
           <a id="navbarDropdown" class="nav-link link-dark px-2 dropdown-toggle " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
