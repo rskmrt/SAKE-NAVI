@@ -10,7 +10,7 @@
     <div style="overflow: scroll">
       <ul class="nav me-auto" style="width: 40em">
         <li class="nav-item"><a href="/home" class="nav-link link-dark px-2 active" aria-current="page">カクテル一覧</a></li>
-        <li class="nav-item"><a href="/favorite" class="nav-link link-dark px-2">お気に入り</a></li>
+        <li class="nav-item"><a href="/favorite" class="nav-link link-dark px-2">お気に入りカクテル</a></li>
         <li class="nav-item"><a href="/can-make" class="nav-link link-dark px-2">作れるカクテル</a></li>
         <li class="nav-item"><a href="/original" class="nav-link link-dark px-2">オリジナルカクテル</a></li>
       </ul>
