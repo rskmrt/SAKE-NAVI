@@ -1,4 +1,4 @@
-<div class="container" style="display: flex">
+<div class="container py-3" style="display: flex">
 
   <div>
     <a href="/admin" class="me-lg-auto text-dark text-decoration-none" >
