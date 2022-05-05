@@ -8,7 +8,7 @@ SAKE-NAVI
 
 
 ### サイトURL
-
+http://www.sake-navi.jp/
 
 
 ### テスト用アカウント
