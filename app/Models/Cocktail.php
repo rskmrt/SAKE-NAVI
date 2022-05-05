@@ -87,9 +87,17 @@ class Cocktail extends Model
 
     //ユーザーが行うカクテル名登録とそのカクテルIDの取得
     public static function usersStoreCocktailAndGetCocktailId($data){
+
+         // アップロードされたファイルの取得
+       if(!empty($data['image'])){
+        $image = $data['image'];
+       }
+       // ファイルの保存とパスの取得
+       $path = isset($image) ? $image->store('image', 'public') : '';
        
         $cocktail_id = Cocktail::insertGetId([
             'name' => $data['name'],
+            'image' => $path,
             'glass_id' => $data['glass'],
             'taste_id' => $data['taste'],
             'technique_id' => $data['technique'],
@@ -102,10 +110,20 @@ class Cocktail extends Model
         return $cocktail_id;
     }
 
+
     //管理者が行うカクテル名登録とそのカクテルIDの取得
     public static function adminsStoreCocktailAndGetCocktailId($data){    
+
+        // アップロードされたファイルの取得
+       if(!empty($data['image'])){
+        $image = $data['image'];
+       }
+        // ファイルの保存とパスの取得
+        $path = isset($image) ? $image->store('image', 'public') : '';
+
         $cocktail_id = Cocktail::insertGetId([
             'name' => $data['name'],
+            'image' => $path,
             'glass_id' => $data['glass'],
             'taste_id' => $data['taste'],
             'technique_id' => $data['technique'],
@@ -117,5 +135,26 @@ class Cocktail extends Model
         return $cocktail_id;
     }
 
+
+    //カクテル編集
+    public static function updateCocktail($data, $id){
+       // アップロードされたファイルの取得
+        if(!empty($data['image'])){
+            $image = $data['image'];
+           }    
+       // ファイルの保存とパスの取得
+       $path = isset($image) ? $image->store('image', 'public') : '';
+
+       //カクテルテーブルのname、glass_id、strength_id、taste_id、technique_id、how_toをフォームの取得内容にupdate
+       Cocktail::where('id', $id)->update([
+           'name' => $data['name'],
+           'image' => $path,
+           'glass_id' => $data['glass'],
+           'strength_id' => $data['strength'],
+           'taste_id' => $data['taste'],
+           'technique_id' => $data['technique'],
+           'how_to' => $data['how_to']
+       ]);
+    }
     
 }

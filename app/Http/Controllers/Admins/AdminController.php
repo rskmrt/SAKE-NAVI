@@ -75,6 +75,7 @@ class AdminController extends Controller
 
         //オリジナルカクテルを登録してそのカクテルIDを取得
         $cocktail_id = Cocktail::adminsStoreCocktailAndGetCocktailId($data);
+
         //中間テーブルへ登録したカクテルのbaseとsplitを登録
         CocktailBase::storeCocktailBase($data, $cocktail_id);
         CocktailSplit::storeCocktailSplit($data, $cocktail_id);
@@ -126,18 +127,11 @@ class AdminController extends Controller
             'glass' => 'required',
         ]);
 
-       //オリジナルカクテル編集フォームの入力内容を取得
+       //カクテル編集フォームの入力内容を取得
        $data = $request->all();
 
-       //カクテルテーブルのname、glass_id、strength_id、taste_id、technique_id、how_toをフォームの取得内容にupdate
-       Cocktail::where('id', $id)->update([
-           'name' => $data['name'],
-           'glass_id' => $data['glass'],
-           'strength_id' => $data['strength'],
-           'taste_id' => $data['taste'],
-           'technique_id' => $data['technique'],
-           'how_to' => $data['how_to']
-       ]);
+       //ベースと材料以外の入力内容に編集
+       Cocktail::updateCocktail($data, $id); 
 
        //更新するカクテルのベースと材料を削除
        CocktailBase::where('cocktail_id', $id)->delete();

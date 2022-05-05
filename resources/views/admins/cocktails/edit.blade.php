@@ -20,16 +20,18 @@
   <div class="container">
     <section class="py-5 container">
       <div class="col-lg-9 col-md-8 mx-auto">
-        <form action="/admin/cocktail/update/{{ $cocktail->id }}" method="POST">
+        <form action="/admin/cocktail/update/{{ $cocktail->id }}" method="POST" enctype="multipart/form-data">
           @csrf
 
-          @error('name')
-          <div class="alert alert-danger">{{ $message }}</div>
-          @enderror
+          
           <div class="mb-3">
             <label for="name" class="form-label" >カクテル名</label>
             <input name="name" type="text" class="form-control" id="cocktailname" value="{{ $cocktail->name }}">
           </div>
+
+          <input type="file" id="image" name="image" class="form-control">
+
+          <br>
           
           <p>ベース
             @foreach($bases as $base)

@@ -44,24 +44,41 @@
 
 
 <main>
+  @error('name')
+  <div class="alert alert-danger">{{ $message }}</div>
+  @enderror
+  @error('base')
+    <div class="alert alert-danger">{{ $message }}</div>
+  @enderror
+  @error('taste')
+    <div class="alert alert-danger">{{ $message }}</div>
+  @enderror
+  @error('strength')
+    <div class="alert alert-danger">{{ $message }}</div>
+  @enderror
+  @error('technique')
+    <div class="alert alert-danger">{{ $message }}</div>
+  @enderror
+  @error('glass')
+    <div class="alert alert-danger">{{ $message }}</div>
+  @enderror
+
   @if(session('store'))
     <div class="alert alert-success" role="alert">
       {{ session('store') }}
     </div>
   @endif
-
   @if(session('update'))
     <div class="alert alert-success" role="alert">
       {{ session('update') }}
     </div>
   @endif
-
   @if(session('delete'))
     <div class="alert alert-danger" role="alert">
       {{ session('delete') }}
     </div>
   @endif
-
+  
   @yield('content')
 </main>
 

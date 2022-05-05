@@ -27,32 +27,16 @@
 <div class="container">
   <section class="py-5 container">
     <div class="col-lg-9 col-md-8 mx-auto">
-    <form action="/original/store" method="POST">
+    <form action="/original/store" method="POST" enctype="multipart/form-data">
       @csrf
       <input type="hidden" name="user_id" value="{{ $user['id'] }}">
 
-      @error('name')
-        <div class="alert alert-danger">{{ $message }}</div>
-      @enderror
-      @error('base')
-        <div class="alert alert-danger">{{ $message }}</div>
-      @enderror
-      @error('taste')
-        <div class="alert alert-danger">{{ $message }}</div>
-      @enderror
-      @error('strength')
-        <div class="alert alert-danger">{{ $message }}</div>
-      @enderror
-      @error('technique')
-        <div class="alert alert-danger">{{ $message }}</div>
-      @enderror
-      @error('glass')
-        <div class="alert alert-danger">{{ $message }}</div>
-      @enderror
       <div class="mb-3">
         <label for="name" class="form-label">カクテル名</label>
         <input name="name" type="text" class="form-control" id="cocktailname">
       </div>
+
+      <input type="file" id="image" name="image" class="form-control">
       
       <br>
       

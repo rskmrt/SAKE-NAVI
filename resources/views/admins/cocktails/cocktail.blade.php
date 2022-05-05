@@ -23,33 +23,13 @@
       <div class="col-lg-6 col-md-8 mx-auto">
       <form action="/admin/cocktail/store" method="POST" enctype="multipart/form-data">
         @csrf
-        {{ csrf_field() }}
-        
-        @error('name')
-        <div class="alert alert-danger">{{ $message }}</div>
-      @enderror
-      @error('base')
-        <div class="alert alert-danger">{{ $message }}</div>
-      @enderror
-      @error('taste')
-        <div class="alert alert-danger">{{ $message }}</div>
-      @enderror
-      @error('strength')
-        <div class="alert alert-danger">{{ $message }}</div>
-      @enderror
-      @error('technique')
-        <div class="alert alert-danger">{{ $message }}</div>
-      @enderror
-      @error('glass')
-        <div class="alert alert-danger">{{ $message }}</div>
-      @enderror
         
         <div class="mb-3">
           <label for="name" class="form-label">カクテル名</label>
           <input name="name" type="text" class="form-control" id="cocktailname">
         </div>
-        <input type="file" id="file" name="file" class="form-control">
-
+        
+        <input type="file" id="image" name="image" class="form-control">
 
         <br>
         
