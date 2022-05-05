@@ -41,7 +41,7 @@ Laravel Framework 6.20.44
  mysql
 
 - その他使用技術  
- git(gitHub) / Visual Studio Code
+ git(gitHub) / Visual Studio Code / Tera Term
 
 
 ### 機能一覧
