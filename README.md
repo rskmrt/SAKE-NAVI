@@ -8,7 +8,7 @@ SAKE-NAVI
 
 
 ### サイトURL
-一般　　http://www.sake-navi.jp/  
+一般　　http://www.sake-navi.jp  
 管理者　http://www.sake-navi.jp/admin
 
 
