@@ -50,13 +50,13 @@ class Cocktail extends Model
         ->join('cocktail_base', 'cocktails.id', '=', 'cocktail_base.cocktail_id');
         }
 
-        //材料検索
-        $split = $request->input('split');
-        if (!empty($split)) {
-        $query
-        ->wherein('cocktail_split.split_id', $split)
-        ->join('cocktail_split', 'cocktails.id', '=', 'cocktail_split.cocktail_id');
-        }
+        // //材料検索
+        // $split = $request->input('split');
+        // if (!empty($split)) {
+        // $query
+        // ->wherein('cocktail_split.split_id', $split)
+        // ->join('cocktail_split', 'cocktails.id', '=', 'cocktail_split.cocktail_id');
+        // }
 
         //テイスト検索
         $taste = $request->input('taste');

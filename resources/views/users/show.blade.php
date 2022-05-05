@@ -38,7 +38,7 @@
         <td style="white-space: nowrap;">ベース</td>
         <td>
           @foreach($base as $value)
-            <font style="margin-right: 5px">{{ ($value->name) }}</font>
+            <span style="margin-right: 5px">{{ ($value->name) }}</span>
           @endforeach
         </td>
       </tr>
@@ -47,7 +47,7 @@
         <td style="white-space: nowrap;">材料</td>
         <td>
           @foreach($split as $value)
-          <font style="margin-right: 5px">{{ ($value->name) }}</font>
+          <span style="margin-right: 5px">{{ ($value->name) }}</span>
           @endforeach
         </td>
       </tr>
@@ -77,7 +77,7 @@
 
   <div class="row">  
     <div class="col">
-      <font style="border-bottom: 1px solid rgb(0, 0, 0);">作り方</font>
+      <span style="border-bottom: 1px solid rgb(0, 0, 0);">作り方</span>
       <div >
         {{ $cocktail->how_to }}
       </div>
