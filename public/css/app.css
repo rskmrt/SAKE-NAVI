@@ -10091,4 +10091,8 @@ h4 {
     .description{
         display: none;
     }
+
+    .search-font{
+      font-size: 12px;
+    }
   }
