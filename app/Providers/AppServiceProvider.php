@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use Facade\FlareClient\View;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\URL;
 use Auth;
 use App\Models\Base;
 use App\Models\Taste;
@@ -33,8 +32,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        URL::forceScheme('https');
-
         View()->composer('*', function($view){
             $user = Auth::user();
             $bases = Base::all();
