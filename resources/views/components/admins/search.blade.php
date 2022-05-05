@@ -10,7 +10,7 @@
         </div>
         
         <div class="search-font">
-          <table class="table table-borderless py-5 ">
+          <table class="table table-borderless ">
             <tbody>
               <tr>
                 <td style="white-space: nowrap;">ベース</td>
