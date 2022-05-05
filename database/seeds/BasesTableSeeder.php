@@ -36,6 +36,22 @@ class BasesTableSeeder extends Seeder
                 'name' => 'ウィスキー',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(), 
+            ],[
+                'name' => 'ブランデー',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
+            ],[
+                'name' => '赤ワイン',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
+            ],[
+                'name' => '白ワイン',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
+            ],[
+                'name' => 'ビール',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ],
             
         ]);

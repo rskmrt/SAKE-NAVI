@@ -36,7 +36,31 @@ class SplitsTableSeeder extends Seeder
                 'name' => 'ライム',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(), 
-            ]
+            ],[
+                'name' => 'オレンジ',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
+            ],[
+                'name' => 'グレープフルーツ',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
+            ],[
+                'name' => 'パイナップル',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
+            ],[
+                'name' => 'リンゴ',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
+            ],[
+                'name' => 'トマトジュース',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
+            ],[
+                'name' => 'ガムシロップ',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
+            ],
         ]);
     }
 }
