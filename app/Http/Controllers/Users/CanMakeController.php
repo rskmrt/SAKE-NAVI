@@ -25,10 +25,13 @@ class CanMakeController extends Controller
      */
     public function index()
     {
+        //登録しているベースと材料のIDを取得
         $bases_id = BaseUser::where('user_id', Auth::id())->pluck('base_id')->toArray();
         $splits_id = SplitUser::where('user_id', Auth::id())->pluck('split_id')->toArray();
+        
         $query = Cocktail::query()->select('cocktails.*');
         
+        //登録しているベースと材料のIDからカクテルを取得
         $query->wherein('cocktail_split.split_id', $splits_id)->join('cocktail_split', 'cocktails.id', '=', 'cocktail_split.cocktail_id');
         $query->wherein('cocktail_base.base_id', $bases_id)->join('cocktail_base', 'cocktails.id', '=', 'cocktail_base.cocktail_id');
         

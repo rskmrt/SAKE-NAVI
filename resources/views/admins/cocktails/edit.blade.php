@@ -22,8 +22,7 @@
       <div class="col-lg-9 col-md-8 mx-auto">
         <form action="/admin/cocktail/update/{{ $cocktail->id }}" method="POST" enctype="multipart/form-data">
           @csrf
-
-          
+ 
           <div class="mb-3">
             <label for="name" class="form-label" >カクテル名</label>
             <input name="name" type="text" class="form-control" id="cocktailname" value="{{ $cocktail->name }}">

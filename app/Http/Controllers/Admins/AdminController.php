@@ -152,6 +152,7 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
+        //対象のIDのカクテルを削除
         Cocktail::where('id', $id)->where('authority', 1)->delete();
 
         return redirect()->back()->with('delete', 'カクテルを削除しました');

@@ -147,7 +147,6 @@ class Cocktail extends Model
             $path = isset($image) ? $image->store('image', 'public') : '';
            }    
        
-
        //カクテルテーブルのname、glass_id、strength_id、taste_id、technique_id、how_toをフォームの取得内容にupdate
        Cocktail::where('id', $id)->update([
            'name' => $data['name'],

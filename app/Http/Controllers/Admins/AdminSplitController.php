@@ -48,6 +48,7 @@ class AdminSplitController extends Controller
         ]);
         
         $data = $request->input();
+        
         Split::insert([
             'name' => $data['name']
         ]);
