@@ -138,12 +138,15 @@ class Cocktail extends Model
 
     //カクテル編集
     public static function updateCocktail($data, $id){
+        $path = Cocktail::find($id)->image;
+
        // アップロードされたファイルの取得
         if(!empty($data['image'])){
             $image = $data['image'];
+            // ファイルの保存とパスの取得
+            $path = isset($image) ? $image->store('image', 'public') : '';
            }    
-       // ファイルの保存とパスの取得
-       $path = isset($image) ? $image->store('image', 'public') : '';
+       
 
        //カクテルテーブルのname、glass_id、strength_id、taste_id、technique_id、how_toをフォームの取得内容にupdate
        Cocktail::where('id', $id)->update([
