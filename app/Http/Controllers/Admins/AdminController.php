@@ -51,7 +51,6 @@ class AdminController extends Controller
     public function create()
     {
         return view('admins.cocktails.cocktail');
-
     }
 
     /**
@@ -71,9 +70,10 @@ class AdminController extends Controller
             'glass' => 'required',
         ]);
 
+        //入力内容を取得
         $data = $request->all();
 
-        //オリジナルカクテルを登録してそのカクテルIDを取得
+        //オリジナルカクテルを登録してそのカクテルidを取得
         $cocktail_id = Cocktail::adminsStoreCocktailAndGetCocktailId($data);
 
         //中間テーブルへ登録したカクテルのbaseとsplitを登録
@@ -102,7 +102,10 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
+        //idからカクテルの情報を取得
         $cocktail = Cocktail::find($id)->where('id', $id)->first();
+
+        //多対多リレーションで更新するカクテルのベースと材料を取得
         $edit_bases = Cocktail::find($id)->bases()->get();
         $edit_splits = Cocktail::find($id)->splits()->get();
 

@@ -31,6 +31,7 @@ class AdminBaseController extends Controller
      */
     public function create()
     {
+        //ベースをすべて取得
         $admin_bases = Base::sortable()->get();
 
         return view('admins.cocktails.base', compact('admin_bases'));
@@ -48,7 +49,10 @@ class AdminBaseController extends Controller
             'name' => 'required|max:255|unique:bases',
         ]);
         
+        //入力内容を取得
         $data = $request->input();
+
+        //baseテーブルのnameに入力内容を登録
         Base::insert([
             'name' => $data['name']
         ]);
@@ -91,7 +95,10 @@ class AdminBaseController extends Controller
             'name' => 'required|max:255|unique:bases,name,'.Base::find($id)->name.',name',
         ]);
 
+        //入力内容を取得
         $data = $request->input();
+
+        //baseテーブルのnameを入力内容に更新
         Base::Where('id', $id)->update(['name' => $data['name']]);
 
         return redirect()->back()->with('update', 'ベースを更新しました');
@@ -105,6 +112,7 @@ class AdminBaseController extends Controller
      */
     public function destroy($id)
     {
+        //取得したidのベースを削除
         Base::where('id', $id)->delete();
 
         return redirect()->back()->with('delete', 'ベースを削除しました');

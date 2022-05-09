@@ -35,6 +35,7 @@ class HomeController extends Controller
     {
     $query = Cocktail::find($id);
     
+    //選択したカクテルidの情報をcocktailsテーブルから取得
     $cocktail = $query
     ->select('cocktails.name as cocktail_name', 'cocktails.image', 'cocktails.how_to', 'glasses.name as glass_name', 'tastes.name as taste_name', 'techniques.name as technique_name', 'strengths.name as strength_name')
     ->where('cocktails.id', $id)
@@ -44,10 +45,12 @@ class HomeController extends Controller
     ->leftjoin('strengths', 'cocktails.strength_id', '=', 'strengths.id')
     ->first();
 
+    //選択したカクテルidのベースを取得
     $base = $query
     ->bases()
     ->get();
 
+    //選択したカクテルidの材料を取得
     $split = $query
     ->splits()
     ->get();

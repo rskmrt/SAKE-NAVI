@@ -88,6 +88,7 @@ class OriginalController extends Controller
      */
     public function edit($id)
     {
+        //ログインしているユーザーのオリジナルカクテルとそのベース、材料を取得
         $cocktail = Cocktail::find($id)->where('user_id', Auth::id())->where('id', $id)->first();
         $edit_bases = Cocktail::find($id)->bases()->get();
         $edit_splits = Cocktail::find($id)->splits()->get();
@@ -116,7 +117,7 @@ class OriginalController extends Controller
         //オリジナルカクテル編集フォームの入力内容を取得
         $data = $request->all();
 
-        //ベースと材料以外の入力内容に編集
+        //ベースと材料以外を入力内容に編集
         Cocktail::updateCocktail($data, $id); 
 
         //更新するカクテルのベースと材料を削除
@@ -138,6 +139,7 @@ class OriginalController extends Controller
      */
     public function destroy($id)
     {
+        //選択したカクテルidのカクテルを削除
         Cocktail::where('id', $id)->where('authority', 2)->where('user_id', Auth::id())->delete();
 
         return redirect()->back()->with('delete', 'カクテルを削除しました');

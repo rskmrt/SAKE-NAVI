@@ -22,7 +22,10 @@ class FavoriteController extends Controller
      */
     public function index()
     {
+        //ログインしているユーザーの、お気に入りしているカクテルのidを配列で取得
         $favorites = Favorite::where('user_id', Auth::id())->pluck('cocktail_id')->toArray();
+
+        //お気に入りしているカクテルをすべて取得
         $cocktails = Cocktail::wherein('id', $favorites)->paginate(9);
 
         return view('users.favorite', compact('cocktails'));
@@ -46,6 +49,7 @@ class FavoriteController extends Controller
      */
     public function store(Cocktail $cocktail)
     {
+        //お気に入り登録
         $cocktail->users()->attach(Auth::id());
 
         return redirect()->back();
@@ -93,6 +97,7 @@ class FavoriteController extends Controller
      */
     public function destroy(Cocktail $cocktail)
     {
+        //お気に入り削除
         $cocktail->users()->detach(Auth::id());
 
         return redirect()->back();

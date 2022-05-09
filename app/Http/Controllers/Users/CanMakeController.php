@@ -60,15 +60,18 @@ class CanMakeController extends Controller
      */
     public function store(Request $request)
     {
+        //チェックボックスで選択したベース、材料を取得
         $bases = Base::find($request->input('base'));
         $splits = Split::find($request->input('split'));
 
+        //ユーザーが所有しているベースの登録
         if(!empty($bases)){
             foreach($bases as $base){
                 $base->users()->attach(Auth::id());
             }
         }
         
+        //ユーザーが所有している材料の登録
         if(!empty($splits)){
             foreach($splits as $split){
                 $split->users()->attach(Auth::id());
@@ -120,15 +123,18 @@ class CanMakeController extends Controller
      */
     public function destroy(Request $request)
     {
+        //チェックボックスで選択したベース、材料を取得
         $bases = Base::find($request->input('base'));
         $splits = Split::find($request->input('split'));
 
+        //ユーザーが所有しているベースの削除
         if(!empty($bases)){
             foreach($bases as $base){
                 $base->users()->detach(Auth::id());
             }
         }
 
+        //ユーザーが所有している材料の削除
         if(!empty($splits)){
             foreach($splits as $split){
                 $split->users()->detach(Auth::id());

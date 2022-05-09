@@ -20,6 +20,7 @@ class AdminUsersController extends Controller
      */
     public function index()
     {
+        //ユーザーをすべて取得
         $users = User::sortable()->get();
 
         return view('admins.users.users', compact('users'));
@@ -81,8 +82,10 @@ class AdminUsersController extends Controller
             'email' => 'required|string|email|max:255|unique:users,email,'.User::find($id)->email.',email',
         ]);
 
+        //入力内容を取得
         $data = $request->input();
         
+        //usersテーブルのname、emailに入力内容を更新
         User::where('id', $id)->update(['name' => $data['name']]);
         User::where('id', $id)->update(['email' => $data['email']]);
 
@@ -97,6 +100,7 @@ class AdminUsersController extends Controller
      */
     public function destroy($id)
     {
+        //取得したidのユーザーを削除
         User::where('id', $id)->delete();
 
         return redirect()->back()->with('delete', 'ユーザーを削除しました');

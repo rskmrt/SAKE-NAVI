@@ -30,6 +30,7 @@ class AdminSplitController extends Controller
      */
     public function create()
     {
+        //材料をすべて取得
         $admin_splits = Split::sortable()->get();
 
         return view('admins.cocktails.split', compact('admin_splits'));
@@ -47,8 +48,10 @@ class AdminSplitController extends Controller
             'name' => 'required|max:255|unique:splits',
         ]);
         
+        //入力内容を取得
         $data = $request->input();
         
+        //splitsテーブルのnameに入力内容を登録
         Split::insert([
             'name' => $data['name']
         ]);
@@ -91,7 +94,10 @@ class AdminSplitController extends Controller
             'name' => 'required|max:255|unique:splits,name,'.Split::find($id)->name.',name',
         ]);
 
+        //入力内容を取得
         $data = $request->input();
+        
+        //splitsテーブルのnameを入力内容に更新
         Split::Where('id', $id)->update(['name' => $data['name']]);
 
         return redirect()->back()->with('update', '材料を更新しました');
@@ -105,6 +111,7 @@ class AdminSplitController extends Controller
      */
     public function destroy($id)
     {
+        //取得したidの材料を削除
         Split::where('id', $id)->delete();
 
         return redirect()->back()->with('delete', '材料を削除しました');
