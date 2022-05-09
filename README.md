@@ -29,9 +29,7 @@ admin@test | 12345678
 ### 使用技術
 - フロンドエンド  
  HTML/CSS  
- javascript  
  bootstrap
-
 
 - バックエンド  
 PHP 7.4.29  
@@ -71,8 +69,6 @@ Laravel Framework 6.20.44
 
 ### データベース設計
 ![Database ER diagram (crow's foot)](https://user-images.githubusercontent.com/87703969/166417844-b8e79f17-1590-42e3-9e43-1cf91a8cd3b8.png)
-
-
 
 
 ### ローカルでの動作方法
