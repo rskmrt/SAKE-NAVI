@@ -18,28 +18,23 @@ class CocktailSplitTableSeeder extends Seeder
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(), 
             ],[
-                'cocktail_id' => '2',
-                'split_id' => '3',
-                'created_at' => new DateTime(),
-                'updated_at' => new DateTime(), 
-            ],[
                 'cocktail_id' => '3',
-                'split_id' => '2',
+                'split_id' => '5',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(), 
             ],[
                 'cocktail_id' => '4',
-                'split_id' => '3',
+                'split_id' => '6',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(), 
             ],[
                 'cocktail_id' => '5',
-                'split_id' => '2',
+                'split_id' => '3',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(), 
             ],[
                 'cocktail_id' => '6',
-                'split_id' => '4',
+                'split_id' => '1',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(), 
             ],[
@@ -48,31 +43,56 @@ class CocktailSplitTableSeeder extends Seeder
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(), 
             ],[
-                'cocktail_id' => '8',
+                'cocktail_id' => '9',
                 'split_id' => '6',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(), 
             ],[
-                'cocktail_id' => '9',
-                'split_id' => '5',
-                'created_at' => new DateTime(),
-                'updated_at' => new DateTime(), 
-            ],[
                 'cocktail_id' => '10',
-                'split_id' => '4',
+                'split_id' => '6',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(), 
             ],[
                 'cocktail_id' => '11',
-                'split_id' => '1',
+                'split_id' => '6',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(), 
             ],[
-                'cocktail_id' => '11',
-                'split_id' => '2',
+                'cocktail_id' => '12',
+                'split_id' => '6',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(), 
-            ]
+            ],[
+                'cocktail_id' => '13',
+                'split_id' => '6',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
+            ],[
+                'cocktail_id' => '14',
+                'split_id' => '6',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
+            ],[
+                'cocktail_id' => '15',
+                'split_id' => '6',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
+            ],[
+                'cocktail_id' => '16',
+                'split_id' => '6',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
+            ],[
+                'cocktail_id' => '17',
+                'split_id' => '6',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
+            ],[
+                'cocktail_id' => '18',
+                'split_id' => '6',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
+            ],
         ]);
     }
 }

@@ -29,6 +29,10 @@ class BasesTableSeeder extends Seeder
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(), 
             ],[
+                'name' => 'カンパリ',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
+            ],[
                 'name' => '焼酎',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(), 
@@ -49,7 +53,15 @@ class BasesTableSeeder extends Seeder
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(), 
             ],[
+                'name' => 'ベルモット',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
+            ],[
                 'name' => 'ビール',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
+            ],[
+                'name' => 'ホワイトキュラソー',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(), 
             ],

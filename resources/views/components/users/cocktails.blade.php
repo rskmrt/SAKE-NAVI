@@ -56,6 +56,6 @@
   </div>
 
   <div class="d-flex justify-content-center">
-    {{ $cocktails->links() }}
+    {{ $cocktails->appends(request()->query())->links() }}
   </div>
 @endif

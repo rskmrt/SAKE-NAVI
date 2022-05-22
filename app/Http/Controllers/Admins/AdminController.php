@@ -7,10 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\Cocktail;
 use App\Models\CocktailBase;
 use App\Models\CocktailSplit;
-use App\Models\CocktailStrength;
-use App\Models\CocktailTaste;
-use App\Models\CocktailTechnique;
-use App\Models\CocktailGlass;
 
 class AdminController extends Controller
 {

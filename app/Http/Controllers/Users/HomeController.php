@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Users;
 use App\Models\Cocktail;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Library\Common;
 
 class HomeController extends Controller
 {

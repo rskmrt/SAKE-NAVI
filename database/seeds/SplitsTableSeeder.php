@@ -29,11 +29,11 @@ class SplitsTableSeeder extends Seeder
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(), 
             ],[
-                'name' => 'レモン',
+                'name' => 'レモンジュース',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(), 
             ],[
-                'name' => 'ライム',
+                'name' => 'ライムジュース',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(), 
             ],[
@@ -57,7 +57,7 @@ class SplitsTableSeeder extends Seeder
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(), 
             ],[
-                'name' => 'ガムシロップ',
+                'name' => 'シュガーシロップ',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(), 
             ],
