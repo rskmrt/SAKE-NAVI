@@ -37,6 +37,7 @@ class CanMakeController extends Controller
         
         $cocktails = $query
         ->orderBy('name', 'asc')
+        ->distinct()
         ->paginate(9);
 
         return view('users.can-makes.can-make', compact('cocktails'));
@@ -141,7 +142,7 @@ class CanMakeController extends Controller
             }
         }
         
-        return redirect()->back();
+        return redirect('can-make');
     }
     
 }

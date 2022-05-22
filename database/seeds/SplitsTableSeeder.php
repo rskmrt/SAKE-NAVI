@@ -60,6 +60,10 @@ class SplitsTableSeeder extends Seeder
                 'name' => 'シュガーシロップ',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(), 
+            ],[
+                'name' => 'グレナデンシロップ',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ],
         ]);
     }

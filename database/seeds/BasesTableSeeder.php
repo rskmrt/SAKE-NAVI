@@ -64,6 +64,10 @@ class BasesTableSeeder extends Seeder
                 'name' => 'ホワイトキュラソー',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(), 
+            ],[
+                'name' => 'カシス',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(), 
             ],
             
         ]);

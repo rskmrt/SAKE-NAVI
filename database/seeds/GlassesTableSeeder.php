@@ -25,7 +25,7 @@ class GlassesTableSeeder extends Seeder
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(), 
             ],[
-                'name' => 'その他',
+                'name' => 'ゴブレット',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(), 
             ]
