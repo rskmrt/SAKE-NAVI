@@ -75,5 +75,7 @@ Laravel Framework 6.20.44
 - 検索
 ![検索](https://user-images.githubusercontent.com/87703969/169859204-661961af-e440-4a33-8669-9ae9ec0f9c4e.gif)
 
+- ログイン・ログアウト
+![ログイン・ログアウト](https://user-images.githubusercontent.com/87703969/169859911-1a9f220d-61b9-4c50-af53-5a6207bcbc12.gif)
 
 
