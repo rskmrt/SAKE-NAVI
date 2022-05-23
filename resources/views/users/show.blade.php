@@ -88,6 +88,10 @@
     </div>
   </div>
 
+  <div class="py-5 text-center">
+    <button type="button" class="btn btn-outline-dark " onclick=location.href='/home' >戻る</button>
+  </div>
+
 </div>
 
 @endsection
