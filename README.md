@@ -78,9 +78,13 @@ Laravel Framework 6.20.44
 - ログイン・ログアウト
 ![ログイン・ログアウト](https://user-images.githubusercontent.com/87703969/169859911-1a9f220d-61b9-4c50-af53-5a6207bcbc12.gif)
 
--オリジナルカクテル
+- オリジナルカクテル
 ![オリジナル](https://user-images.githubusercontent.com/87703969/169860334-9ac10ec7-b27c-4230-abd0-1d48a31125c4.gif)
 
 - お気に入り
 ![お気に入り](https://user-images.githubusercontent.com/87703969/169861393-37eaa12a-1ad3-41fc-a017-7706f244f870.gif)
+
+- 作れるカクテル
+![作れるカクテル](https://user-images.githubusercontent.com/87703969/169861844-2190815e-a7d0-45c5-be1b-eeb7714bd797.gif)
+
 
