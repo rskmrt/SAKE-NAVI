@@ -69,6 +69,8 @@ Laravel Framework 6.20.44
 
 
 ### 利用方法
+- 一覧表示
+![一覧表示](https://user-images.githubusercontent.com/87703969/169858020-2d3998b5-faf1-4e65-ae9c-c1ef006f3006.gif)
 
 
 
