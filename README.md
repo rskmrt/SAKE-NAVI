@@ -71,7 +71,8 @@ Laravel Framework 6.20.44
 
 
 ### データベース設計
-![Database ER diagram (crow's foot)](https://user-images.githubusercontent.com/87703969/169864850-225b3ab3-6f59-4a96-919a-6ef8881d2c68.svg)
+![Database ER diagram (crow's foot)](https://user-images.githubusercontent.com/87703969/169865277-59ff4f1a-8337-42f7-a055-718a52a5f72e.svg)
+
 
 
 
