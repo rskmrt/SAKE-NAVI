@@ -41,7 +41,6 @@
     <table class="table table-hover">
       <thead>
         <tr>
-          <th scope="col">@sortablelink('id', 'ID')</th>
           <th scope="col">@sortablelink('name', '材料名')</th>
           <th scope="col">@sortablelink('created_at', '作成日時')</th>
           <th scope="col">@sortablelink('updated_at', '更新日時')</th>
@@ -53,7 +52,6 @@
         <tr>
           <form action="{{ route('admin.base.update', $base) }}" method="POST">
             @csrf
-            <th scope="row">{{ $base->id }}</th>
             <td><input type="text" name="name" value="{{ $base->name }}"></td>
             <td>{{ $base->created_at->format('Y/m/d h:i') }}</td>
             <td>{{ $base->updated_at->format('Y/m/d h:i') }}</td>

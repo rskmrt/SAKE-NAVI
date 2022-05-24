@@ -22,7 +22,6 @@
     @enderror
     <thead>
       <tr>
-        <th scope="col">@sortablelink('id', 'ID')</th>
         <th scope="col">@sortablelink('name', '名前')</th>
         <th scope="col">@sortablelink('email', 'e-mail')</th>
         <th scope="col">@sortablelink('created_at', '作成日時')</th>
@@ -35,7 +34,6 @@
       <tr>
         <form action="{{ route('admin.users.update', $user) }}" method="POST">
           @csrf
-          <th scope="row">{{ $user->id }}</th>
           <td><input type="text" name="name" value="{{ $user->name }}"></td>
           <td><input type="text" name="email" value="{{ $user->email }}"></td>
           <td>{{ $user->created_at->format('Y/m/d h:i') }}</td>

@@ -40,7 +40,6 @@
     <table class="table table-hover">
       <thead>
         <tr>
-          <th scope="col">@sortablelink('id', 'ID')</th>
           <th scope="col">@sortablelink('name', '材料名')</th>
           <th scope="col">@sortablelink('created_at', '作成日時')</th>
           <th scope="col">@sortablelink('updated_at', '更新日時')</th>
@@ -52,7 +51,6 @@
         <tr>
           <form action="{{ route('admin.split.update', $split) }}" method="POST">
             @csrf
-            <th scope="row">{{ $split->id }}</th>
             <td><input type="text" name="name" value="{{ $split->name }}"></td>
             <td>{{ $split->created_at->format('Y/m/d h:i') }}</td>
             <td>{{ $split->updated_at->format('Y/m/d h:i') }}</td>
