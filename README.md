@@ -53,7 +53,7 @@ Laravel Framework 6.20.44
  mysql
 
 - その他使用技術  
- git(gitHub) / Visual Studio Code / Tera Term  XAMPP
+ git(gitHub) / Visual Studio Code / Tera Term / XAMPP
 
 
 ## 機能一覧
