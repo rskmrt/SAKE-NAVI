@@ -1,24 +1,24 @@
-### アプリケーション名  
-SAKE-NAVI
+## アプリケーション名  
+SAKE-NAVI  
 
 
-### 概要
+## 概要
 カクテルの情報サイトです。  
 「カクテルの一覧を表示・検索」、「カクテルをお気に入り」、「自分の持っている材料から作れるカクテルの表示」、「オリジナルカクテルの登録」ができるwebサイトです。
 
 
-### 工夫した点
+## 工夫した点  
 
 
-### 苦労した点
+## 苦労した点  
 
 
-### サイトURL
+## サイトURL  
 一般　　http://www.sake-navi.jp  
 管理者　http://www.sake-navi.jp/admin
 
 
-### テスト用アカウント
+## テスト用アカウント
 一般ユーザー
 メールアドレス | パスワード
 -|-
@@ -32,7 +32,7 @@ test3@test | 12345678
 admin@test | 12345678
 
 
-### 使用技術
+## 使用技術
 - フロンドエンド  
  HTML/CSS  
  bootstrap
@@ -48,16 +48,14 @@ Laravel Framework 6.20.44
  git(gitHub) / Visual Studio Code / Tera Term
 
 
-### 機能一覧
-- ゲスト  
+## 機能一覧
+- 一般ユーザー
 -ユーザー登録  
 -ログイン  
 -ログアウト  
 -カクテル一覧表示  
 -カクテル詳細表示  
 -カクテル検索  
-
-- 一般ユーザー  
 -カクテルをお気に入りに追加/削除  
 -自分の持っている材料の登録  
 -登録した材料から作れるカクテルを一覧表示  
@@ -70,14 +68,15 @@ Laravel Framework 6.20.44
 -ユーザーの一覧表示/編集/削除  
 
 
-### データベース設計
+## データベース設計
 ![Database ER diagram (crow's foot)](https://user-images.githubusercontent.com/87703969/169865277-59ff4f1a-8337-42f7-a055-718a52a5f72e.svg)
 
 
 
 
 
-### 利用方法
+## 利用方法
+#### 一般ユーザー
 - 一覧表示
 ![一覧表示](https://user-images.githubusercontent.com/87703969/169858020-2d3998b5-faf1-4e65-ae9c-c1ef006f3006.gif)
 
@@ -96,4 +95,7 @@ Laravel Framework 6.20.44
 - 作れるカクテル
 ![作れるカクテル](https://user-images.githubusercontent.com/87703969/169861844-2190815e-a7d0-45c5-be1b-eeb7714bd797.gif)
 
+#### 管理者
+- ログイン/ログアウト
+![ログイン](https://user-images.githubusercontent.com/87703969/169964239-95a8916c-4996-4726-9df9-1ab309b57a13.gif)
 
