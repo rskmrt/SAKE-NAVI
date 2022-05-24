@@ -41,7 +41,7 @@ admin@test | 12345678
 
 
 ## 使用技術
-- フロンドエンド  
+- フロントエンド  
  HTML/CSS  
  bootstrap
 
@@ -53,7 +53,7 @@ Laravel Framework 6.20.44
  mysql
 
 - その他使用技術  
- git(gitHub) / Visual Studio Code / Tera Term / PHPMyAdmin / xampp
+ git(gitHub) / Visual Studio Code / Tera Term / PHPMyAdmin / XAMPP
 
 
 ## 機能一覧
